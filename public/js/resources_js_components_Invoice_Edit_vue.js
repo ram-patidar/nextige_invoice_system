@@ -78,11 +78,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.next = 2;
                 return _this.axios.get("/api/Invoice/".concat(_this.$route.params.id)).then(function (response) {
-                  var _response$data = response.data,
-                      description = _response$data.description,
-                      amount = _response$data.amount;
+                  var _response$data$editDa = response.data.editData,
+                      description = _response$data$editDa.description,
+                      amount = _response$data$editDa.amount;
                   _this.Invoice.amount = amount;
                   _this.Invoice.description = description;
+                  console.log(response.data.editData);
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -105,6 +106,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context2.next = 2;
                 return _this2.axios.post("/api/Invoice/".concat(_this2.$route.params.id), _this2.Invoice).then(function (response) {
+                  _this2.$swal('Update', "Invoice Update Successfully.", 'success');
+
                   _this2.$router.back();
                 })["catch"](function (error) {
                   console.log(error);

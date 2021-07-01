@@ -13,14 +13,14 @@
                                 <div class="form-group">
                                     <label>Client Name</label>
                                     <input type="hidden" name="invoice_code" class="form-control" v-model="Client.invoice_code">
-                                    <input type="text" name="client_name" class="form-control" v-model="Client.client_name">
+                                    <input type="text" name="client_name" placeholder="Enter client name" class="form-control" v-model="Client.client_name">
                                      <span class="error" v-if="errors.client_name">{{errors.client_name[0]}}</span>
                                 </div>
                             </div>
                             <div class="col-12 mb-2">
                                 <div class="form-group">
                                     <label>Company Name</label>
-                                    <input type="text" name="company_name" class="form-control" v-model="Client.company_name">
+                                    <input type="text" name="company_name" placeholder="Enter company name" class="form-control" v-model="Client.company_name">
                                      <span class="error" v-if="errors.company_name">{{errors.company_name[0]}}</span>
                                 
                                 </div>
@@ -28,14 +28,14 @@
                             <div class="col-12 mb-2">
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="text" name="email" class="form-control" v-model="Client.email">
+                                    <input type="text" name="email" placeholder="Enter client email" class="form-control" v-model="Client.email">
                                       <span class="error" v-if="errors.email">{{errors.email[0]}}</span>
                                 </div>
                             </div>
                             <div class="col-12 mb-2">
                                 <div class="form-group">
                                     <label>Address</label>
-                                    <input type="text" name="address" class="form-control" v-model="Client.address">
+                                    <input type="text" name="address" placeholder="Enter client address" class="form-control" v-model="Client.address">
                                      <span class="error" v-if="errors.address">{{errors.address[0]}}</span>
                                 </div>
                             </div>

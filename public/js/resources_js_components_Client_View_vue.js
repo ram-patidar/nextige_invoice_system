@@ -77,7 +77,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -87,14 +86,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         amount: ''
       }],
       Invoices: [],
+      length: null,
       sum: ''
     };
   },
   mounted: function mounted() {
-    this.getInvoices();
+    this.showData();
+    this.deleteRow();
   },
   methods: {
-    getInvoices: function getInvoices() {
+    showData: function showData() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -103,13 +104,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.axios.get('/api/Invoice').then(function (response) {
-                  _this.Invoices = response.data.Invoices;
+                return _this.axios.get("/api/Invoice/".concat(_this.$route.params.id)).then(function (response) {
+                  _this.Invoices = response.data.showData;
                   _this.sum = response.data.Sum;
-                  console.log(response.data.Invoices[0]);
+                  _this.length = response.data.length; // console.log(response.data.showData)
+                  // console.log(response.data.length)
                 })["catch"](function (error) {
                   console.log(error);
-                  _this.Invoices = [];
                 });
 
               case 2:
@@ -147,7 +148,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           });
         }
 
-        _this2.getInvoices();
+        _this2.showData();
       });
     },
     create: function create() {
@@ -166,10 +167,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }).then(function (response) {
                   _this3.$swal('Added', "Invoice Added Success.", 'success');
 
-                  _this3.getInvoices();
+                  _this3.showData();
 
-                  _this3.$router.go();
+                  _this3.users.description = null;
+                  _this3.users.amount = null; // this.$router.go()
 
+                  // this.$router.go()
                   _this3.errors = error.response.data.errors;
                 })["catch"](function (error) {
                   _this3.errors = error.response.data.errors;
@@ -182,12 +185,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee2);
       }))();
-    } //     async Clients() {
-    //   await this.axios.get("/api/Client").then((response) => {
-    //     this.Invoice_code = response.data.Invoice_code
-    //   });
-    // },
-
+    }
   }
 });
 
@@ -351,7 +349,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h2", [_vm._v("Invoice \r\n        ")]),
+    _c("h5", [
+      _vm._v(_vm._s(this.$route.params.name) + " Invoice list\r\n        ")
+    ]),
     _vm._v(" "),
     _c(
       "div",
@@ -371,7 +371,7 @@ var render = function() {
     _c("table", { staticClass: "table table-bordered text-center" }, [
       _vm._m(0),
       _vm._v(" "),
-      _vm.Invoices.length > 0
+      _vm.length > 0
         ? _c(
             "tbody",
             [
@@ -467,7 +467,11 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { name: "description", type: "text" },
+                attrs: {
+                  name: "description",
+                  placeholder: "Enter description",
+                  type: "text"
+                },
                 domProps: { value: _vm.users.description },
                 on: {
                   input: function($event) {
@@ -491,7 +495,11 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { name: "amount", type: "number" },
+                attrs: {
+                  name: "amount",
+                  placeholder: "Enter amount",
+                  type: "number"
+                },
                 domProps: { value: _vm.users.amount },
                 on: {
                   input: function($event) {
@@ -508,7 +516,7 @@ var render = function() {
               _c(
                 "button",
                 { staticClass: "btn btn-primary", on: { click: _vm.create } },
-                [_vm._v("Save")]
+                [_vm._v("Add")]
               ),
               _vm._v(" "),
               _c(

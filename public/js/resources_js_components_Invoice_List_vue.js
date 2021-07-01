@@ -213,7 +213,21 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
-    _c("div", { staticClass: "col-12 mb-2 text-end" }),
+    _c(
+      "div",
+      { staticClass: "col-12 mb-2 text-end" },
+      [
+        _c(
+          "router-link",
+          {
+            staticClass: "btn btn-primary",
+            attrs: { to: { name: "InvoiceAdd" } }
+          },
+          [_vm._v("Create Invoice")]
+        )
+      ],
+      1
+    ),
     _vm._v(" "),
     _c("div", { staticClass: "col-12" }, [
       _c("div", { staticClass: "card" }, [

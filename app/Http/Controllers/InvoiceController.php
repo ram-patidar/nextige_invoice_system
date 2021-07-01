@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Invoice;
-use App\Models\Client;
-
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use DB;
@@ -40,9 +38,14 @@ class InvoiceController extends Controller
         //     'Invoice'=>$Invoice
         // ]);
         $request->validate([
-            'description'=>['required'],
-            'amount'=>['required'],
-            'client_id'=>['required']
+            'description' => 'required',
+            'amount' => 'required',
+            'client_id' => 'required'
+        ],
+        [
+            'description.required' => 'The description field is required.',
+            'amount.required' => 'The amount field is required.',
+            'client_id.required' => 'The Client option is required.'
         ]);
 
         if($Invoice = Invoice::create($request->post())){
@@ -62,21 +65,18 @@ class InvoiceController extends Controller
      * @param  \App\Models\Invoice  $Invoice
      * @return \Illuminate\Http\Response
      */
-    // public function show($id)
-    // {
-    //     // return response()->json($Invoice);
-    //     $Invoice = Invoice::find($id);
-    //     return response()->json([
-    //         'Client_invoice'=>$Invoice->where('id','=',$id)->get(),
-    //         'Sum_invoice'=>$Invoice->where('id','=',$id)->sum('amount')
-    //     ], 200);
-    // }
-    
-    public function show(Invoice $Invoice)
+   
+    public function show($client_id)
     {
-        return response()->json($Invoice);
+        $Invoice = Invoice::all();
+        return response()->json([
+            'length'=>$Invoice->where('client_id', '=', $client_id)->count(),
+            'Sum'=>$Invoice->where('client_id', '=', $client_id)->sum('amount'),
+            'showData'=>$Invoice->where('client_id', '=', $client_id),
+            'editData'=>$Invoice->where('id', '=', $client_id)->first()
+        ]);
     }
-    
+   
     /**
      * Update the specified resource in storage.
      *

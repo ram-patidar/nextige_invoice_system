@@ -365,7 +365,11 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control",
-                      attrs: { type: "text", name: "client_name" },
+                      attrs: {
+                        type: "text",
+                        name: "client_name",
+                        placeholder: "Enter client name"
+                      },
                       domProps: { value: _vm.Client.client_name },
                       on: {
                         input: function($event) {
@@ -403,7 +407,11 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control",
-                      attrs: { type: "text", name: "company_name" },
+                      attrs: {
+                        type: "text",
+                        name: "company_name",
+                        placeholder: "Enter company name"
+                      },
                       domProps: { value: _vm.Client.company_name },
                       on: {
                         input: function($event) {
@@ -441,7 +449,11 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control",
-                      attrs: { type: "text", name: "email" },
+                      attrs: {
+                        type: "text",
+                        name: "email",
+                        placeholder: "Enter client email"
+                      },
                       domProps: { value: _vm.Client.email },
                       on: {
                         input: function($event) {
@@ -475,7 +487,11 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control",
-                      attrs: { type: "text", name: "address" },
+                      attrs: {
+                        type: "text",
+                        name: "address",
+                        placeholder: "Enter client address"
+                      },
                       domProps: { value: _vm.Client.address },
                       on: {
                         input: function($event) {

@@ -31,9 +31,9 @@
                                    <th>Amount</th>
                                 </tr>
                             </thead>
-                            <tbody v-if="Invoices.length > 0">
+                            <tbody v-if="length > 0">
                                 <tr v-for="(Invoice,key) in Invoices" :key="key">
-                                    <td>{{key+1}}</td>
+                                    <td>{{(count++) -(length*100)}}</td>
                                     <td>{{ Invoice.description }}</td>
                                     <td>${{Invoice.amount }}</td>
                                 </tr>
@@ -87,7 +87,9 @@ export default {
                 email:"",
                 address:"",
             },
+            count:1,
         date:null,
+        length:null,
         Invoices: []
         }
     },
@@ -117,25 +119,16 @@ export default {
                 console.log(error)
             })
         },
-        //  async getInvoices(){
-        //     await this.axios.get(`/api/Invoice/${this.$route.params.id}` ).then(response=>{
-        //         console.log(response.data.Client_invoice)
-        //         this.Invoices = response.data.Client_invoice
-        //         this.sum = response.data.Sum_invoice;
-
-        //     }).catch(error=>{
-        //         console.log(error)
-        //         this.Invoices = []
-        //     })
-        // },
+        
          async getInvoices(){
-            await this.axios.get('/api/Invoice').then(response=>{
-                this.Invoices = response.data.Invoices
+             await this.axios.get(`/api/Invoice/${this.$route.params.id}`).then(response=>{
+                 this.Invoices = response.data.showData
                 this.sum = response.data.Sum
-                // console.log(response.data)
+                 this.length = response.data.length
+                console.log(response.data.showData)
+                console.log(response.data.length)
             }).catch(error=>{
                 console.log(error)
-                this.Invoices = []
             })
         },
 

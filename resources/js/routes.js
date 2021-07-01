@@ -57,7 +57,7 @@ export const routes = [
     },
     {
         name: 'Clientview',
-        path: '/Clientview/:id/view',
+        path: '/Clientview/:id/:name/view',
         component: Clientview,
         beforeEnter: (to, from, next) =>{
             if(localStorage.getItem('token')){

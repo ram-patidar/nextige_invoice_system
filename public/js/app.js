@@ -2159,6 +2159,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log("register Successfully");
       })["catch"](function (error) {
         _this.errors = error.response.data.errors;
+        console.log(email_unique);
       });
     }
   }
@@ -2348,7 +2349,7 @@ var routes = [{
   }
 }, {
   name: 'Clientview',
-  path: '/Clientview/:id/view',
+  path: '/Clientview/:id/:name/view',
   component: Clientview,
   beforeEnter: function beforeEnter(to, from, next) {
     if (localStorage.getItem('token')) {

@@ -63,17 +63,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "add-Invoice",
   data: function data() {
     return {
       Invoice: {
-        id: this.$route.params.id,
+        client_id: "",
         description: "",
         amount: ""
       },
-      errors: []
+      errors: [],
+      Clients: []
     };
+  },
+  mounted: function mounted() {
+    this.getClients();
   },
   methods: {
     create: function create() {
@@ -95,7 +104,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.errors = error.response.data.errors;
                 })["catch"](function (error) {
                   console.log(error);
-                  _this.errors = error.response.data.errors;
+                  _this.errors = error.response.data.errors; //  this.errors.client_id = "Please select client."
                 });
 
               case 2:
@@ -104,6 +113,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee);
+      }))();
+    },
+    getClients: function getClients() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _this2.axios.get('/api/Client').then(function (response) {
+                  _this2.Clients = response.data.Clients;
+                })["catch"](function (error) {
+                  console.log(error);
+                  _this2.Clients = [];
+                });
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
       }))();
     }
   }
@@ -311,6 +344,67 @@ var render = function() {
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-12 mb-2" }, [
                   _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Select Client")]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.Invoice.client_id,
+                            expression: "Invoice.client_id"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { name: "client_id", id: "client_id" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.Invoice,
+                              "client_id",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { value: "" } }, [
+                          _vm._v("Select Client Name")
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.Clients, function(Client, key) {
+                          return _c(
+                            "option",
+                            { key: key, domProps: { value: Client.id } },
+                            [_vm._v(_vm._s(Client.client_name))]
+                          )
+                        })
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _vm.errors.client_id
+                      ? _c("span", { staticClass: "error" }, [
+                          _vm._v(_vm._s(_vm.errors.client_id[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-12 mb-2" }, [
+                  _c("div", { staticClass: "form-group" }, [
                     _c("label", [_vm._v("Description")]),
                     _vm._v(" "),
                     _c("input", {
@@ -323,7 +417,11 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control",
-                      attrs: { type: "text", name: "description" },
+                      attrs: {
+                        type: "text",
+                        name: "description",
+                        placeholder: "Enter description"
+                      },
                       domProps: { value: _vm.Invoice.description },
                       on: {
                         input: function($event) {
@@ -361,7 +459,11 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control",
-                      attrs: { type: "number", name: "amount" },
+                      attrs: {
+                        type: "number",
+                        name: "amount",
+                        placeholder: "Enter Amount"
+                      },
                       domProps: { value: _vm.Invoice.amount },
                       on: {
                         input: function($event) {

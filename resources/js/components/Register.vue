@@ -55,7 +55,7 @@ export default{
                 console.log("register Successfully");
             }).catch((error)=>{
                 this.errors= error.response.data.errors;
-               
+               console.log(email_unique)
             })
         }
     }
