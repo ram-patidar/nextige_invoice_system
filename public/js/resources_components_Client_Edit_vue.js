@@ -64,6 +64,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "update-Client",
   data: function data() {
@@ -73,8 +98,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         company_name: "",
         email: "",
         address: "",
+        country: "",
         _method: "patch"
-      }
+      },
+      errors: []
     };
   },
   mounted: function mounted() {
@@ -93,15 +120,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this.axios.get("/api/Client/".concat(_this.$route.params.id)).then(function (response) {
                   var _response$data = response.data,
                       client_name = _response$data.client_name,
+                      country = _response$data.country,
                       company_name = _response$data.company_name,
                       email = _response$data.email,
                       address = _response$data.address;
                   _this.Client.client_name = client_name;
                   _this.Client.company_name = company_name;
+                  _this.Client.country = country;
                   _this.Client.email = email;
                   _this.Client.address = address;
                 })["catch"](function (error) {
                   console.log(error);
+                  console.log(error.response.data);
                 });
 
               case 2:
@@ -309,6 +339,125 @@ var render = function() {
                         }
                       }
                     })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-12 mb-2" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Country")]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.Client.country,
+                            expression: "Client.country"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { name: "country", id: "country" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.Client,
+                              "country",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { value: "" } }, [
+                          _vm._v("Select Country")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "option",
+                          {
+                            attrs: { selected: "" },
+                            domProps: { value: _vm.Client.country }
+                          },
+                          [_vm._v(_vm._s(_vm.Client.country))]
+                        ),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "AUS" } }, [
+                          _vm._v("Australia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "BGD" } }, [
+                          _vm._v("Bangladesh")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "IDN" } }, [
+                          _vm._v("Indonesia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "IND" } }, [
+                          _vm._v("India")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "MS" } }, [
+                          _vm._v("Malaysia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "NZ" } }, [
+                          _vm._v("New Zealand")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "RS" } }, [
+                          _vm._v("Russia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SA" } }, [
+                          _vm._v("Saudi Arabia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SGP" } }, [
+                          _vm._v("Singapore")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SA" } }, [
+                          _vm._v("South Africa")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SL" } }, [
+                          _vm._v("Sri Lanka")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SWL" } }, [
+                          _vm._v("Switzerland")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "TL" } }, [
+                          _vm._v("Thailand")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "UK" } }, [
+                          _vm._v("United Kingdom")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "UAE" } }, [
+                          _vm._v("United Arab Emirates")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "USA" } }, [
+                          _vm._v("United States of America")
+                        ])
+                      ]
+                    )
                   ])
                 ]),
                 _vm._v(" "),

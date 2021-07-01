@@ -1962,16 +1962,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       Client_count: null,
-      Invoice_count: null
+      Invoice_count: null,
+      name: ""
     };
   },
   mounted: function mounted() {
     this.CountClients();
     this.CountInvoice();
+    this.showUser();
   },
   methods: {
     CountClients: function CountClients() {
@@ -2014,6 +2023,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee2);
+      }))();
+    },
+    showUser: function showUser() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _this3.axios.get("/api/login/".concat(localStorage.getItem("token"))).then(function (response) {
+                  var name = response.data.user_data.name;
+                  _this3.name = name.charAt(0).toUpperCase() + name.slice(1);
+                  console.log(_this3.name);
+                })["catch"](function (error) {
+                  console.log(error);
+                });
+
+              case 2:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
       }))();
     }
   }
@@ -2092,6 +2126,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2100,8 +2136,12 @@ __webpack_require__.r(__webpack_exports__);
         password: "",
         msg: ""
       },
-      errors: []
+      errors: [],
+      date: null
     };
+  },
+  mounted: function mounted() {
+    this.date_function();
   },
   methods: {
     login: function login() {
@@ -2118,6 +2158,20 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         _this.errors = error.response.data.errors;
       });
+    },
+    date_function: function date_function() {
+      var current = new Date();
+      var date = current.getFullYear();
+      this.date = date;
+    },
+    show: function show() {
+      var x = document.getElementById('inputtype');
+
+      if (x.type === 'password') {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
     }
   }
 });
@@ -2511,7 +2565,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.client[data-v-013ffa1a]{\r\n    background-color: lightgreen;\r\n    color: black;\r\n    text-align: center;\n}\n.invoice[data-v-013ffa1a]{\r\n    background-color: lightsalmon;\r\n    color: black;\r\n    text-align: center;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.client[data-v-013ffa1a] {\r\n  background-color: lightgreen;\r\n  color: black;\r\n  text-align: center;\n}\n.invoice[data-v-013ffa1a] {\r\n  background-color: lightsalmon;\r\n  color: black;\r\n  text-align: center;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2535,7 +2589,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* .invalid {\r\n  color: #e6133d;\r\n  background-color: rgb(255 95 95 / 10%);\r\n  border-color: #f10938;\r\n  width: 300px;\r\n  height: 40px;\r\n  text-align: center;\r\n}\r\n.alert {\r\n  padding: 10px 18px;\r\n  border-radius: 5px;\r\n} */\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* .invalid {\r\n  color: #e6133d;\r\n  background-color: rgb(255 95 95 / 10%);\r\n  border-color: #f10938;\r\n  width: 300px;\r\n  height: 40px;\r\n  text-align: center;\r\n}\r\n.alert {\r\n  padding: 10px 18px;\r\n  border-radius: 5px;\r\n} */\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -24739,7 +24793,11 @@ var render = function() {
   return _c("main", [
     _c("section", { staticClass: "main-wrapper" }, [
       _c("div", { staticClass: "page-color" }, [
-        _vm._m(0),
+        _c("div", { staticClass: "page-header" }, [
+          _c("div", { staticClass: "page-title" }, [
+            _c("h2", [_vm._v("Hello, " + _vm._s(_vm.name))])
+          ])
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "page-table" }, [
           _c("div", { staticClass: "dashboard container-fluid" }, [
@@ -24757,14 +24815,17 @@ var render = function() {
                           attrs: { to: "/Client" }
                         },
                         [
-                          _c("h4", [_vm._v("Clients")]),
+                          _c("h4", [_vm._v("Total Clients")]),
                           _vm._v(" "),
                           _c("h5", [
-                            _vm._v("Total Clients "),
+                            _vm._v(
+                              "\n                      " +
+                                _vm._s(_vm.Client_count) +
+                                " "
+                            ),
                             _c("br"),
                             _vm._v(
-                              "\r\n                                        " +
-                                _vm._s(_vm.Client_count)
+                              "\n                      Clients ›\n                    "
                             )
                           ])
                         ]
@@ -24788,14 +24849,16 @@ var render = function() {
                           attrs: { to: "/Invoice" }
                         },
                         [
-                          _c("h4", [_vm._v("Invoice")]),
+                          _c("h4", [_vm._v("Total Invoices")]),
                           _vm._v(" "),
                           _c("h5", [
-                            _vm._v("Total Invoice "),
+                            _vm._v(
+                              "\n                      " +
+                                _vm._s(_vm.Invoice_count)
+                            ),
                             _c("br"),
                             _vm._v(
-                              "\r\n                                        " +
-                                _vm._s(_vm.Invoice_count)
+                              "\n                      Invoice ›\n                    "
                             )
                           ])
                         ]
@@ -24812,18 +24875,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "page-header" }, [
-      _c("div", { staticClass: "page-title" }, [
-        _c("h2", [_vm._v("Dashboard")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -24848,7 +24900,16 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "login-box" }, [
     _c("div", { staticClass: "login-wrapper" }, [
-      _vm._m(0),
+      _c("div", { staticClass: "login-left" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "copyright-footer" }, [
+          _c("p", [
+            _vm._v("@" + _vm._s(_vm.date) + " "),
+            _c("a", { attrs: { href: "" } }, [_vm._v("Nextige")])
+          ])
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "login-right" }, [
         _c("div", { staticClass: "login-frm" }, [
@@ -24908,6 +24969,7 @@ var render = function() {
               attrs: {
                 type: "password",
                 name: "password",
+                id: "inputtype",
                 autocomplete: "off"
               },
               domProps: { value: _vm.form.password },
@@ -24922,6 +24984,8 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("label", { attrs: { for: "password" } }, [_vm._v("Password")]),
+            _vm._v(" "),
+            _c("span", { on: { click: _vm.show } }, [_vm._v("show/hide")]),
             _vm._v(" "),
             _vm.errors.password
               ? _c("span", { staticClass: "error" }, [
@@ -24956,18 +25020,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "login-left" }, [
-      _c("div", { staticClass: "login-logo" }, [
-        _c("a", { attrs: { href: "" } }, [
-          _c("img", { attrs: { src: "images/logo.svg", alt: "" } })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "copyright-footer" }, [
-        _c("p", [
-          _vm._v("@2021 "),
-          _c("a", { attrs: { href: "" } }, [_vm._v("Nextige")])
-        ])
+    return _c("div", { staticClass: "login-logo" }, [
+      _c("a", { attrs: { href: "" } }, [
+        _c("img", { attrs: { src: "images/logo.svg", alt: "" } })
       ])
     ])
   },

@@ -58,6 +58,7 @@ export default {
          async getInvoices(){
             await this.axios.get('/api/Invoice').then(response=>{
                 this.Invoices = response.data.Invoices
+                 this.Invoices.sort((a,b)=>a.weight<b.weight?1:-1)
                 // console.log(response.data)
             }).catch(error=>{
                 console.log(error)

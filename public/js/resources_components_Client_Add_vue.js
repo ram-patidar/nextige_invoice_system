@@ -71,16 +71,87 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "add-Client",
   data: function data() {
     return {
       Client: {
-        invoice_code: '',
+        invoice_code: "",
         client_name: "",
         company_name: "",
         email: "",
-        address: ""
+        address: "",
+        country: ""
       },
       errors: [],
       message: null
@@ -99,10 +170,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.axios.post('/api/Client', _this.Client).then(function (response) {
-                  _this.$swal('Client Added Successfully ', '', 'success');
+                return _this.axios.post("/api/Client", _this.Client).then(function (response) {
+                  _this.$swal("Client Added Successfully ", "", "success");
 
-                  _this.$router.push('/Client');
+                  _this.$router.push("/Client");
 
                   _this.message = response.data.message; //  console.log(response.data.message)
                 })["catch"](function (error) {
@@ -126,8 +197,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return _this2.axios.get('/api/Client').then(function (response) {
-                  _this2.Client.invoice_code = '#NX-00' + (response.data.last_id + 1);
+                return _this2.axios.get("/api/Client").then(function (response) {
+                  _this2.Client.invoice_code = "#NX-00" + (response.data.last_id + 1);
                 })["catch"](function (error) {
                   console.log(error);
                   _this2.Clients = [];
@@ -163,7 +234,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.success[data-v-3058e96e]{\r\n    color: green;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.success[data-v-3058e96e] {\r\n  color: green;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -437,6 +508,122 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "col-12 mb-2" }, [
                   _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Country ")]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.Client.country,
+                            expression: "Client.country"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { name: "country", id: "country" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.Client,
+                              "country",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { value: "" } }, [
+                          _vm._v("Select country")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "AUS" } }, [
+                          _vm._v("Australia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "BGD" } }, [
+                          _vm._v("Bangladesh")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "IDN" } }, [
+                          _vm._v("Indonesia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "IND" } }, [
+                          _vm._v("India")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "MS" } }, [
+                          _vm._v("Malaysia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "NZ" } }, [
+                          _vm._v("New Zealand")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "RS" } }, [
+                          _vm._v("Russia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SA" } }, [
+                          _vm._v("Saudi Arabia")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SGP" } }, [
+                          _vm._v("Singapore")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SA" } }, [
+                          _vm._v("South Africa")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SL" } }, [
+                          _vm._v("Sri Lanka")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "SWL" } }, [
+                          _vm._v("Switzerland")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "TL" } }, [
+                          _vm._v("Thailand")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "UK" } }, [
+                          _vm._v("United Kingdom")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "UAE" } }, [
+                          _vm._v("United Arab Emirates")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "USA" } }, [
+                          _vm._v("United States of America")
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm.errors.country
+                      ? _c("span", { staticClass: "error" }, [
+                          _vm._v(_vm._s(_vm.errors.country[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-12 mb-2" }, [
+                  _c("div", { staticClass: "form-group" }, [
                     _c("label", [_vm._v("Email")]),
                     _vm._v(" "),
                     _c("input", {
@@ -529,7 +716,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("Add Client")]
+        [_vm._v("\n                Add Client\n              ")]
       )
     ])
   }

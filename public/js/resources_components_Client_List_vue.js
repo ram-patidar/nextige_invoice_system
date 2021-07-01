@@ -77,6 +77,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Clients",
   data: function data() {
@@ -98,8 +124,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.axios.get('/api/Client').then(function (response) {
+                return _this.axios.get("/api/Client").then(function (response) {
                   _this.Clients = response.data.Clients;
+
+                  _this.Clients.sort(function (a, b) {
+                    return a.weight < b.weight ? 1 : -1;
+                  });
                 })["catch"](function (error) {
                   console.log(error);
                   _this.Clients = [];
@@ -117,17 +147,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this2 = this;
 
       this.$swal({
-        title: 'Are you sure?',
+        title: "Are you sure?",
         text: "You won't be able to revert this!",
-        type: 'warning',
+        type: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
       }).then(function (result) {
         if (result.value) {
           _this2.axios["delete"]("/api/Client/".concat(id)).then(function (response) {
-            _this2.$swal('Deleted!', "".concat(name, " has been deleted."), 'success');
+            _this2.$swal("Deleted!", "".concat(name, " has been deleted."), "success");
           });
         }
 
@@ -156,7 +186,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.success[data-v-7742c421]{\r\n    color: green;\n}\n.profile[data-v-7742c421] {\r\n  height: 40px;\r\n  width: 40px;\r\n  text-align: center;\r\n  color: white;\r\n  background-color: #0d6efd;\r\n  border-radius: 60%;\r\n  display: inline-block;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.success[data-v-7742c421] {\r\n  color: green;\n}\n.profile[data-v-7742c421] {\r\n  height: 40px;\r\n  width: 40px;\r\n  text-align: center;\r\n  color: white;\r\n  background-color: #0d6efd;\r\n  border-radius: 60%;\r\n  display: inline-block;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -346,13 +376,15 @@ var render = function() {
                                         .toUpperCase()
                                     : " "
                                 ) +
-                                " "
+                                "\n                  "
                             )
                           ]),
+                          _vm._v(" "),
+                          _c("b", [_vm._v(_vm._s(Client.client_name))]),
                           _vm._v(
-                            "\n                                    " +
-                              _vm._s(Client.client_name) +
-                              "\n                                "
+                            "\n                  " +
+                              _vm._s(Client.country) +
+                              "\n                "
                           )
                         ]),
                         _vm._v(" "),
@@ -410,7 +442,11 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v("Delete")]
+                              [
+                                _vm._v(
+                                  "\n                    Delete\n                  "
+                                )
+                              ]
                             )
                           ],
                           1

@@ -84,7 +84,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.next = 2;
                 return _this.axios.get('/api/Invoice').then(function (response) {
-                  _this.Invoices = response.data.Invoices; // console.log(response.data)
+                  _this.Invoices = response.data.Invoices;
+
+                  _this.Invoices.sort(function (a, b) {
+                    return a.weight < b.weight ? 1 : -1;
+                  }); // console.log(response.data)
+
                 })["catch"](function (error) {
                   console.log(error);
                   _this.Invoices = [];
