@@ -50,15 +50,21 @@ export default {
     methods:{
         async showInvoice(){
             await this.axios.get(`/api/Invoice/${this.$route.params.id}`).then(response=>{
-                const { description, amount } = response.data
+                const { description, amount } = response.data.editData
                 this.Invoice.amount = amount
                 this.Invoice.description = description
+                console.log(response.data.editData)
             }).catch(error=>{
                 console.log(error)
             })
         },
         async update(){
             await this.axios.post(`/api/Invoice/${this.$route.params.id}`,this.Invoice).then(response=>{
+                 this.$swal(
+                  'Update',
+                  `Invoice Update Successfully.`,
+                  'success'
+                )
                 this.$router.back()
             }).catch(error=>{
                 console.log(error)

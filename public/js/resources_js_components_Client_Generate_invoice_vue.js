@@ -107,7 +107,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         email: "",
         address: ""
       },
+      count: 1,
       date: null,
+      length: null,
       Invoices: []
     };
   },
@@ -158,16 +160,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    //  async getInvoices(){
-    //     await this.axios.get(`/api/Invoice/${this.$route.params.id}` ).then(response=>{
-    //         console.log(response.data.Client_invoice)
-    //         this.Invoices = response.data.Client_invoice
-    //         this.sum = response.data.Sum_invoice;
-    //     }).catch(error=>{
-    //         console.log(error)
-    //         this.Invoices = []
-    //     })
-    // },
     getInvoices: function getInvoices() {
       var _this2 = this;
 
@@ -177,12 +169,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return _this2.axios.get('/api/Invoice').then(function (response) {
-                  _this2.Invoices = response.data.Invoices;
-                  _this2.sum = response.data.Sum; // console.log(response.data)
+                return _this2.axios.get("/api/Invoice/".concat(_this2.$route.params.id)).then(function (response) {
+                  _this2.Invoices = response.data.showData;
+                  _this2.sum = response.data.Sum;
+                  _this2.length = response.data.length;
+                  console.log(response.data.showData);
+                  console.log(response.data.length);
                 })["catch"](function (error) {
                   console.log(error);
-                  _this2.Invoices = [];
                 });
 
               case 2:
@@ -389,13 +383,15 @@ var render = function() {
               _c("table", { staticClass: "table table-bordered center" }, [
                 _vm._m(2),
                 _vm._v(" "),
-                _vm.Invoices.length > 0
+                _vm.length > 0
                   ? _c(
                       "tbody",
                       [
                         _vm._l(_vm.Invoices, function(Invoice, key) {
                           return _c("tr", { key: key }, [
-                            _c("td", [_vm._v(_vm._s(key + 1))]),
+                            _c("td", [
+                              _vm._v(_vm._s(_vm.count++ - _vm.length * 100))
+                            ]),
                             _vm._v(" "),
                             _c("td", [_vm._v(_vm._s(Invoice.description))]),
                             _vm._v(" "),

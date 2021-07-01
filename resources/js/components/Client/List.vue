@@ -16,8 +16,8 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>S.no</th>
-                                    <th>Invoice Number</th>
+                                    <!-- <th>S.no</th> -->
+                                    <!-- <th>Invoice Code</th> -->
                                     <th>Client name</th>
                                     <th>Company</th>
                                     <th>Email</th>
@@ -27,14 +27,17 @@
                             </thead>
                             <tbody v-if="Clients.length > 0">
                                 <tr v-for="(Client,key) in Clients" :key="key">
-                                    <td>{{key+1}}</td>
-                                    <td>{{ Client.invoice_code }}</td>
-                                    <td>{{ Client.client_name }}</td>
+                                    <!-- <td>{{key+1}}</td> -->
+                                    <!-- <td>{{ Client.invoice_code }}</td> -->
+                                    <td>
+                                        <span class="profile">{{ Client.client_name.split(" ")[0][0].toUpperCase()}}{{ Client.client_name.split(" ")[1]?  Client.client_name.split(" ")[1][0].toUpperCase(): ' '}} </span>
+                                        {{ Client.client_name }}
+                                    </td>
                                     <td>{{ Client.company_name }}</td>
                                     <td>{{ Client.email }}</td>
                                     <td>{{ Client.address }}</td>
                                     <td>
-                                        <router-link :to='{name:"Clientview",params:{id:Client.id}}' class="btn btn-primary">View</router-link>
+                                        <router-link :to='{name:"Clientview",params:{id:Client.id,name:Client.client_name }}' class="btn btn-primary">View</router-link>
                                         <router-link :to='{name:"ClientEdit",params:{id:Client.id}}' class="btn btn-success">Edit</router-link>
                                         <button type="button" @click="deleteClient(Client.id,Client.client_name)" class="btn btn-danger">Delete</button>
                                     </td>
@@ -99,9 +102,20 @@ export default {
         }
     }
 }
+
 </script>
 <style scoped>
 .success{
     color: green;
 }
+.profile {
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  color: white;
+  background-color: #0d6efd;
+  border-radius: 60%;
+  display: inline-block;
+}
+
 </style>

@@ -35,7 +35,7 @@ class ClientController extends Controller
         $request->validate([
             'company_name'=>['required'],
             'client_name'=>['required'],
-            'email' => ['required', 'email'],
+            'email' => ['required','email'],
             'address' => ['required']
         ]);
 

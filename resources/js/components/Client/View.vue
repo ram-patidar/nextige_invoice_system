@@ -1,8 +1,7 @@
 <template>
 <div>
-    <h2>Invoice 
-        <!-- {{Invoice_code}} -->
-        </h2>
+    <h5>{{this.$route.params.name}} Invoice list
+        </h5>
     <div>
       <router-link :to='{name:"ClientList"}' class="btn btn-primary back">&#8592; Back</router-link>
         
@@ -15,7 +14,7 @@
                     <th>Action</th>
                 </tr>
                 </thead>
-                <tbody v-if="Invoices.length > 0">
+                <tbody v-if="length > 0">
                                 <tr v-for="(Invoice,key) in Invoices" :key="key">
                                     <td>{{ Invoice.description }}</td>
                                     <td>${{ Invoice.amount }}</td>
@@ -38,13 +37,13 @@
                     <tr v-for="(user, key) in users" :key="key">
                     <input name="client_id"  v-model="users.client_id"  class="form-control" type="hidden" />
                     <td>
-                    <input name="description"  v-model="users.description"  class="form-control" type="text" />
+                    <input name="description"  v-model="users.description" placeholder="Enter description"  class="form-control" type="text" />
                     </td>
                     <td>
-                    <input name="amount" v-model="users.amount" class="form-control" type="number" />
+                    <input name="amount" v-model="users.amount" placeholder="Enter amount" class="form-control" type="number" />
                     </td>
                     <td>
-                    <button  @click="create" class="btn btn-primary">Save</button>
+                    <button  @click="create" class="btn btn-primary">Add</button>
                     <button  @click="deleteRow(key)" class="btn btn-danger">Drop</button>
                     </td>
                 </tr>                        
@@ -67,21 +66,25 @@ export default {
                 amount:'',
                 }] ,
             Invoices:[],
+            length:null,
             sum:'',
         }
     },
     mounted(){
-        this.getInvoices()
+        this.showData()
+        this.deleteRow()
     },
+
     methods: {
-       async getInvoices(){
-            await this.axios.get('/api/Invoice').then(response=>{
-                this.Invoices = response.data.Invoices
+         async showData(){
+            await this.axios.get(`/api/Invoice/${this.$route.params.id}`).then(response=>{
+                 this.Invoices = response.data.showData
                 this.sum = response.data.Sum
-                console.log(response.data.Invoices[0])
+                 this.length = response.data.length
+                // console.log(response.data.showData)
+                // console.log(response.data.length)
             }).catch(error=>{
                 console.log(error)
-                this.Invoices = []
             })
         },
 
@@ -110,7 +113,7 @@ export default {
                 )
               })
               }
-        this.getInvoices()
+        this.showData()
             });             
         },
        
@@ -121,18 +124,15 @@ export default {
                   `Invoice Added Success.`,
                   'success'
                 )
-                this.getInvoices()
-                    this.$router.go()
+                this.showData()
+                this.users.description=null
+                this.users.amount=null
+                    // this.$router.go()
                 this.errors= error.response.data.errors;
             }).catch(error=>{
                  this.errors= error.response.data.errors;
             })
         },
-    //     async Clients() {
-    //   await this.axios.get("/api/Client").then((response) => {
-    //     this.Invoice_code = response.data.Invoice_code
-    //   });
-    // },
 }
 }
 

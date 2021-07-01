@@ -74,6 +74,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Clients",
   data: function data() {
@@ -153,7 +156,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.success[data-v-09061267]{\r\n    color: green;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.success[data-v-09061267]{\r\n    color: green;\n}\n.profile[data-v-09061267] {\r\n  height: 40px;\r\n  width: 40px;\r\n  text-align: center;\r\n  color: white;\r\n  background-color: #0d6efd;\r\n  border-radius: 60%;\r\n  display: inline-block;\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -328,11 +331,30 @@ var render = function() {
                     "tbody",
                     _vm._l(_vm.Clients, function(Client, key) {
                       return _c("tr", { key: key }, [
-                        _c("td", [_vm._v(_vm._s(key + 1))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(Client.invoice_code))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(Client.client_name))]),
+                        _c("td", [
+                          _c("span", { staticClass: "profile" }, [
+                            _vm._v(
+                              _vm._s(
+                                Client.client_name
+                                  .split(" ")[0][0]
+                                  .toUpperCase()
+                              ) +
+                                _vm._s(
+                                  Client.client_name.split(" ")[1]
+                                    ? Client.client_name
+                                        .split(" ")[1][0]
+                                        .toUpperCase()
+                                    : " "
+                                ) +
+                                " "
+                            )
+                          ]),
+                          _vm._v(
+                            "\n                                    " +
+                              _vm._s(Client.client_name) +
+                              "\n                                "
+                          )
+                        ]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(Client.company_name))]),
                         _vm._v(" "),
@@ -350,7 +372,10 @@ var render = function() {
                                 attrs: {
                                   to: {
                                     name: "Clientview",
-                                    params: { id: Client.id }
+                                    params: {
+                                      id: Client.id,
+                                      name: Client.client_name
+                                    }
                                   }
                                 }
                               },
@@ -409,10 +434,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("S.no")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Invoice Number")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Client name")]),
         _vm._v(" "),
         _c("th", [_vm._v("Company")]),
