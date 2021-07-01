@@ -1,0 +1,51 @@
+@import url(./bootstrap.min.css);
+@import url(./fonts.css);
+@import url(./custom.css);
+
+body{
+    font-family: 'SFProDisplay' !important;
+}
+p{
+    margin: 0;
+}
+a {
+    text-decoration: none;
+    transition: 300ms all;
+}
+.invalid {
+    color: #e6133d;
+    background-color: rgb(255 95 95 / 10%);
+    border-color: #f10938;
+    width: 300px;
+    height: 40px;
+    text-align: center;
+  }
+  .alert {
+    padding: 10px 18px;
+    border-radius: 5px;
+  }
+  /* Change the white to any color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active
+{
+    -webkit-box-shadow: 0 0 0 30px #f7f7f9 inset !important;
+}
+.custom-btn {
+    background:#3FA9F4;
+    border: 2px solid #3FA9F4;
+    color: #fff;
+    box-shadow: 0px 10px 20px #3FA9F426;
+border-radius: 50px;
+min-width: 150px;
+min-height: 50px;
+font-weight: 500;
+font-size: 18px;
+letter-spacing: 0.66px;
+line-height: 26px;
+}
+.custom-btn:hover {
+    color: #3FA9F4;
+    background: transparent;
+}

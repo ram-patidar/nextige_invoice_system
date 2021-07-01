@@ -1,0 +1,124 @@
+.error{
+    color: red;
+}
+.nav-bg{
+    background-color:#2962ff;
+}
+.navbar-expand-lg .navbar-nav {
+    flex-direction:row;
+}
+.navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .show>.nav-link {
+    color: white;
+    background-color: #198754;
+}
+
+  .from-group input:focus + label{
+    color: blue
+  }
+
+  /* login css */
+  .login-wrapper {
+    display: flex;
+    height: 100vh;
+}
+.login-left {
+  background-color: #2A1C60;
+  background-image: url(../images/login-bg.svg);
+  background-position: bottom;
+  background-repeat: no-repeat;
+  flex: 0 0 30%;
+  background-size: cover;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.login-logo img {
+  max-width: 220px;
+  padding: 25px 0;
+}
+.copyright-footer p {
+  font-size: 16px;
+  color: rgb(255 255 255 / 60%);
+  line-height: 19px;
+  letter-spacing: 0.4px;
+}
+.copyright-footer a{
+  color: rgb(255 255 255 / 60%);
+}
+.copyright-footer a:hover {
+  color: #3FA9F4;
+}
+.login-right {
+  background: rgb(26 16 65 / 3%);
+  flex: 0 0 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-frm {
+  max-width: 500px;
+  width: 100%;
+}
+.login-head h2 {
+  text-align: center;
+  font-size: 35px;
+  line-height: 43px;
+  color: #0D0820;
+  font-weight: 500;
+}
+.login-head {
+  padding-bottom: 70px;
+}
+
+.cus-field {
+  border: 0;
+  border-bottom: 2px solid rgb(0 0 0 / 10%);
+  background: transparent;
+  width: 100%;
+  padding: 10px 0;
+  color: #1A1041 !important;
+  font-size: 18px;
+  letter-spacing: 0.6px;
+  line-height: 28px;
+  font-family: 'SF Pro Display' !important;
+  outline: 0;
+}
+.from-group {
+  position: relative;
+  margin-bottom: 30px
+}
+.from-group label{
+  position: absolute;
+  cursor: text;
+  z-index: 2;
+  top: 13px;
+  left: 0;
+  padding: 0 ;
+  color: rgb(13 8 32 / 60%) !important;
+  font-size: 18px;
+  letter-spacing: 0.6px;
+  line-height: 28px;
+  transition: all .3s ease
+
+}
+.from-group input:focus + label,
+.from-group input:valid  + label{
+  font-size: 12px;
+  top: -15px;
+  color: #3FA9F4 !important;
+}
+
+.from-group input:invalid  + label{
+  font-size: 12px;
+  top: -15px;
+  color: #3FA9F4 !important;
+}
+.from-group input:focus {
+  border-color: #3FA9F4;
+}
+.submit-sec {
+  padding-top: 70px;
+  text-align: center;
+}
