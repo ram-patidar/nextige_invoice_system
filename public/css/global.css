@@ -12,6 +12,16 @@ a {
     text-decoration: none;
     transition: 300ms all;
 }
+button{
+    transition: 300ms all;
+}
+ul {
+    margin: 0;
+    padding: 0;
+}
+li {
+    list-style: none;
+}
 .invalid {
     color: #e6133d;
     background-color: rgb(255 95 95 / 10%);

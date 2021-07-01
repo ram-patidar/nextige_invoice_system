@@ -38,17 +38,18 @@
               autocomplete="off"
             />
             <label for="password">Password</label>
-            <span @click="show">show/hide</span>
+            <div class="input-group-addon" id="show_hide_password" @click="show">
+              <a>
+                <img src="images/feather-eye.svg" alt="" />
+              </a>
+            </div>
             <span class="error" v-if="errors.password">{{
               errors.password[0]
             }}</span>
           </div>
           <div class="submit-sec">
-            <button
-              type="submit"
-              class="btn custom-btn"
-              @click.prevent="login"
-            > Log In
+            <button type="submit" class="btn custom-btn" @click.prevent="login">
+              Log In
             </button>
           </div>
           <!-- <div>
