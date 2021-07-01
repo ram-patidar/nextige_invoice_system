@@ -1,16 +1,15 @@
-const Login = () => import('./components/Login.vue')
-const Register = () => import('./components/Register.vue' )
-const Setting = () => import('./components/Setting.vue' )
-const Dashboard = () => import('./components/Dashboard.vue' )
-const ClientList = () => import('./components/Client/List.vue')
-const Clientview = () => import('./components/Client/View.vue')
-const ClientCreate = () => import('./components/Client/Add.vue')
-const ClientEdit = () => import('./components/Client/Edit.vue')
-const InvoiceList = () => import('./components/Invoice/List.vue')
-const InvoiceCreate = () => import('./components/Invoice/Add.vue')
-const InvoiceEdit = () => import('./components/Invoice/Edit.vue')
-
-const Generate_invoice = () => import('./components/Client/Generate_invoice.vue')
+const Login = () => import('../components/Login.vue')
+const Register = () => import('../components/Register.vue' )
+const Setting = () => import('../components/Setting.vue' )
+const Dashboard = () => import('../components/Dashboard.vue' )
+const ClientList = () => import('../components/Client/List.vue')
+const Clientview = () => import('../components/Client/View.vue')
+const ClientCreate = () => import('../components/Client/Add.vue')
+const ClientEdit = () => import('../components/Client/Edit.vue')
+const InvoiceList = () => import('../components/Invoice/List.vue')
+const InvoiceCreate = () => import('../components/Invoice/Add.vue')
+const InvoiceEdit = () => import('../components/Invoice/Edit.vue')
+const Generate_invoice = () => import('../components/Client/Generate_invoice.vue')
 
 
 export const routes = [
