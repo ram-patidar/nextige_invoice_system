@@ -8,7 +8,7 @@
           </a>
         </div>
         <div class="copyright-footer">
-          <p>@2021 <a href="">Nextige</a></p>
+          <p>@{{date}} <a href="">Nextige</a></p>
         </div>
       </div>
       <div class="login-right">
@@ -34,19 +34,22 @@
               class="cus-field"
               v-model="form.password"
               name="password"
+              id="inputtype"
               autocomplete="off"
             />
             <label for="password">Password</label>
+            <div class="input-group-addon" id="show_hide_password" @click="show">
+              <a>
+                <img src="images/feather-eye.svg" alt="" />
+              </a>
+            </div>
             <span class="error" v-if="errors.password">{{
               errors.password[0]
             }}</span>
           </div>
           <div class="submit-sec">
-            <button
-              type="submit"
-              class="btn custom-btn"
-              @click.prevent="login"
-            > Log In
+            <button type="submit" class="btn custom-btn" @click.prevent="login">
+              Log In
             </button>
           </div>
           <!-- <div>
@@ -68,8 +71,12 @@ export default {
         msg: "",
       },
       errors: [],
+       date:null,
     };
   },
+    mounted(){
+        this.date_function()
+    },
   methods: {
     login() {
       axios
@@ -83,6 +90,19 @@ export default {
           this.errors = error.response.data.errors;
         });
     },
+    date_function() {
+        const current = new Date();
+      const date = current.getFullYear();
+      this.date = date
+        },
+        show(){
+          var x = document.getElementById('inputtype');
+          if (x.type === 'password') {
+            x.type = "text";
+          }else {
+            x.type = "password";
+          }
+        }
   },
 };
 </script>

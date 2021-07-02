@@ -16,10 +16,10 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $Clients = Client::all(['id','invoice_code','client_name','company_name','email','address']);
+        $Clients = Client::all(['id','invoice_code','client_name','country','company_name','email','address']);
         return response()->json([
             'Clients' => $Clients,
-            'last_id' => $Clients->max('id'),    
+            'last_id' => $Clients->max('id'),
             'Client_count' => $Clients->count()
         ]);
     }
@@ -36,7 +36,8 @@ class ClientController extends Controller
             'company_name'=>['required'],
             'client_name'=>['required'],
             'email' => ['required','email'],
-            'address' => ['required']
+            'address' => ['required'],
+            'country' => ['required'],
         ]);
 
         if($Client = Client::create($request->post())){
