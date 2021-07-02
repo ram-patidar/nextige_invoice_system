@@ -3,7 +3,7 @@
     <div class="dashboard-inr">
       <div class="row">
         <div class="page-header">
-          <h3>Hello, Jagdish Patidar</h3>
+          <h3>Hello, {{name}}</h3>
         </div>
         <div class="dash-nav">
             <h5>Notifications</h5>
@@ -85,7 +85,7 @@ export default {
         .then((response) => {
           const { name } = response.data.user_data;
           this.name = name.charAt(0).toUpperCase() + name.slice(1);
-          console.log(this.name);
+          // console.log(this.name);
         })
         .catch((error) => {
           console.log(error);

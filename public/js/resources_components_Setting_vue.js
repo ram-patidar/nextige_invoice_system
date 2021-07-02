@@ -53,6 +53,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -60,8 +73,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         id: '',
         name: "",
         email: "",
+        title: "",
         _method: "patch"
-      }
+      },
+      errors: []
     };
   },
   mounted: function mounted() {
@@ -81,10 +96,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   var _response$data$user_d = response.data.user_data,
                       id = _response$data$user_d.id,
                       name = _response$data$user_d.name,
+                      title = _response$data$user_d.title,
                       email = _response$data$user_d.email,
                       password = _response$data$user_d.password;
                   _this.User.name = name;
                   _this.User.id = id;
+                  _this.User.title = title;
                   _this.User.email = email;
                   _this.User.password = password;
                 })["catch"](function (error) {
@@ -109,13 +126,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context2.next = 2;
                 return _this2.axios.post("/api/login/".concat(_this2.User.id), _this2.User).then(function (response) {
-                  _this2.$router.push({
-                    name: "Setting"
-                  });
+                  _this2.$swal('Invoice Added Successfully ', '', 'success'); // this.$router.push({name:"Setting"})
 
+
+                  // this.$router.push({name:"Setting"})
                   console.log(response.data.message);
                 })["catch"](function (error) {
                   console.log(error);
+                  _this2.errors = error.response.data.errors;
                 });
 
               case 2:
@@ -283,7 +301,13 @@ var render = function() {
                           _vm.$set(_vm.User, "name", $event.target.value)
                         }
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.name
+                      ? _c("span", { staticClass: "error" }, [
+                          _vm._v(_vm._s(_vm.errors.name[0]))
+                        ])
+                      : _vm._e()
                   ])
                 ]),
                 _vm._v(" "),
@@ -311,11 +335,83 @@ var render = function() {
                           _vm.$set(_vm.User, "email", $event.target.value)
                         }
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.email
+                      ? _c("span", { staticClass: "error" }, [
+                          _vm._v(_vm._s(_vm.errors.email[0]))
+                        ])
+                      : _vm._e()
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-12" })
+                _c("div", { staticClass: "col-12 mb-2" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Title")]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.User.title,
+                            expression: "User.title"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { name: "title", id: "title" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.User,
+                              "title",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { domProps: { value: _vm.User.title } }, [
+                          _vm._v(_vm._s(_vm.User.title))
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "Ceo of Nextige" } }, [
+                          _vm._v("Ceo of Nextige")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "Owner of Nextige" } }, [
+                          _vm._v("Owner of Nextige")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "option",
+                          { attrs: { value: "Employee of Nextige" } },
+                          [_vm._v("Employee of Nextige")]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm.errors.title
+                      ? _c("span", { staticClass: "error" }, [
+                          _vm._v(_vm._s(_vm.errors.title[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(1)
               ])
             ]
           )
@@ -330,7 +426,19 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h4", [_vm._v("User Profile")])
+      _c("h4", [_vm._v("Profile Info.")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+        [_vm._v("Update")]
+      )
     ])
   }
 ]

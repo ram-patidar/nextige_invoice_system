@@ -142,11 +142,18 @@
             <div class="navbar-inr">
               <div class="current-user">
                 <div class="c-user-icon">
-                  <h4>JP</h4>
+                  <h4>
+                    {{ name.split(" ")[0][0]
+                    }}{{
+                      name.split(" ")[1]
+                        ? name.split(" ")[1][0].toUpperCase()
+                        : " "
+                    }}
+                  </h4>
                 </div>
                 <div class="user-name">
-                  <h5>Jagdish Patidar</h5>
-                  <span>CFO at Nextige</span>
+                  <h5>{{ name }}</h5>
+                  <span>{{ title }}</span>
                 </div>
                 <span class="arrow-ico">
                   <svg
@@ -175,6 +182,15 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      name: "",
+      title: "",
+    };
+  },
+  mounted() {
+    this.showUser();
+  },
   computed: {
     showMenu() {
       return (
@@ -190,6 +206,19 @@ export default {
         localStorage.clear();
         this.$router.push({ name: "login" });
       });
+    },
+    async showUser() {
+      await this.axios
+        .get(`/api/login/${localStorage.getItem("token")}`)
+        .then((response) => {
+          const { name, title } = response.data.user_data;
+          this.name = name.charAt(0).toUpperCase() + name.slice(1);
+          this.title = title;
+          // console.log(this.name);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 };

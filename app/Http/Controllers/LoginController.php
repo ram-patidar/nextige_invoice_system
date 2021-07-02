@@ -26,16 +26,29 @@ class LoginController extends Controller
 
     public function update(Request $request, User $User)
     {
-        $User->fill($request->post())->save();
-        return response()->json([
-            'message'=>'User Updated Successfully!!',
-            'User'=>$User
+        $request->validate([
+            'name' => ['required'],
+            'email' => ['required', 'email'],
+            'title' => ['required']
         ]);
+        
+        $User = User::find($request->id);
+        if($User){
+            $User->name = $request->name;
+            $User->email = $request->email;
+            $User->title = $request->title;
+            $User->save();
+            return response()->json([
+                'message'=>'User Updated Successfully!',
+                'User'=>$User
+            ]);
+        }
+       
     }
 
     public function show($email)
     {
-        $User = User::all(['id','name','email','password']);
+        $User = User::all();
         return response()->json([
             'user_data'=>$User->where('email','=', $email)->first(),
         ], 200);
