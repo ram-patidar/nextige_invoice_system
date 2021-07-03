@@ -6,7 +6,7 @@
                     <h4>Profile Info.</h4>
                 </div>
                 <div class="card-body">
-                    <form @submit.prevent="update">
+                    <form @submit.prevent="update" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-12 mb-2">
                                 <div class="form-group">
@@ -35,6 +35,14 @@
                                     <span class="error" v-if="errors.title">{{ errors.title[0] }}</span>
                                 </div>
                             </div>
+                             <div class="col-12 mb-2">
+                                <div class="form-group">
+                                    <label>Profile</label>
+                                    <p><img class="profile" v-bind:src="'/images/' + this.User.profile" /></p>
+                                    <input type="file" name="file" class="form-control" @change="upload">
+                                    <!-- <span class="error" v-if="errors.email">{{ errors.email[0] }}</span> -->
+                                </div>
+                            </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">Update</button>
                             </div>
@@ -54,21 +62,52 @@ export default {
                 name:"",
                 email:"",
                 title:"",
+                profile:"",
                 _method:"patch"
             },
-            errors: []
+            errors: [],
+            file:"",
         }
     },
     mounted(){
         this.showUser()
+        console.log(window.location.origin)
+
     },
     methods:{
-        async showUser(){
+        upload(e){
+            this.file = e.target.files[0];
+            console.log(this.file)
+        },
+        async update(){
+            let formdata = new FormData();
+            formdata.append('file', this.file)
+            formdata.append('id', this.User.id)
+            formdata.append('name', this.User.name)
+            formdata.append('email', this.User.email)
+            formdata.append('title', this.User.title)
+            formdata.append('_method', this.User._method)
+
+            await this.axios.post(`/api/login/${this.User.id}`,formdata).then(response=>{
+                this.$swal(
+                  'User Update Successfully ',
+                  '',
+                  'success'
+                )
+                this.showUser()
+                console.log(response.data.message)
+            }).catch(error=>{
+                console.log(error)
+                this.errors = error.response.data.errors
+            })
+        },
+          async showUser(){
             await this.axios.get(`/api/login/${localStorage.getItem('token')}`).then(response=>{
-                const { id,name, title, email, password } = response.data.user_data
+                const { id,name, title,profile, email, password } = response.data.user_data
                 this.User.name = name
                 this.User.id = id
                 this.User.title = title
+                this.User.profile = profile
                 this.User.email = email
                 this.User.password = password
 
@@ -76,20 +115,16 @@ export default {
                 console.log(error)
             })
         },
-        async update(){
-            await this.axios.post(`/api/login/${this.User.id}`,this.User).then(response=>{
-                this.$swal(
-                  'Invoice Added Successfully ',
-                  '',
-                  'success'
-                )
-                // this.$router.push({name:"Setting"})
-                console.log(response.data.message)
-            }).catch(error=>{
-                console.log(error)
-                this.errors = error.response.data.errors
-            })
-        }
     }
 }
 </script>
+<style scoped>
+.profile{
+width: 100px;
+height: 100px;
+}
+input[type='file'] {
+  /* opacity:0     */
+  color: white;
+}
+</style>

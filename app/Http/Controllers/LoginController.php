@@ -29,19 +29,40 @@ class LoginController extends Controller
         $request->validate([
             'name' => ['required'],
             'email' => ['required', 'email'],
-            'title' => ['required']
+            'title' => ['required'],
+            // 'profile' => ['required']
         ]);
         
         $User = User::find($request->id);
-        if($User){
+        if($User)
+        {
             $User->name = $request->name;
             $User->email = $request->email;
             $User->title = $request->title;
-            $User->save();
-            return response()->json([
-                'message'=>'User Updated Successfully!',
-                'User'=>$User
-            ]);
+
+            //file upload
+            if($request->file == null)
+            {
+                $User->save();
+                return response()->json([
+                    'message'=>'User Updated Successfully!',
+                    'User'=>$User,
+                    'file'=>$request->file
+                ]);
+            }else
+            {
+                $upload_path = public_path('images');
+                $file_name = $request->file->getClientOriginalName();
+                $generated_new_name = time() . '.' . $request->file->getClientOriginalExtension();
+                $request->file->move($upload_path, $generated_new_name);
+                $User->profile = $generated_new_name;
+                $User->save();
+                return response()->json([
+                    'message'=>'User Updated Successfully!',
+                    'User'=>$User,
+                    'file'=>"file upload successfully"
+                ]);
+            }
         }
        
     }
