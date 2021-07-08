@@ -104,7 +104,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "Clients",
+  name: "clients",
   data: function data() {
     return {
       Clients: [],
@@ -142,28 +142,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
-    },
-    deleteClient: function deleteClient(id, name) {
-      var _this2 = this;
+    } // deleteClient(id, name) {
+    //   this.$swal({
+    //     title: "Are you sure?",
+    //     text: "You won't be able to revert this!",
+    //     type: "warning",
+    //     showCancelButton: true,
+    //     confirmButtonColor: "#3085d6",
+    //     cancelButtonColor: "#d33",
+    //     confirmButtonText: "Yes, delete it!",
+    //   }).then((result) => {
+    //     if (result.value) {
+    //       this.axios.delete(`/api/Client/${id}`).then((response) => {
+    //         this.$swal("Deleted!", `${name} has been deleted.`, "success");
+    //       });
+    //     }
+    //     this.getClients();
+    //   });
+    // },
 
-      this.$swal({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!"
-      }).then(function (result) {
-        if (result.value) {
-          _this2.axios["delete"]("/api/Client/".concat(id)).then(function (response) {
-            _this2.$swal("Deleted!", "".concat(name, " has been deleted."), "success");
-          });
-        }
-
-        _this2.getClients();
-      });
-    }
   }
 });
 
@@ -333,10 +330,7 @@ var render = function() {
       [
         _c(
           "router-link",
-          {
-            staticClass: "btn btn-primary",
-            attrs: { to: { name: "ClientAdd" } }
-          },
+          { staticClass: "btn btn-primary", attrs: { to: "/client/add" } },
           [_vm._v("Add Client")]
         )
       ],
@@ -403,50 +397,12 @@ var render = function() {
                                 staticClass: "btn btn-primary",
                                 attrs: {
                                   to: {
-                                    name: "Clientview",
-                                    params: {
-                                      id: Client.id,
-                                      name: Client.client_name
-                                    }
-                                  }
-                                }
-                              },
-                              [_vm._v("View")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "router-link",
-                              {
-                                staticClass: "btn btn-success",
-                                attrs: {
-                                  to: {
-                                    name: "ClientEdit",
+                                    name: "clientedit",
                                     params: { id: Client.id }
                                   }
                                 }
                               },
-                              [_vm._v("Edit")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-danger",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.deleteClient(
-                                      Client.id,
-                                      Client.client_name
-                                    )
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                    Delete\n                  "
-                                )
-                              ]
+                              [_vm._v("View")]
                             )
                           ],
                           1

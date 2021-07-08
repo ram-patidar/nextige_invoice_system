@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-12 mb-2 text-end">
-            <router-link :to='{name:"InvoiceAdd"}' class="btn btn-primary">Create Invoice</router-link>
+            <router-link to='/invoice/add' class="btn btn-primary">Create Invoice</router-link>
         </div>
         <div class="col-12">
             <div class="card">
@@ -13,19 +13,23 @@
                         <table class="table table-bordered text-center">
                             <thead>
                                 <tr>
-                                    <th>S.no</th>
-                                    <th>Description</th>
+                                    <th>Date</th>
+                                    <th>Client</th>
+                                    <th>Status</th>
                                     <th>Amount</th>
-                                    <th>Actions</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody v-if="Invoices.length > 0">
                                 <tr v-for="(Invoice,key) in Invoices" :key="key">
-                                    <td>{{key+1}}</td>
-                                    <td>{{ Invoice.description }}</td>
+                                    <!-- <td>{{key+1}}</td> -->
+                                    <td>01/01/2021</td>
+                                    <td>{{Invoice.client_id}}/Client Name</td>
+                                    <td>status</td>
+                                    <!-- <td>{{ Invoice.description }}</td> -->
                                     <td>${{ Invoice.amount }}</td>
                                     <td>
-                                        <router-link :to='{name:"InvoiceEdit",params:{id:Invoice.id}}' class="btn btn-success">Edit</router-link>
+                                        <router-link :to='{name:"invoiceedit",params:{id:Invoice.id}}' class="btn btn-success">Edit</router-link>
                                         <button type="button" @click="deleteInvoice(Invoice.id,Invoice.description)" class="btn btn-danger">Delete</button>
                                     </td>
                                 </tr>
@@ -59,7 +63,7 @@ export default {
             await this.axios.get('/api/Invoice').then(response=>{
                 this.Invoices = response.data.Invoices
                  this.Invoices.sort((a,b)=>a.weight<b.weight?1:-1)
-                // console.log(response.data)
+                console.log(this.Invoices)
             }).catch(error=>{
                 console.log(error)
                 this.Invoices = []
@@ -86,6 +90,10 @@ export default {
               }
         this.getInvoices()
             });             
+        },
+
+        clientData(id){
+            console.log(id)
         }
        
         

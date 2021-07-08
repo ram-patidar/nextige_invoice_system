@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-12 mb-2 text-end">
-      <router-link :to="{ name: 'ClientAdd' }" class="btn btn-primary"
+      <router-link to="/client/add" class="btn btn-primary"
         >Add Client</router-link
       >
     </div>
@@ -46,26 +46,26 @@
                   <td>{{ Client.email }}</td>
                   <td>{{ Client.address }}</td>
                   <td>
-                    <router-link
+                    <!-- <router-link
                       :to="{
-                        name: 'Clientview',
+                        name: 'clientview',
                         params: { id: Client.id, name: Client.client_name },
                       }"
                       class="btn btn-primary"
                       >View</router-link
-                    >
+                    > -->
                     <router-link
-                      :to="{ name: 'ClientEdit', params: { id: Client.id } }"
-                      class="btn btn-success"
-                      >Edit</router-link
+                      :to="{ name: 'clientedit', params: { id: Client.id } }"
+                      class="btn btn-primary"
+                      >View</router-link
                     >
-                    <button
+                    <!-- <button
                       type="button"
                       @click="deleteClient(Client.id, Client.client_name)"
                       class="btn btn-danger"
                     >
                       Delete
-                    </button>
+                    </button> -->
                   </td>
                 </tr>
               </tbody>
@@ -84,7 +84,7 @@
 
 <script>
 export default {
-  name: "Clients",
+  name: "clients",
   data() {
     return {
       Clients: [],
@@ -102,29 +102,30 @@ export default {
           this.Clients = response.data.Clients;
            this.Clients.sort((a,b)=>a.weight<b.weight?1:-1)
         })
+        
         .catch((error) => {
           console.log(error);
           this.Clients = [];
         });
     },
-    deleteClient(id, name) {
-      this.$swal({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      }).then((result) => {
-        if (result.value) {
-          this.axios.delete(`/api/Client/${id}`).then((response) => {
-            this.$swal("Deleted!", `${name} has been deleted.`, "success");
-          });
-        }
-        this.getClients();
-      });
-    },
+    // deleteClient(id, name) {
+    //   this.$swal({
+    //     title: "Are you sure?",
+    //     text: "You won't be able to revert this!",
+    //     type: "warning",
+    //     showCancelButton: true,
+    //     confirmButtonColor: "#3085d6",
+    //     cancelButtonColor: "#d33",
+    //     confirmButtonText: "Yes, delete it!",
+    //   }).then((result) => {
+    //     if (result.value) {
+    //       this.axios.delete(`/api/Client/${id}`).then((response) => {
+    //         this.$swal("Deleted!", `${name} has been deleted.`, "success");
+    //       });
+    //     }
+    //     this.getClients();
+    //   });
+    // },
   },
 };
 </script>

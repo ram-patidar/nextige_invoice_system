@@ -16,7 +16,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $Invoices = Invoice::all(['id','client_id','description','amount']);
+        $Invoices = Invoice::all(['id','client_id','description','amount','created_at']);
         return response()->json([
             'Invoices' => $Invoices,
             'Sum'=>$Invoices->sum('amount'),

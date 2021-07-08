@@ -6,8 +6,6 @@ Vue.component('Register-component', require('../components/Register.vue'));
 Vue.component('Dashboard-component', require('../components/Dashboard.vue'));
 Vue.component('App-component', require('../components/App.vue'));
 
-// Vue.component('Login-component', require('./components/Login.vue').default);
-
 import App from '../components/App.vue';
 import VueRouter from 'vue-router';
 import VueAxios from 'vue-axios';
@@ -15,6 +13,9 @@ import axios from 'axios';
 import {routes} from './routes';
 import VueSweetalert2 from 'vue-sweetalert2';
 import swal from 'sweetalert2';
+import VueCookies from 'vue-cookies';
+
+Vue.use(VueCookies)
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 Vue.use(VueSweetalert2);

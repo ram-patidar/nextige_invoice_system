@@ -11,7 +11,7 @@
       </div>
       <div class="row first-row">
         <div class="col-md-6">
-              <router-link to="/Client" class="noti-box nav-item nav-link">
+              <router-link to="/client" class="noti-box nav-item nav-link">
             <div class="content">
                  <div>
                     <h5>
@@ -31,7 +31,7 @@
               </router-link>
         </div>
         <div class="col-md-6">
-            <router-link to="/Invoice" class="noti-box nav-item nav-link">
+            <router-link to="/invoice" class="noti-box nav-item nav-link">
             <div class="content">
                   <div>
                     <h5>
@@ -55,6 +55,7 @@
   </section>
 </template>
 <script>
+
 export default {
   data() {
     return {
@@ -72,6 +73,7 @@ export default {
     async CountClients() {
       await this.axios.get("/api/Client").then((response) => {
         this.Client_count = response.data.Client_count;
+
       });
     },
     async CountInvoice() {
