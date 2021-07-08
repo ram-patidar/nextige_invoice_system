@@ -40,10 +40,10 @@
                                     <label>Profile</label>
                                     <p><img class="profile" v-bind:src="'/images/' + this.User.profile" /></p>
                                     <input type="file" name="file" class="form-control" @change="upload">
-                                    <!-- <span class="error" v-if="errors.email">{{ errors.email[0] }}</span> -->
+                                   
                                 </div>
                             </div>
-                            <div class="col-12">
+                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">Update</button>
                             </div>
                         </div>                        

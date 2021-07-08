@@ -68,6 +68,142 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "add-Invoice",
   data: function data() {
@@ -77,15 +213,56 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         description: "",
         amount: ""
       },
+      users: [{
+        client_id: "",
+        description: "",
+        rate: "",
+        amount: "",
+        qty: 1
+      }],
+      Client: {
+        invoice_code: "",
+        client_id: "",
+        client_name: "",
+        date: null
+      },
       errors: [],
-      Clients: []
+      Clients: [],
+      a_checked: "",
+      h_checked: "",
+      type: ""
     };
   },
   mounted: function mounted() {
     this.getClients();
+    this.date_function();
+    this.a_checked = true;
+    this.type = "hidden";
   },
   methods: {
-    create: function create() {
+    // async create() {
+    //   this.Invoice.amount = (this.users.qty?this.users.qty:1) * this.users.rate;
+    //   this.Invoice.description = this.users.description;
+    //   this.Invoice.client_id = this.users.client_id;
+    //   console.log(this.Invoice);
+    //   await this.axios
+    //     .post("/api/Invoice", this.Invoice)
+    //     .then((response) => {
+    //       // this.$swal("Invoice Added Successfully ", "", "success");
+    //       this.$router.push({ name: "clientview", params: { id: this.Invoice.client_id, name: this.Client.client_name } });
+    //       this.errors = error.response.data.errors;
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //       this.errors = error.response.data.errors;
+    //     });
+    // },
+    date_function: function date_function() {
+      var current = new Date();
+      var date = current.getDate() + "/" + current.getMonth() + "/" + current.getFullYear();
+      this.Client.date = date; // console.log(this.Client.date);
+    },
+    getClients: function getClients() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -94,17 +271,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.axios.post('/api/Invoice', _this.Invoice).then(function (response) {
-                  _this.$swal('Invoice Added Successfully ', '', 'success');
-
-                  _this.$router.push({
-                    name: "InvoiceList"
-                  });
-
-                  _this.errors = error.response.data.errors;
+                return _this.axios.get("/api/Client").then(function (response) {
+                  _this.Clients = response.data.Clients;
                 })["catch"](function (error) {
                   console.log(error);
-                  _this.errors = error.response.data.errors; //  this.errors.client_id = "Please select client."
+                  _this.Clients = [];
                 });
 
               case 2:
@@ -115,7 +286,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    getClients: function getClients() {
+    SelectClient: function SelectClient(event) {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
@@ -124,11 +295,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return _this2.axios.get('/api/Client').then(function (response) {
-                  _this2.Clients = response.data.Clients;
+                return _this2.axios.get("/api/Client/".concat(event.target.value)).then(function (response) {
+                  var _response$data = response.data,
+                      invoice_code = _response$data.invoice_code,
+                      id = _response$data.id,
+                      client_name = _response$data.client_name;
+                  _this2.Client.invoice_code = invoice_code;
+                  _this2.users.client_id = id;
+                  _this2.Client.client_name = client_name;
                 })["catch"](function (error) {
                   console.log(error);
-                  _this2.Clients = [];
+                  console.log(error.response.data);
                 });
 
               case 2:
@@ -138,6 +315,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee2);
       }))();
+    },
+    addRow: function addRow() {
+      this.users.push({
+        description: "",
+        qty: "",
+        rate: ""
+      });
+      console.log(this.users);
+    },
+    deleteRow: function deleteRow(key) {
+      this.users.splice(key, 1);
+    },
+    Amount: function Amount() {
+      this.a_checked = true;
+      this.h_checked = false;
+      this.type = "hidden";
+    },
+    Hours: function Hours() {
+      this.a_checked = false;
+      this.h_checked = true;
+      this.type = "number";
     }
   }
 });
@@ -161,7 +359,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.back[data-v-7c46f084]{\r\n    text-align: right;\r\n        position: inherit;\r\n    margin: 0;\r\n    margin-left: 1004px;\r\n    margin-top: -94px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.back[data-v-7c46f084] {\r\n  text-align: right;\r\n  position: inherit;\r\n  margin: 0;\r\n  margin-left: 1004px;\r\n  margin-top: -94px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -312,7 +510,7 @@ var render = function() {
                 "router-link",
                 {
                   staticClass: "btn btn-primary back",
-                  attrs: { to: { name: "InvoiceList" } }
+                  attrs: { to: { name: "invoicelist" } }
                 },
                 [_vm._v("← Back")]
               )
@@ -330,182 +528,484 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
-          _c(
-            "form",
-            {
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  return _vm.create.apply(null, arguments)
-                }
-              }
-            },
-            [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-12 mb-2" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", [_vm._v("Select Client")]),
+          _c("form", [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-8" }, [
+                _c(
+                  "div",
+                  { staticClass: "row" },
+                  [
+                    _c("div", { staticClass: "col-12 mb-2" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", [_vm._v("Select Client")]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.Invoice.client_id,
+                                expression: "Invoice.client_id"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { name: "client_id", id: "client_id" },
+                            on: {
+                              change: [
+                                function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.Invoice,
+                                    "client_id",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                },
+                                function($event) {
+                                  return _vm.SelectClient($event)
+                                }
+                              ]
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "" } }, [
+                              _vm._v("Select Client Name")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.Clients, function(Client, key) {
+                              return _c(
+                                "option",
+                                { key: key, domProps: { value: Client.id } },
+                                [
+                                  _vm._v(
+                                    "\n                        " +
+                                      _vm._s(Client.client_name) +
+                                      "\n                      "
+                                  )
+                                ]
+                              )
+                            })
+                          ],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _vm.errors.client_id
+                          ? _c("span", { staticClass: "error" }, [
+                              _vm._v(_vm._s(_vm.errors.client_id[0]))
+                            ])
+                          : _vm._e()
+                      ])
+                    ]),
                     _vm._v(" "),
-                    _c(
-                      "select",
-                      {
+                    _c("input", {
+                      attrs: { type: "radio", name: "rate", value: "Amount" },
+                      domProps: { checked: _vm.a_checked },
+                      on: { change: _vm.Amount }
+                    }),
+                    _vm._v(" "),
+                    _c("label", { attrs: { for: "rate" } }, [_vm._v("Amount")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "radio", name: "rate", value: "Hours" },
+                      domProps: { checked: _vm.h_checked },
+                      on: { change: _vm.Hours }
+                    }),
+                    _vm._v(" "),
+                    _c("label", { attrs: { for: "rate" } }, [_vm._v("Hours")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.users, function(user, key) {
+                      return _c("div", { key: key }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: user.client_id,
+                              expression: "user.client_id"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { name: "client_id", type: "hidden" },
+                          domProps: { value: user.client_id },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(user, "client_id", $event.target.value)
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.users.client_id,
+                              expression: "users.client_id"
+                            }
+                          ],
+                          attrs: { type: "hidden", name: "client_id" },
+                          domProps: { value: _vm.users.client_id },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.users,
+                                "client_id",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: user.description,
+                                expression: "user.description"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              name: "description",
+                              placeholder: "Enter item",
+                              type: "text"
+                            },
+                            domProps: { value: user.description },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  user,
+                                  "description",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _vm.errors.description
+                          ? _c("span", { staticClass: "error" }, [
+                              _vm._v(_vm._s(_vm.errors.description[0]))
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm.type === "checkbox"
+                            ? _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: user.qty,
+                                    expression: "user.qty"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  name: "qty",
+                                  placeholder: "Enter hours",
+                                  type: "checkbox"
+                                },
+                                domProps: {
+                                  checked: Array.isArray(user.qty)
+                                    ? _vm._i(user.qty, null) > -1
+                                    : user.qty
+                                },
+                                on: {
+                                  change: function($event) {
+                                    var $$a = user.qty,
+                                      $$el = $event.target,
+                                      $$c = $$el.checked ? true : false
+                                    if (Array.isArray($$a)) {
+                                      var $$v = null,
+                                        $$i = _vm._i($$a, $$v)
+                                      if ($$el.checked) {
+                                        $$i < 0 &&
+                                          _vm.$set(
+                                            user,
+                                            "qty",
+                                            $$a.concat([$$v])
+                                          )
+                                      } else {
+                                        $$i > -1 &&
+                                          _vm.$set(
+                                            user,
+                                            "qty",
+                                            $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1))
+                                          )
+                                      }
+                                    } else {
+                                      _vm.$set(user, "qty", $$c)
+                                    }
+                                  }
+                                }
+                              })
+                            : _vm.type === "radio"
+                            ? _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: user.qty,
+                                    expression: "user.qty"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  name: "qty",
+                                  placeholder: "Enter hours",
+                                  type: "radio"
+                                },
+                                domProps: { checked: _vm._q(user.qty, null) },
+                                on: {
+                                  change: function($event) {
+                                    return _vm.$set(user, "qty", null)
+                                  }
+                                }
+                              })
+                            : _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: user.qty,
+                                    expression: "user.qty"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  name: "qty",
+                                  placeholder: "Enter hours",
+                                  type: _vm.type
+                                },
+                                domProps: { value: user.qty },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(user, "qty", $event.target.value)
+                                  }
+                                }
+                              })
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: user.rate,
+                                expression: "user.rate"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              name: "amount",
+                              placeholder: "Enter price rate",
+                              type: "number"
+                            },
+                            domProps: { value: user.rate },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(user, "rate", $event.target.value)
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _vm.errors.amount
+                          ? _c("span", { staticClass: "error" }, [
+                              _vm._v(_vm._s(_vm.errors.amount[0]))
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger",
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteRow(key)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                      Drop\n                    "
+                              )
+                            ]
+                          )
+                        ])
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-12" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.addRow.apply(null, arguments)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    Add new item\n                  "
+                          )
+                        ]
+                      )
+                    ])
+                  ],
+                  2
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-4" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-12 mb-2" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Invoice #")]),
+                      _vm._v(" "),
+                      _c("input", {
                         directives: [
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.Invoice.client_id,
-                            expression: "Invoice.client_id"
+                            value: _vm.Client.invoice_code,
+                            expression: "Client.invoice_code"
                           }
                         ],
                         staticClass: "form-control",
-                        attrs: { name: "client_id", id: "client_id" },
+                        attrs: {
+                          type: "text",
+                          name: "invoice_code",
+                          disabled: ""
+                        },
+                        domProps: { value: _vm.Client.invoice_code },
                         on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
                             _vm.$set(
-                              _vm.Invoice,
-                              "client_id",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
+                              _vm.Client,
+                              "invoice_code",
+                              $event.target.value
                             )
                           }
                         }
-                      },
-                      [
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v("Select Client Name")
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.Clients, function(Client, key) {
-                          return _c(
-                            "option",
-                            { key: key, domProps: { value: Client.id } },
-                            [_vm._v(_vm._s(Client.client_name))]
-                          )
-                        })
-                      ],
-                      2
-                    ),
-                    _vm._v(" "),
-                    _vm.errors.client_id
-                      ? _c("span", { staticClass: "error" }, [
-                          _vm._v(_vm._s(_vm.errors.client_id[0]))
-                        ])
-                      : _vm._e()
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-12 mb-2" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", [_vm._v("Description")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.Invoice.description,
-                          expression: "Invoice.description"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        name: "description",
-                        placeholder: "Enter description"
-                      },
-                      domProps: { value: _vm.Invoice.description },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-12 mb-2" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("date")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.Client.date,
+                            expression: "Client.date"
                           }
-                          _vm.$set(
-                            _vm.Invoice,
-                            "description",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm.errors.description
-                      ? _c("span", { staticClass: "error" }, [
-                          _vm._v(_vm._s(_vm.errors.description[0]))
-                        ])
-                      : _vm._e()
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-12 mb-2" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", [_vm._v("Amount")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.Invoice.amount,
-                          expression: "Invoice.amount"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "number",
-                        name: "amount",
-                        placeholder: "Enter Amount"
-                      },
-                      domProps: { value: _vm.Invoice.amount },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", disabled: "" },
+                        domProps: { value: _vm.Client.date },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.Client, "date", $event.target.value)
                           }
-                          _vm.$set(_vm.Invoice, "amount", $event.target.value)
                         }
-                      }
-                    }),
+                      })
+                    ]),
                     _vm._v(" "),
-                    _vm.errors.amount
-                      ? _c("span", { staticClass: "error" }, [
-                          _vm._v(_vm._s(_vm.errors.amount[0]))
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Subtotal")]),
+                      _vm._v(" "),
+                      _c("div", [
+                        _c("b", [
+                          _vm._v(
+                            "$\n                        " +
+                              _vm._s(
+                                _vm.users.rate
+                                  ? _vm.users.qty
+                                    ? _vm.users.qty * _vm.users.rate
+                                    : _vm.users.rate
+                                  : "00"
+                              )
+                          )
                         ])
-                      : _vm._e()
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Total")]),
+                      _vm._v(" "),
+                      _c("div", [
+                        _c("b", [
+                          _vm._v(
+                            "$\n                        " +
+                              _vm._s(
+                                _vm.users.rate
+                                  ? _vm.users.qty
+                                    ? _vm.users.qty * _vm.users.rate
+                                    : _vm.users.rate
+                                  : "00"
+                              )
+                          )
+                        ])
+                      ])
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _vm._m(0)
+                ])
               ])
-            ]
-          )
+            ])
+          ])
         ])
       ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("Save Invoice")]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

@@ -22,6 +22,7 @@
         "vue": "^2.6.14",
         "vue-axios": "^3.2.4",
         "vue-bootstrap4-modal": "^2.2.0",
+        "vue-cookies": "^1.7.4",
         "vue-progressbar": "^0.7.5",
         "vue-router": "^3.5.1",
         "vue-sweetalert2": "^4.3.1"

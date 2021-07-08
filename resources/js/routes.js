@@ -43,8 +43,8 @@ export const routes = [
         }
     },
     {
-        name: 'Setting',
-        path: '/Setting',
+        name: 'setting',
+        path: '/setting',
         component: Setting,
         beforeEnter: (to, from, next) =>{
             if(localStorage.getItem('token')){
@@ -55,8 +55,8 @@ export const routes = [
         }
     },
     {
-        name: 'Clientview',
-        path: '/Clientview/:id/:name/view',
+        name: 'clientview',
+        path: '/clientview/:id/:name/view',
         component: Clientview,
         beforeEnter: (to, from, next) =>{
             if(localStorage.getItem('token')){
@@ -67,8 +67,8 @@ export const routes = [
         }
     },
     {
-        name: 'ClientList',
-        path: '/Client',
+        name: 'clientlist',
+        path: '/client',
         component: ClientList,
         beforeEnter: (to, from, next) =>{
             if(localStorage.getItem('token')){
@@ -79,8 +79,8 @@ export const routes = [
         }
     },
     {
-        name: 'ClientEdit',
-        path: '/Client/:id/edit',
+        name: 'clientedit',
+        path: '/client/:id/edit',
         component: ClientEdit,
         beforeEnter: (to, from, next) =>{
             if(localStorage.getItem('token')){
@@ -91,8 +91,8 @@ export const routes = [
         }
     },
     {
-        name: 'ClientAdd',
-        path: '/Client/add',
+        name: 'clientadd',
+        path: '/client/add',
         component: ClientCreate,
         beforeEnter: (to, from, next) =>{
             if(localStorage.getItem('token')){
@@ -103,8 +103,8 @@ export const routes = [
         }
     },
     {
-        name: 'InvoiceList',
-        path: '/Invoice',
+        name: 'invoicelist',
+        path: '/invoice',
         component: InvoiceList,
         beforeEnter: (to, from, next) =>{
             if(localStorage.getItem('token')){
@@ -115,7 +115,7 @@ export const routes = [
         }
     },
     {
-        name: 'InvoiceEdit',
+        name: 'invoiceedit',
         path: '/Invoice/:id/edit',
         component: InvoiceEdit,
         beforeEnter: (to, from, next) =>{
@@ -127,8 +127,8 @@ export const routes = [
         }
     },
     {
-        name: 'InvoiceAdd',
-        path: '/Invoice/add',
+        name: 'invoiceadd',
+        path: '/invoice/add',
         component: InvoiceCreate,
         beforeEnter: (to, from, next) =>{
             if(localStorage.getItem('token')){
@@ -139,8 +139,8 @@ export const routes = [
         }
     },
     {
-        name: 'Generate_invoice',
-        path: '/Generate_invoice/:id',
+        name: 'generate_invoice',
+        path: '/generate_invoice/:id',
         component: Generate_invoice,
         beforeEnter: (to, from, next) =>{
             if(localStorage.getItem('token')){

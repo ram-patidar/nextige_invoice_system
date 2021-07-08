@@ -47,6 +47,14 @@
               errors.password[0]
             }}</span>
           </div>
+           <div class="">
+            <input
+              type="checkbox"
+              v-model="checked"
+              name="checkbox"
+            />
+            <label for="checkbox">Remember Me</label>
+          </div>
           <div class="submit-sec">
             <button type="submit" class="btn custom-btn" @click.prevent="login">
               Log In
@@ -72,23 +80,43 @@ export default {
       },
       errors: [],
        date:null,
+       checked:''
     };
   },
     mounted(){
         this.date_function()
+        this.CookieValue()
     },
   methods: {
+   
     login() {
+      if(this.checked == true){
+        this.$cookies.set('email',this.form.email)
+        this.$cookies.set('password',this.form.password)
+      }else{
+        this.$cookies.remove('email')
+        this.$cookies.remove('password')
+      }
       axios
         .post("api/login", this.form)
         .then(() => {
           localStorage.setItem("token", this.form.email);
-          this.$router.push({ name: "dashboard" });
+          this.$router.go({ name: "dashboard" });
           this.errors = error.response.data.errors;
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
         });
+    },
+    CookieValue(){
+           this.form.email = this.$cookies.get('email')
+        this.form.password = this.$cookies.get('password')
+        console.log(this.$cookies.get('password'))
+      if(this.$cookies.get('password')== null){
+        this.checked = false
+      }else{
+        this.checked = true
+      }
     },
     date_function() {
         const current = new Date();
@@ -120,3 +148,4 @@ export default {
   border-radius: 5px;
 } */
 </style>
+

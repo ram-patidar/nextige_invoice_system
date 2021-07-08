@@ -2046,11 +2046,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       name: "",
-      title: ""
+      title: "",
+      profile: ""
     };
   },
   mounted: function mounted() {
@@ -2058,7 +2069,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: {
     showMenu: function showMenu() {
-      return this.$route.name !== "login" && this.$route.name !== "register" && this.$route.name !== "Generate_invoice";
+      return this.$route.name !== "login" && this.$route.name !== "register" && this.$route.name !== "generate_invoice";
     }
   },
   methods: {
@@ -2085,9 +2096,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _this2.axios.get("/api/login/".concat(localStorage.getItem("token"))).then(function (response) {
                   var _response$data$user_d = response.data.user_data,
                       name = _response$data$user_d.name,
-                      title = _response$data$user_d.title;
+                      title = _response$data$user_d.title,
+                      profile = _response$data$user_d.profile;
                   _this2.name = name.charAt(0).toUpperCase() + name.slice(1);
-                  _this2.title = title; // console.log(this.name);
+                  _this2.title = title;
+                  _this2.profile = profile; // console.log(this.profile);
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -2339,6 +2352,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2348,20 +2369,30 @@ __webpack_require__.r(__webpack_exports__);
         msg: ""
       },
       errors: [],
-      date: null
+      date: null,
+      checked: ''
     };
   },
   mounted: function mounted() {
     this.date_function();
+    this.CookieValue();
   },
   methods: {
     login: function login() {
       var _this = this;
 
+      if (this.checked == true) {
+        this.$cookies.set('email', this.form.email);
+        this.$cookies.set('password', this.form.password);
+      } else {
+        this.$cookies.remove('email');
+        this.$cookies.remove('password');
+      }
+
       axios.post("api/login", this.form).then(function () {
         localStorage.setItem("token", _this.form.email);
 
-        _this.$router.push({
+        _this.$router.go({
           name: "dashboard"
         });
 
@@ -2369,6 +2400,17 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         _this.errors = error.response.data.errors;
       });
+    },
+    CookieValue: function CookieValue() {
+      this.form.email = this.$cookies.get('email');
+      this.form.password = this.$cookies.get('password');
+      console.log(this.$cookies.get('password'));
+
+      if (this.$cookies.get('password') == null) {
+        this.checked = false;
+      } else {
+        this.checked = true;
+      }
     },
     date_function: function date_function() {
       var current = new Date();
@@ -2474,7 +2516,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var _components_App_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/App.vue */ "./resources/components/App.vue");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-axios */ "./node_modules/vue-axios/dist/vue-axios.es5.js");
 /* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -2483,6 +2525,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_sweetalert2__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-sweetalert2 */ "./node_modules/vue-sweetalert2/dist/index.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var vue_cookies__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-cookies */ "./node_modules/vue-cookies/vue-cookies.js");
+/* harmony import */ var vue_cookies__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(vue_cookies__WEBPACK_IMPORTED_MODULE_7__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
@@ -2490,7 +2534,7 @@ window.Vue = vue__WEBPACK_IMPORTED_MODULE_0__.default;
 Vue.component('Login-component', __webpack_require__(/*! ../components/Login.vue */ "./resources/components/Login.vue"));
 Vue.component('Register-component', __webpack_require__(/*! ../components/Register.vue */ "./resources/components/Register.vue"));
 Vue.component('Dashboard-component', __webpack_require__(/*! ../components/Dashboard.vue */ "./resources/components/Dashboard.vue"));
-Vue.component('App-component', __webpack_require__(/*! ../components/App.vue */ "./resources/components/App.vue")); // Vue.component('Login-component', require('./components/Login.vue').default);
+Vue.component('App-component', __webpack_require__(/*! ../components/App.vue */ "./resources/components/App.vue"));
 
 
 
@@ -2499,10 +2543,11 @@ Vue.component('App-component', __webpack_require__(/*! ../components/App.vue */ 
 
 
 
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_7__.default);
+Vue.use((vue_cookies__WEBPACK_IMPORTED_MODULE_7___default()));
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_8__.default);
 Vue.use((vue_axios__WEBPACK_IMPORTED_MODULE_2___default()), (axios__WEBPACK_IMPORTED_MODULE_3___default()));
 Vue.use(vue_sweetalert2__WEBPACK_IMPORTED_MODULE_5__.default);
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_7__.default({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_8__.default({
   mode: 'history',
   routes: _routes__WEBPACK_IMPORTED_MODULE_4__.routes
 });
@@ -2633,8 +2678,8 @@ var routes = [{
     }
   }
 }, {
-  name: 'Setting',
-  path: '/Setting',
+  name: 'setting',
+  path: '/setting',
   component: Setting,
   beforeEnter: function beforeEnter(to, from, next) {
     if (localStorage.getItem('token')) {
@@ -2644,8 +2689,8 @@ var routes = [{
     }
   }
 }, {
-  name: 'Clientview',
-  path: '/Clientview/:id/:name/view',
+  name: 'clientview',
+  path: '/clientview/:id/:name/view',
   component: Clientview,
   beforeEnter: function beforeEnter(to, from, next) {
     if (localStorage.getItem('token')) {
@@ -2655,8 +2700,8 @@ var routes = [{
     }
   }
 }, {
-  name: 'ClientList',
-  path: '/Client',
+  name: 'clientlist',
+  path: '/client',
   component: ClientList,
   beforeEnter: function beforeEnter(to, from, next) {
     if (localStorage.getItem('token')) {
@@ -2666,8 +2711,8 @@ var routes = [{
     }
   }
 }, {
-  name: 'ClientEdit',
-  path: '/Client/:id/edit',
+  name: 'clientedit',
+  path: '/client/:id/edit',
   component: ClientEdit,
   beforeEnter: function beforeEnter(to, from, next) {
     if (localStorage.getItem('token')) {
@@ -2677,8 +2722,8 @@ var routes = [{
     }
   }
 }, {
-  name: 'ClientAdd',
-  path: '/Client/add',
+  name: 'clientadd',
+  path: '/client/add',
   component: ClientCreate,
   beforeEnter: function beforeEnter(to, from, next) {
     if (localStorage.getItem('token')) {
@@ -2688,8 +2733,8 @@ var routes = [{
     }
   }
 }, {
-  name: 'InvoiceList',
-  path: '/Invoice',
+  name: 'invoicelist',
+  path: '/invoice',
   component: InvoiceList,
   beforeEnter: function beforeEnter(to, from, next) {
     if (localStorage.getItem('token')) {
@@ -2699,7 +2744,7 @@ var routes = [{
     }
   }
 }, {
-  name: 'InvoiceEdit',
+  name: 'invoiceedit',
   path: '/Invoice/:id/edit',
   component: InvoiceEdit,
   beforeEnter: function beforeEnter(to, from, next) {
@@ -2710,8 +2755,8 @@ var routes = [{
     }
   }
 }, {
-  name: 'InvoiceAdd',
-  path: '/Invoice/add',
+  name: 'invoiceadd',
+  path: '/invoice/add',
   component: InvoiceCreate,
   beforeEnter: function beforeEnter(to, from, next) {
     if (localStorage.getItem('token')) {
@@ -2721,8 +2766,8 @@ var routes = [{
     }
   }
 }, {
-  name: 'Generate_invoice',
-  path: '/Generate_invoice/:id',
+  name: 'generate_invoice',
+  path: '/generate_invoice/:id',
   component: Generate_invoice,
   beforeEnter: function beforeEnter(to, from, next) {
     if (localStorage.getItem('token')) {
@@ -2776,7 +2821,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* .invalid {\r\n  color: #e6133d;\r\n  background-color: rgb(255 95 95 / 10%);\r\n  border-color: #f10938;\r\n  width: 300px;\r\n  height: 40px;\r\n  text-align: center;\r\n}\r\n.alert {\r\n  padding: 10px 18px;\r\n  border-radius: 5px;\r\n} */\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* .invalid {\r\n  color: #e6133d;\r\n  background-color: rgb(255 95 95 / 10%);\r\n  border-color: #f10938;\r\n  width: 300px;\r\n  height: 40px;\r\n  text-align: center;\r\n}\r\n.alert {\r\n  padding: 10px 18px;\r\n  border-radius: 5px;\r\n} */\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -24501,6 +24546,156 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
 /***/ }),
 
+/***/ "./node_modules/vue-cookies/vue-cookies.js":
+/*!*************************************************!*\
+  !*** ./node_modules/vue-cookies/vue-cookies.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+/**
+ * Vue Cookies v1.7.4
+ * https://github.com/cmp-cc/vue-cookies
+ *
+ * Copyright 2016, cmp-cc
+ * Released under the MIT license
+ */
+
+(function () {
+
+  var defaultConfig = {
+    expires: '1d',
+    path: '; path=/',
+    domain: '',
+    secure: '',
+    sameSite: '; SameSite=Lax'
+  };
+
+  var VueCookies = {
+    // install of Vue
+    install: function (Vue) {
+      Vue.prototype.$cookies = this;
+      Vue.$cookies = this;
+    },
+    config: function (expireTimes, path, domain, secure, sameSite) {
+      defaultConfig.expires = expireTimes ? expireTimes : '1d';
+      defaultConfig.path = path ? '; path=' + path : '; path=/';
+      defaultConfig.domain = domain ? '; domain=' + domain : '';
+      defaultConfig.secure = secure ? '; Secure' : '';
+      defaultConfig.sameSite = sameSite ? '; SameSite=' + sameSite : '; SameSite=Lax';
+    },
+    get: function (key) {
+      var value = decodeURIComponent(document.cookie.replace(new RegExp('(?:(?:^|.*;)\\s*' + encodeURIComponent(key).replace(/[\-\.\+\*]/g, '\\$&') + '\\s*\\=\\s*([^;]*).*$)|^.*$'), '$1')) || null;
+
+      if (value && value.substring(0, 1) === '{' && value.substring(value.length - 1, value.length) === '}') {
+        try {
+          value = JSON.parse(value);
+        } catch (e) {
+          return value;
+        }
+      }
+      return value;
+    },
+    set: function (key, value, expireTimes, path, domain, secure, sameSite) {
+      if (!key) {
+        throw new Error('Cookie name is not find in first argument.');
+      } else if (/^(?:expires|max\-age|path|domain|secure|SameSite)$/i.test(key)) {
+        throw new Error('Cookie key name illegality, Cannot be set to ["expires","max-age","path","domain","secure","SameSite"]\t current key name: ' + key);
+      }
+      // support json object
+      if (value && value.constructor === Object) {
+        value = JSON.stringify(value);
+      }
+      var _expires = '';
+      expireTimes = expireTimes == undefined ? defaultConfig.expires : expireTimes;
+      if (expireTimes && expireTimes != 0) {
+        switch (expireTimes.constructor) {
+          case Number:
+            if (expireTimes === Infinity || expireTimes === -1) _expires = '; expires=Fri, 31 Dec 9999 23:59:59 GMT';
+            else _expires = '; max-age=' + expireTimes;
+            break;
+          case String:
+            if (/^(?:\d+(y|m|d|h|min|s))$/i.test(expireTimes)) {
+              // get capture number group
+              var _expireTime = expireTimes.replace(/^(\d+)(?:y|m|d|h|min|s)$/i, '$1');
+              // get capture type group , to lower case
+              switch (expireTimes.replace(/^(?:\d+)(y|m|d|h|min|s)$/i, '$1').toLowerCase()) {
+                  // Frequency sorting
+                case 'm':
+                  _expires = '; max-age=' + +_expireTime * 2592000;
+                  break; // 60 * 60 * 24 * 30
+                case 'd':
+                  _expires = '; max-age=' + +_expireTime * 86400;
+                  break; // 60 * 60 * 24
+                case 'h':
+                  _expires = '; max-age=' + +_expireTime * 3600;
+                  break; // 60 * 60
+                case 'min':
+                  _expires = '; max-age=' + +_expireTime * 60;
+                  break; // 60
+                case 's':
+                  _expires = '; max-age=' + _expireTime;
+                  break;
+                case 'y':
+                  _expires = '; max-age=' + +_expireTime * 31104000;
+                  break; // 60 * 60 * 24 * 30 * 12
+                default:
+                  new Error('unknown exception of "set operation"');
+              }
+            } else {
+              _expires = '; expires=' + expireTimes;
+            }
+            break;
+          case Date:
+            _expires = '; expires=' + expireTimes.toUTCString();
+            break;
+        }
+      }
+      document.cookie =
+          encodeURIComponent(key) + '=' + encodeURIComponent(value) +
+          _expires +
+          (domain ? '; domain=' + domain : defaultConfig.domain) +
+          (path ? '; path=' + path : defaultConfig.path) +
+          (secure == undefined ? defaultConfig.secure : secure ? '; Secure' : '') +
+          (sameSite == undefined ? defaultConfig.sameSite : (sameSite ? '; SameSite=' + sameSite : ''));
+      return this;
+    },
+    remove: function (key, path, domain) {
+      if (!key || !this.isKey(key)) {
+        return false;
+      }
+      document.cookie = encodeURIComponent(key) +
+          '=; expires=Thu, 01 Jan 1970 00:00:00 GMT' +
+          (domain ? '; domain=' + domain : defaultConfig.domain) +
+          (path ? '; path=' + path : defaultConfig.path) +
+          '; SameSite=Lax';
+      return this;
+    },
+    isKey: function (key) {
+      return (new RegExp('(?:^|;\\s*)' + encodeURIComponent(key).replace(/[\-\.\+\*]/g, '\\$&') + '\\s*\\=')).test(document.cookie);
+    },
+    keys: function () {
+      if (!document.cookie) return [];
+      var _keys = document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, '').split(/\s*(?:\=[^;]*)?;\s*/);
+      for (var _index = 0; _index < _keys.length; _index++) {
+        _keys[_index] = decodeURIComponent(_keys[_index]);
+      }
+      return _keys;
+    }
+  };
+
+  if (true) {
+    module.exports = VueCookies;
+  } else {}
+  // vue-cookies can exist independently,no dependencies library
+  if (typeof window !== 'undefined') {
+    window.$cookies = VueCookies;
+  }
+
+})();
+
+
+/***/ }),
+
 /***/ "./resources/components/App.vue":
 /*!**************************************!*\
   !*** ./resources/components/App.vue ***!
@@ -24853,7 +25048,7 @@ var render = function() {
                           staticClass: "nav-item",
                           attrs: {
                             "exact-active-class": "active",
-                            to: "/Dashboard"
+                            to: "/dashboard"
                           }
                         },
                         [
@@ -24896,7 +25091,7 @@ var render = function() {
                           staticClass: "nav-item",
                           attrs: {
                             "exact-active-class": "active",
-                            to: "/Client"
+                            to: "/client"
                           }
                         },
                         [
@@ -24939,7 +25134,7 @@ var render = function() {
                           staticClass: "nav-item",
                           attrs: {
                             "exact-active-class": "active",
-                            to: "/Invoice"
+                            to: "/invoice"
                           }
                         },
                         [
@@ -24982,7 +25177,7 @@ var render = function() {
                           staticClass: "nav-item",
                           attrs: {
                             "exact-active-class": "active",
-                            to: "/Setting"
+                            to: "/setting"
                           }
                         },
                         [
@@ -25082,18 +25277,31 @@ var render = function() {
               _c("div", { staticClass: "container-fluid" }, [
                 _c("div", { staticClass: "navbar-inr" }, [
                   _c("div", { staticClass: "current-user" }, [
-                    _c("div", { staticClass: "c-user-icon" }, [
+                    _c("div", [
                       _c("h4", [
-                        _vm._v(
-                          "\n                  " +
-                            _vm._s(_vm.name.split(" ")[0][0]) +
-                            _vm._s(
-                              _vm.name.split(" ")[1]
-                                ? _vm.name.split(" ")[1][0].toUpperCase()
-                                : " "
-                            ) +
-                            "\n                "
-                        )
+                        this.profile == ""
+                          ? _c("div", [
+                              _c("span", { staticClass: "c-user-icon" }, [
+                                _vm._v(
+                                  "\n                    " +
+                                    _vm._s(
+                                      _vm.name.split(" ")[0][0] +
+                                        (_vm.name.split(" ")[1]
+                                          ? _vm.name
+                                              .split(" ")[1][0]
+                                              .toUpperCase()
+                                          : " ")
+                                    ) +
+                                    "\n                  "
+                                )
+                              ])
+                            ])
+                          : _c("div", [
+                              _c("img", {
+                                staticClass: "c-user-icon",
+                                attrs: { src: "/images/" + this.profile }
+                              })
+                            ])
                       ])
                     ]),
                     _vm._v(" "),
@@ -25190,7 +25398,7 @@ var render = function() {
               "router-link",
               {
                 staticClass: "noti-box nav-item nav-link",
-                attrs: { to: "/Client" }
+                attrs: { to: "/client" }
               },
               [
                 _c("div", { staticClass: "content" }, [
@@ -25249,7 +25457,7 @@ var render = function() {
               "router-link",
               {
                 staticClass: "noti-box nav-item nav-link",
-                attrs: { to: "/Invoice" }
+                attrs: { to: "/invoice" }
               },
               [
                 _c("div", { staticClass: "content" }, [
@@ -25437,6 +25645,48 @@ var render = function() {
                   _vm._v(_vm._s(_vm.errors.password[0]))
                 ])
               : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", {}, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.checked,
+                  expression: "checked"
+                }
+              ],
+              attrs: { type: "checkbox", name: "checkbox" },
+              domProps: {
+                checked: Array.isArray(_vm.checked)
+                  ? _vm._i(_vm.checked, null) > -1
+                  : _vm.checked
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.checked,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.checked = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.checked = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.checked = $$c
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "checkbox" } }, [_vm._v("Remember Me")])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "submit-sec" }, [

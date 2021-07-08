@@ -63,6 +63,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Invoices",
   data: function data() {
@@ -88,8 +92,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                   _this.Invoices.sort(function (a, b) {
                     return a.weight < b.weight ? 1 : -1;
-                  }); // console.log(response.data)
+                  });
 
+                  console.log(_this.Invoices);
                 })["catch"](function (error) {
                   console.log(error);
                   _this.Invoices = [];
@@ -123,6 +128,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
         _this2.getInvoices();
       });
+    },
+    clientData: function clientData(id) {
+      console.log(id);
     }
   }
 });
@@ -224,10 +232,7 @@ var render = function() {
       [
         _c(
           "router-link",
-          {
-            staticClass: "btn btn-primary",
-            attrs: { to: { name: "InvoiceAdd" } }
-          },
+          { staticClass: "btn btn-primary", attrs: { to: "/invoice/add" } },
           [_vm._v("Create Invoice")]
         )
       ],
@@ -248,9 +253,13 @@ var render = function() {
                     "tbody",
                     _vm._l(_vm.Invoices, function(Invoice, key) {
                       return _c("tr", { key: key }, [
-                        _c("td", [_vm._v(_vm._s(key + 1))]),
+                        _c("td", [_vm._v("01/01/2021")]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(Invoice.description))]),
+                        _c("td", [
+                          _vm._v(_vm._s(Invoice.client_id) + "/Client Name")
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("status")]),
                         _vm._v(" "),
                         _c("td", [_vm._v("$" + _vm._s(Invoice.amount))]),
                         _vm._v(" "),
@@ -263,7 +272,7 @@ var render = function() {
                                 staticClass: "btn btn-success",
                                 attrs: {
                                   to: {
-                                    name: "InvoiceEdit",
+                                    name: "invoiceedit",
                                     params: { id: Invoice.id }
                                   }
                                 }
@@ -317,13 +326,15 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("S.no")]),
+        _c("th", [_vm._v("Date")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Description")]),
+        _c("th", [_vm._v("Client")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Status")]),
         _vm._v(" "),
         _c("th", [_vm._v("Amount")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Actions")])
+        _c("th", [_vm._v("Action")])
       ])
     ])
   },

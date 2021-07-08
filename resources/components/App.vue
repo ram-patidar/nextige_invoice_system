@@ -13,7 +13,7 @@
               <li>
                 <router-link
                   exact-active-class="active"
-                  to="/Dashboard"
+                  to="/dashboard"
                   class="nav-item"
                 >
                   <svg
@@ -36,7 +36,7 @@
               <li>
                 <router-link
                   exact-active-class="active"
-                  to="/Client"
+                  to="/client"
                   class="nav-item"
                 >
                   <svg
@@ -59,7 +59,7 @@
               <li>
                 <router-link
                   exact-active-class="active"
-                  to="/Invoice"
+                  to="/invoice"
                   class="nav-item"
                 >
                   <svg
@@ -82,7 +82,7 @@
               <li>
                 <router-link
                   exact-active-class="active"
-                  to="/Setting"
+                  to="/setting"
                   class="nav-item"
                 >
                   <svg
@@ -141,14 +141,24 @@
           <div class="container-fluid">
             <div class="navbar-inr">
               <div class="current-user">
-                <div class="c-user-icon">
+                <div>
                   <h4>
-                    {{ name.split(" ")[0][0]
-                    }}{{
-                      name.split(" ")[1]
-                        ? name.split(" ")[1][0].toUpperCase()
-                        : " "
-                    }}
+                  <div v-if="this.profile == ''">
+                    <span class="c-user-icon">
+                      {{
+                        name.split(" ")[0][0] +
+                        (name.split(" ")[1]
+                          ? name.split(" ")[1][0].toUpperCase()
+                          : " ")
+                      }}
+                    </span>
+                  </div>
+                  <div v-else>
+                      <img
+                        class="c-user-icon"
+                        v-bind:src="'/images/' + this.profile"
+                      />
+                  </div>
                   </h4>
                 </div>
                 <div class="user-name">
@@ -186,6 +196,7 @@ export default {
     return {
       name: "",
       title: "",
+      profile: "",
     };
   },
   mounted() {
@@ -196,7 +207,7 @@ export default {
       return (
         this.$route.name !== "login" &&
         this.$route.name !== "register" &&
-        this.$route.name !== "Generate_invoice"
+        this.$route.name !== "generate_invoice"
       );
     },
   },
@@ -211,10 +222,11 @@ export default {
       await this.axios
         .get(`/api/login/${localStorage.getItem("token")}`)
         .then((response) => {
-          const { name, title } = response.data.user_data;
+          const { name, title, profile } = response.data.user_data;
           this.name = name.charAt(0).toUpperCase() + name.slice(1);
           this.title = title;
-          // console.log(this.name);
+          this.profile = profile;
+          // console.log(this.profile);
         })
         .catch((error) => {
           console.log(error);
