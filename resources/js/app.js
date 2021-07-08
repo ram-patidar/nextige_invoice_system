@@ -12,6 +12,7 @@ import VueAxios from 'vue-axios';
 import axios from 'axios';
 import {routes} from './routes';
 import VueSweetalert2 from 'vue-sweetalert2';
+import VueBodyClass from 'vue-body-class';
 import swal from 'sweetalert2';
 import VueCookies from 'vue-cookies';
 
@@ -22,12 +23,17 @@ Vue.use(VueSweetalert2);
 
 const router = new VueRouter({
     mode: 'history',
-    routes: routes
+    routes: routes,
+    linkActiveClass: "active",
 });
- 
+
+const vueBodyClass = new VueBodyClass(routes);
+router.beforeEach((to, from, next) => { vueBodyClass.guard(to, next) });
+
 const app = new Vue({
     el: '#app',
     router: router,
     render: h => h(App),
 });
+
 

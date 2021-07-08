@@ -17,6 +17,7 @@ export const routes = [
         name: 'login',
         path: '/',
         component: Login,
+        meta: { bodyClass: 'login' },
         beforeEnter: (to, from, next) =>{
             if(!localStorage.getItem('token')){
                 return next();
@@ -28,7 +29,8 @@ export const routes = [
     {
         name: 'register',
         path: '/register',
-        component: Register
+        component: Register,
+        meta: { bodyClass: 'login' },
     },
     {
         name: 'dashboard',

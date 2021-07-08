@@ -23,7 +23,7 @@
               class="cus-field"
               v-model="form.email"
               name="email"
-              autocomplete="off"
+              autocomplete="off" required
             />
             <label for="email">Email Address </label>
             <span class="error" v-if="errors.email">{{ errors.email[0] }}</span>
@@ -35,7 +35,7 @@
               v-model="form.password"
               name="password"
               id="inputtype"
-              autocomplete="off"
+              autocomplete="off" required
             />
             <label for="password">Password</label>
             <div class="input-group-addon" id="show_hide_password" @click="show">

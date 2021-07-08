@@ -2540,17 +2540,18 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var _components_App_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/App.vue */ "./resources/components/App.vue");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-axios */ "./node_modules/vue-axios/dist/vue-axios.es5.js");
 /* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./routes */ "./resources/js/routes.js");
 /* harmony import */ var vue_sweetalert2__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-sweetalert2 */ "./node_modules/vue-sweetalert2/dist/index.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var vue_cookies__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-cookies */ "./node_modules/vue-cookies/vue-cookies.js");
-/* harmony import */ var vue_cookies__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(vue_cookies__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var vue_body_class__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-body-class */ "./node_modules/vue-body-class/dist/index.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var vue_cookies__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-cookies */ "./node_modules/vue-cookies/vue-cookies.js");
+/* harmony import */ var vue_cookies__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(vue_cookies__WEBPACK_IMPORTED_MODULE_8__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
@@ -2567,13 +2568,19 @@ Vue.component('App-component', __webpack_require__(/*! ../components/App.vue */ 
 
 
 
-Vue.use((vue_cookies__WEBPACK_IMPORTED_MODULE_7___default()));
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_8__.default);
+
+Vue.use((vue_cookies__WEBPACK_IMPORTED_MODULE_8___default()));
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_9__.default);
 Vue.use((vue_axios__WEBPACK_IMPORTED_MODULE_2___default()), (axios__WEBPACK_IMPORTED_MODULE_3___default()));
 Vue.use(vue_sweetalert2__WEBPACK_IMPORTED_MODULE_5__.default);
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_8__.default({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_9__.default({
   mode: 'history',
-  routes: _routes__WEBPACK_IMPORTED_MODULE_4__.routes
+  routes: _routes__WEBPACK_IMPORTED_MODULE_4__.routes,
+  linkActiveClass: "active"
+});
+var vueBodyClass = new vue_body_class__WEBPACK_IMPORTED_MODULE_6__.default(_routes__WEBPACK_IMPORTED_MODULE_4__.routes);
+router.beforeEach(function (to, from, next) {
+  vueBodyClass.guard(to, next);
 });
 var app = new Vue({
   el: '#app',
@@ -2679,6 +2686,9 @@ var routes = [{
   name: 'login',
   path: '/',
   component: Login,
+  meta: {
+    bodyClass: 'login'
+  },
   beforeEnter: function beforeEnter(to, from, next) {
     if (!localStorage.getItem('token')) {
       return next();
@@ -2689,7 +2699,10 @@ var routes = [{
 }, {
   name: 'register',
   path: '/register',
-  component: Register
+  component: Register,
+  meta: {
+    bodyClass: 'login'
+  }
 }, {
   name: 'dashboard',
   path: '/dashboard',
@@ -24570,6 +24583,124 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
 /***/ }),
 
+/***/ "./node_modules/vue-body-class/dist/index.js":
+/*!***************************************************!*\
+  !*** ./node_modules/vue-body-class/dist/index.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+    value: true
+}));
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var VueBodyClass = function () {
+    function VueBodyClass(routes) {
+        _classCallCheck(this, VueBodyClass);
+
+        this.bodyClass = document.body.className;
+        this.routes = routes;
+    }
+
+    _createClass(VueBodyClass, [{
+        key: 'guard',
+        value: function guard(to, next) {
+
+            var parent = this.routes;
+            var matched = this.parseMatched(to.matched);
+            var additionalClassName = "";
+
+            //is a home page?
+            if (to.path == '/') {
+
+                additionalClassName = this.updateClassFromRoute(additionalClassName, to);
+            }
+            //not homepage
+            else if (matched.length > 0) {
+
+                    for (var index in matched) {
+
+                        var routes = parent.children ? parent.children : parent;
+                        var found = this.findMatchInRoutesByPath(routes, matched[index]);
+
+                        if (found) {
+
+                            parent = found;
+                            additionalClassName = this.updateClassFromRoute(additionalClassName, found);
+                        }
+                    }
+                }
+
+            document.body.className = (this.bodyClass + additionalClassName).trim();
+
+            next();
+        }
+    }, {
+        key: 'parseMatched',
+        value: function parseMatched(matchedArray) {
+
+            var matched = [];
+
+            for (var index in matchedArray) {
+
+                var prev = matched.join('/');
+
+                matched.push(matchedArray[index].path.replace(/^\/|\/$/g, '').replace(prev, '').replace(/^\/|\/$/g, ''));
+            }
+
+            return matched;
+        }
+    }, {
+        key: 'findMatchInRoutesByPath',
+        value: function findMatchInRoutesByPath(routes, matchedItem) {
+
+            return routes.find(function (o) {
+
+                return o.path.replace(/^\/|\/$/g, '') == matchedItem;
+            });
+        }
+    }, {
+        key: 'getClassForRoute',
+        value: function getClassForRoute(route) {
+
+            return route.meta ? route.meta.bodyClass : null;
+        }
+    }, {
+        key: 'updateClassFromRoute',
+        value: function updateClassFromRoute(className, route) {
+
+            var routeClass = this.getClassForRoute(route);
+
+            if (routeClass) {
+
+                var routeBodyClass = routeClass.replace(/^!/, '');
+
+                if (routeClass.indexOf('!') === 0) {
+
+                    className = " " + routeBodyClass;
+                } else {
+
+                    className += " " + routeBodyClass;
+                }
+            }
+
+            return className;
+        }
+    }]);
+
+    return VueBodyClass;
+}();
+
+exports.default = VueBodyClass;
+
+/***/ }),
+
 /***/ "./node_modules/vue-cookies/vue-cookies.js":
 /*!*************************************************!*\
   !*** ./node_modules/vue-cookies/vue-cookies.js ***!
@@ -25601,7 +25732,12 @@ var render = function() {
                 }
               ],
               staticClass: "cus-field",
-              attrs: { type: "text", name: "email", autocomplete: "off" },
+              attrs: {
+                type: "text",
+                name: "email",
+                autocomplete: "off",
+                required: ""
+              },
               domProps: { value: _vm.form.email },
               on: {
                 input: function($event) {
@@ -25639,7 +25775,8 @@ var render = function() {
                 type: "password",
                 name: "password",
                 id: "inputtype",
-                autocomplete: "off"
+                autocomplete: "off",
+                required: ""
               },
               domProps: { value: _vm.form.password },
               on: {

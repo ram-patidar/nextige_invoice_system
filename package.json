@@ -18,9 +18,12 @@
         "vue-template-compiler": "^2.6.14"
     },
     "dependencies": {
+        "@babel/core": "^7.14.6",
+        "@babel/preset-env": "^7.14.7",
         "sweetalert2": "^11.0.18",
         "vue": "^2.6.14",
         "vue-axios": "^3.2.4",
+        "vue-body-class": "^3.0.2",
         "vue-bootstrap4-modal": "^2.2.0",
         "vue-cookies": "^1.7.4",
         "vue-progressbar": "^0.7.5",
