@@ -2193,6 +2193,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -25382,8 +25406,10 @@ var render = function() {
   return _c("section", { staticClass: "dashboard-main" }, [
     _c("div", { staticClass: "dashboard-inr" }, [
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "page-header" }, [
-          _c("h3", [_vm._v("Hello, " + _vm._s(_vm.name))])
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "page-header" }, [
+            _c("h3", [_vm._v("Hello, " + _vm._s(_vm.name))])
+          ])
         ]),
         _vm._v(" "),
         _vm._m(0)
@@ -25403,15 +25429,13 @@ var render = function() {
               [
                 _c("div", { staticClass: "content" }, [
                   _c("div", [
-                    _c("h5", [
-                      _vm._v("\n                Total Clients \n              ")
-                    ]),
+                    _c("h5", [_vm._v("Total Clients")]),
                     _vm._v(" "),
                     _c("h2", [_vm._v(_vm._s(_vm.Client_count) + "+")])
                   ]),
                   _vm._v(" "),
                   _c("span", [
-                    _vm._v("Clients \n                "),
+                    _vm._v("Clients\n              "),
                     _c(
                       "svg",
                       {
@@ -25462,15 +25486,13 @@ var render = function() {
               [
                 _c("div", { staticClass: "content" }, [
                   _c("div", [
-                    _c("h5", [
-                      _vm._v("\n                Total Invoice\n              ")
-                    ]),
+                    _c("h5", [_vm._v("Total Invoice")]),
                     _vm._v(" "),
                     _c("h2", [_vm._v(_vm._s(_vm.Invoice_count) + "+")])
                   ]),
                   _vm._v(" "),
                   _c("span", [
-                    _vm._v("Invoice\n                "),
+                    _vm._v("Invoice\n              "),
                     _c(
                       "svg",
                       {
@@ -25516,8 +25538,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "dash-nav" }, [
-      _c("h5", [_vm._v("Notifications")])
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "dash-nav" }, [
+        _c("h5", [_vm._v("Notifications")])
+      ])
     ])
   }
 ]

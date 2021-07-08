@@ -9,7 +9,6 @@
       <div class="card">
         <div class="card-header">
           <h4>Clients</h4>
-
           <div class="success">{{ message }}</div>
         </div>
         <div class="card-body">
@@ -76,10 +75,10 @@
               </tbody>
             </table>
           </div>
-        </div>
       </div>
     </div>
-  </div>
+    </div>
+    </div>
 </template>
 
 <script>
@@ -100,9 +99,9 @@ export default {
         .get("/api/Client")
         .then((response) => {
           this.Clients = response.data.Clients;
-           this.Clients.sort((a,b)=>a.weight<b.weight?1:-1)
+          this.Clients.sort((a, b) => (a.weight < b.weight ? 1 : -1));
         })
-        
+
         .catch((error) => {
           console.log(error);
           this.Clients = [];

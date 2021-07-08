@@ -202,6 +202,9 @@
 .page-header {
   padding: 0;
   padding-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .page-header h3 {
   color: #0D0820;
