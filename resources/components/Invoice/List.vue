@@ -15,18 +15,18 @@
                                 <tr>
                                     <th>Date</th>
                                     <th>Client</th>
-                                    <th>Status</th>
+                                    <th>Description</th>
                                     <th>Amount</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody v-if="Invoices.length > 0">
                                 <tr v-for="(Invoice,key) in Invoices" :key="key">
-                                    <!-- <td>{{key+1}}</td> -->
-                                    <td>01/01/2021</td>
-                                    <td>{{Invoice.client_id}}/Client Name</td>
-                                    <td>status</td>
-                                    <!-- <td>{{ Invoice.description }}</td> -->
+                                    <td>{{Invoice.created_at.split("T")[0]}}</td>
+                                    <td>
+                                        <!-- {{getClient(Invoice.client_id)}} -->
+                                        {{Invoice.client_id}}/Client-name</td>
+                                    <td>{{ Invoice.description }}</td>
                                     <td>${{ Invoice.amount }}</td>
                                     <td>
                                         <router-link :to='{name:"invoiceedit",params:{id:Invoice.id}}' class="btn btn-success">Edit</router-link>
@@ -52,7 +52,10 @@ export default {
     name:"Invoices",
     data(){
         return {
-            Invoices:[]
+            Invoices:[],
+            Client:{
+                client_name:""
+            }
         }
     },
     mounted(){
@@ -92,11 +95,21 @@ export default {
             });             
         },
 
-        clientData(id){
+         getClient(id){
             console.log(id)
+       this.axios
+        .get(`/api/Client/${id}`)
+        .then((response) => {
+          const { client_name, } =
+            response.data;
+          this.Client.client_name = client_name;
+          console.log(this.Client.client_name)
+        })
+        .catch((error) => {
+          console.log(error);
+          console.log(error.response.data);
+        });
         }
-       
-        
     }
 }
 </script>

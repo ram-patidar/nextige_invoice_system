@@ -351,6 +351,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "update-Client",
   data: function data() {
@@ -549,45 +550,23 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-12" }, [
       _c("div", { staticClass: "card" }, [
-        _c(
-          "div",
-          { staticClass: "card-header" },
-          [
-            _c("h4", [_vm._v("Client details")]),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "btn btn-primary",
-                attrs: {
-                  to: {
-                    name: "clientview",
-                    params: {
-                      id: this.$route.params.id,
-                      name: this.Client.client_name
-                    }
-                  }
+        _c("div", { staticClass: "card-header" }, [
+          _c("h4", [_vm._v("Client details")]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-danger",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  return _vm.deleteClient()
                 }
-              },
-              [_vm._v("Invoice")]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-danger",
-                attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    return _vm.deleteClient()
-                  }
-                }
-              },
-              [_vm._v("\n          Delete\n        ")]
-            )
-          ],
-          1
-        ),
+              }
+            },
+            [_vm._v("\n          Delete\n        ")]
+          )
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
           _c(
@@ -1770,7 +1749,21 @@ var render = function() {
                     })
                   ])
                 ])
-              ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.update.apply(null, arguments)
+                    }
+                  }
+                },
+                [_vm._v("update")]
+              )
             ]
           )
         ])

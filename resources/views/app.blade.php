@@ -14,14 +14,7 @@
     <div id="app">
     </div>
     <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
-    <script>
-    $(document).ready(function() {
-        $('#example').DataTable();
-    });
-    </script> -->
+
 </body>
 
 </html>

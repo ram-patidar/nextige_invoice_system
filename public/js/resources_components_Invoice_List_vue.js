@@ -71,7 +71,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   name: "Invoices",
   data: function data() {
     return {
-      Invoices: []
+      Invoices: [],
+      Client: {
+        client_name: ""
+      }
     };
   },
   mounted: function mounted() {
@@ -129,8 +132,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this2.getInvoices();
       });
     },
-    clientData: function clientData(id) {
+    getClient: function getClient(id) {
+      var _this3 = this;
+
       console.log(id);
+      this.axios.get("/api/Client/".concat(id)).then(function (response) {
+        var client_name = response.data.client_name;
+        _this3.Client.client_name = client_name;
+        console.log(_this3.Client.client_name);
+      })["catch"](function (error) {
+        console.log(error);
+        console.log(error.response.data);
+      });
     }
   }
 });
@@ -253,13 +266,19 @@ var render = function() {
                     "tbody",
                     _vm._l(_vm.Invoices, function(Invoice, key) {
                       return _c("tr", { key: key }, [
-                        _c("td", [_vm._v("01/01/2021")]),
-                        _vm._v(" "),
                         _c("td", [
-                          _vm._v(_vm._s(Invoice.client_id) + "/Client Name")
+                          _vm._v(_vm._s(Invoice.created_at.split("T")[0]))
                         ]),
                         _vm._v(" "),
-                        _c("td", [_vm._v("status")]),
+                        _c("td", [
+                          _vm._v(
+                            "\n                                    " +
+                              _vm._s(Invoice.client_id) +
+                              "/Client-name"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(Invoice.description))]),
                         _vm._v(" "),
                         _c("td", [_vm._v("$" + _vm._s(Invoice.amount))]),
                         _vm._v(" "),
@@ -330,7 +349,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Client")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Status")]),
+        _c("th", [_vm._v("Description")]),
         _vm._v(" "),
         _c("th", [_vm._v("Amount")]),
         _vm._v(" "),

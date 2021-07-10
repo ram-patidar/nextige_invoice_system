@@ -32,32 +32,40 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        // $Invoice = Invoice::create($request->post());
-        // return response()->json([
-        //     'message'=>'Invoice Created Successfully!!',
-        //     'Invoice'=>$Invoice
-        // ]);
-        $request->validate([
-            'description' => 'required',
-            'amount' => 'required',
-            'client_id' => 'required'
-        ],
-        [
-            'description.required' => 'The description field is required.',
-            'amount.required' => 'The amount field is required.',
-            'client_id.required' => 'The Client option is required.'
-        ]);
-
-        if($Invoice = Invoice::create($request->post())){
-            return response()->json([
-                    'message'=>'Invoice Created Successfully!!',
-                    'category'=>$Invoice
-                ]);
+        
+      if ($purchases= json_decode($request->post('invoice'))) {
+        foreach($purchases as $purchase) {
+            Invoice::create([
+                'client_id' => $request->post('id'),
+                'description' => $purchase->description,
+                'amount' => $purchase->rate*$purchase->qty,
+            ]);
         }
-        throw ValidationException::withMessages([
-            'msg' => ['Insert data first.']
-        ]);
+        return response()->json($purchase);            
+      }
+           return response()->json($request);            
     }
+        
+        // $request->validate([
+        //     'description' => 'required',
+        //     'amount' => 'required',
+        //     'client_id' => 'required'
+        // ],
+        // [
+        //     'description.required' => 'The description field is required.',
+        //     'amount.required' => 'The amount field is required.',
+        //     'client_id.required' => 'The Client option is required.'
+        // ]);
+
+        // if($Invoice = Invoice::create($request->post())){
+        //     return response()->json([
+        //             'message'=>'Invoice Created Successfully!!',
+        //             'category'=>$Invoice
+        //         ]);
+        // }
+        // throw ValidationException::withMessages([
+        //     'msg' => ['Insert data first.']
+        // ]);
 
     /**
      * Display the specified resource.

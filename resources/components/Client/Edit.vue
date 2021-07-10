@@ -4,14 +4,14 @@
       <div class="card">
         <div class="card-header">
           <h4>Client details</h4>
-          <router-link
+          <!-- <router-link
             :to="{
               name: 'clientview',
               params: { id: this.$route.params.id, name: this.Client.client_name },
             }"
             class="btn btn-primary"
             >Invoice</router-link
-          >
+          > -->
           <button type="button" @click="deleteClient()" class="btn btn-danger">
             Delete
           </button>
@@ -323,6 +323,7 @@
                 </div>
               </div>
               </div>
+              <button class="btn btn-success" @click.prevent="update">update</button>
           </form>
         </div>
       </div>

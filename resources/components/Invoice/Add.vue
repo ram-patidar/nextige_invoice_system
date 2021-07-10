@@ -3,15 +3,8 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <div>
-            <router-link
-              :to="{ name: 'invoicelist' }"
-              class="btn btn-primary back"
-              >&#8592; Back</router-link
-            >
-          </div>
+          <div></div>
           <h4>Add Invoice</h4>
-          <span class="error" v-if="errors.msg">{{ errors.msg[0] }}</span>
         </div>
         <div class="card-body">
           <form>
@@ -37,34 +30,28 @@
                           {{ Client.client_name }}
                         </option>
                       </select>
-                      <span class="error" v-if="errors.client_id">{{
-                        errors.client_id[0]
-                      }}</span>
-                    </div>
+                       <span class="error" v-if="errors.client_id">{{
+              errors.client_id
+            }}</span>
+             </div>
                   </div>
-                  <input
-                    type="radio"
-                    name="rate"
-                    value="Amount"
-                    :checked="a_checked"
-                    @change="Amount"
-                  />
-                  <label for="rate">Amount</label>
-                  <input
-                    type="radio"
-                    name="rate"
-                    value="Hours"
-                    :checked="h_checked"
-                    @change="Hours"
-                  />
-                  <label for="rate">Hours</label>
+
                   <div v-for="(user, key) in users" :key="key">
                     <input
-                      name="client_id"
-                      v-model="user.client_id"
-                      class="form-control"
-                      type="hidden"
+                      type="radio"
+                      name="rate"
+                      :checked="a_checked"
+                      @change="Amount(key)"
                     />
+                    <label for="rate">Amount</label>
+                    <input
+                      type="radio"
+                      name="rate"
+                      :checked="h_checked"
+                      @change="Hours(key)"
+                    />
+                    <label for="rate">Hours</label>
+                    {{ key }}
 
                     <input
                       type="hidden"
@@ -80,16 +67,14 @@
                         type="text"
                       />
                     </td>
-                    <span class="error" v-if="errors.description">{{
-                      errors.description[0]
-                    }}</span>
+
                     <td>
                       <input
                         name="qty"
                         v-model="user.qty"
                         placeholder="Enter hours"
                         class="form-control"
-                        :type="type"
+                        :type="type[key]"
                       />
                     </td>
                     <td>
@@ -101,18 +86,21 @@
                         type="number"
                       />
                     </td>
-                    <span class="error" v-if="errors.amount">{{
-                      errors.amount[0]
-                    }}</span>
+
                     <td>
-                      <!-- <button @click.prevent="create" class="btn btn-primary">Save</button> -->
-                      <button @click="deleteRow(key)" class="btn btn-danger">
+                      <button
+                        @click.prevent="deleteRow(key)"
+                        class="btn btn-danger"
+                      >
                         Drop
                       </button>
                     </td>
                   </div>
                   <div class="col-12">
-                    <button class="btn btn-primary" @click.prevent="addRow">
+                    <button
+                      class="btn btn-primary"
+                      @click.prevent="addRow(users.length)"
+                    >
                       Add new item
                     </button>
                   </div>
@@ -175,7 +163,13 @@
                   </div>
                 </div>
               </div>
+              <span class="error" v-if="errors.rate">{{
+               errors.rate
+               }}</span>
             </div>
+            <button @click.prevent="create" class="btn btn-success">
+              Save invoice
+            </button>
           </form>
         </div>
       </div>
@@ -208,38 +202,47 @@ export default {
         client_name: "",
         date: null,
       },
-      errors: [],
+      errors: {
+        rate:"",
+        client_id:""
+      },
       Clients: [],
-      a_checked: "",
-      h_checked: "",
-      type: "",
+      a_checked: [],
+      h_checked: [],
+      key: 0,
+      type: [],
     };
   },
   mounted() {
     this.getClients();
     this.date_function();
     this.a_checked = true;
-    this.type = "hidden";
+    this.type[0] = "hidden";
+    this.type[1] = "hidden";
   },
   methods: {
-    // async create() {
-    //   this.Invoice.amount = (this.users.qty?this.users.qty:1) * this.users.rate;
-    //   this.Invoice.description = this.users.description;
-    //   this.Invoice.client_id = this.users.client_id;
-    //   console.log(this.Invoice);
-    //   await this.axios
-    //     .post("/api/Invoice", this.Invoice)
-    //     .then((response) => {
-    //       // this.$swal("Invoice Added Successfully ", "", "success");
-    //       this.$router.push({ name: "clientview", params: { id: this.Invoice.client_id, name: this.Client.client_name } });
-
-    //       this.errors = error.response.data.errors;
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //       this.errors = error.response.data.errors;
-    //     });
-    // },
+    async create() {
+      this.Invoice.client_id = this.users.client_id;
+      if(this.Invoice.client_id==null){
+        this.errors.client_id = "*The client name field is required.";
+      }
+      else{
+      await this.axios
+        .post("/api/Invoice", {
+          invoice: JSON.stringify(this.users),
+          id: this.users.client_id,
+        })
+        .then((response) => {
+          this.$swal("Invoice Added Successfully ", "", "success");
+          // setTimeout(() => this.$router.go(), 1000);
+          // this.$router.push({ name: "clientview", params: { id: this.Invoice.client_id, name: this.Client.client_name } });
+        })
+        .catch((error) => {
+          console.log(error.response.data.message);
+          this.errors.rate = "*Please fill out all empty and required fields";
+        });
+      }
+    },
 
     date_function() {
       const current = new Date();
@@ -250,7 +253,6 @@ export default {
         "/" +
         current.getFullYear();
       this.Client.date = date;
-      // console.log(this.Client.date);
     },
 
     async getClients() {
@@ -280,33 +282,49 @@ export default {
         });
     },
 
-    addRow: function () {
-      this.users.push({ description: "", qty: "", rate: "" });
-      console.log(this.users);
+    addRow: function (key) {
+      this.users.push({
+        description: "",
+        client_id: "",
+        qty: 1,
+        rate: "",
+      });
+      this.type[key] = "hidden";
+      this.h_checked = false;
+      this.a_checked = true;
     },
     deleteRow(key) {
+      if (this.type[key + 1] == "hidden") {
+        console.log(key + 1 + "hidden");
+        this.type[key] = "hidden";
+      } else {
+        console.log(key + 1 + "number");
+        this.type[key] = "number";
+      }
       this.users.splice(key, 1);
     },
 
-    Amount() {
-      this.a_checked = true;
-      this.h_checked = false;
-      this.type = "hidden";
+    Amount(key) {
+      this.type[key] = "hidden";
+      if ((this.type[key] = "hidden")) {
+        this.a_checked = true;
+        this.h_checked = false;
+      } else {
+        this.a_checked = false;
+        this.h_checked = true;
+      }
     },
-    Hours() {
-      this.a_checked = false;
-      this.h_checked = true;
-      this.type = "number";
+    Hours(key) {
+      this.type[key] = "number";
+      if ((this.type[key] = "number")) {
+        this.h_checked = true;
+        this.a_checked = false;
+      } else {
+        this.h_checked = false;
+        this.a_checked = true;
+      }
     },
   },
 };
 </script>
-<style scoped>
-.back {
-  text-align: right;
-  position: inherit;
-  margin: 0;
-  margin-left: 1004px;
-  margin-top: -94px;
-}
-</style>
+
