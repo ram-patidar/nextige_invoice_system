@@ -35,6 +35,9 @@ export const routes = [
     {
         name: 'dashboard',
         path: '/dashboard',
+        meta: {
+            breadcrumb: 'Dashboard',
+          },
         component: Dashboard,
         beforeEnter: (to, from, next) =>{
             if(localStorage.getItem('token')){
@@ -47,6 +50,9 @@ export const routes = [
     {
         name: 'setting',
         path: '/setting',
+        meta: {
+            breadcrumb: 'Setting',
+          },
         component: Setting,
         beforeEnter: (to, from, next) =>{
             if(localStorage.getItem('token')){

@@ -1,48 +1,50 @@
 <template>
-  <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-header">
+  <section class="dashboard-main">
+    <div class="row">
+      <div class="col-12">
+        <div class="page-header">
           <h4>Add Client</h4>
-          <span class="success">{{ message }}</span>
+          <router-link to="/client" class="btn custom-btn"><svg xmlns="http://www.w3.org/2000/svg" width="8.152" height="14.258" viewBox="0 0 8.152 14.258"><path d="M13.319,16.941l5.391-5.4a1.015,1.015,0,0,1,1.439,0,1.028,1.028,0,0,1,0,1.443L14.041,19.1a1.017,1.017,0,0,1-1.405.03L6.485,12.993A1.019,1.019,0,1,1,7.924,11.55Z" transform="translate(19.399 -6.188) rotate(90)" fill="#fff"/></svg> Back</router-link>
         </div>
-        <div class="card-body">
-          <form @submit.prevent="create">
-            <div class="row">
-              <div class="col-12 mb-2">
-                <div class="form-group">
-                  <label>Client Name</label>
-                  <!-- <input
-                    type="hidden"
-                    name="invoice_code"
-                    class="form-control"
-                    v-model="Client.invoice_code"
-                  /> -->
-                  <input
-                    type="text"
-                    name="client_name"
-                    placeholder="Enter client name"
-                    class="form-control"
-                    v-model="Client.client_name"
-                  />
-                  <span class="error" v-if="errors.client_name">{{
-                    errors.client_name[0]
-                  }}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="cus-card">
+          <div class="cus-card-body">
+            <form @submit.prevent="create">
+              <div class="row">
+                <div class="col-12">
+                  <div class="from-group">
+                    <input
+                      type="text"
+                      name="client_name"
+                      class="cus-field"
+                      v-model="Client.client_name"
+                      autocomplete="off" 
+                      placeholder=" "
+                    />
+                    <label>Client Name</label>
+                    <span class="error" v-if="errors.client_name">{{
+                      errors.client_name[0]
+                    }}</span>
+                  </div>
                 </div>
-              </div>
-              <div class="col-12 mb-2">
-                <div class="form-group">
-                  <label>Company Name</label>
-                  <input
-                    type="text"
-                    name="company_name"
-                    placeholder="Enter company name"
-                    class="form-control"
-                    v-model="Client.company_name"
-                  />
-                  <span class="error" v-if="errors.company_name">{{
-                    errors.company_name[0]
-                  }}</span>
+                <div class="col-12">
+                  <div class="from-group">
+                    <input
+                      type="text"
+                      name="company_name"
+                      class="cus-field"
+                      v-model="Client.company_name"
+                      autocomplete="off" 
+                      placeholder=" "
+                    />
+                    <label>Company Name</label>
+                    <span class="error" v-if="errors.company_name">{{
+                      errors.company_name[0]
+                    }}</span>
+                  </div>
                 </div>
               </div>
               <div class="col-12 mb-2">
@@ -70,48 +72,53 @@
                     errors.country[0]
                   }}</span>
                 </div>
-              </div>
-              <div class="col-12 mb-2">
-                <div class="form-group">
-                  <label>Email</label>
-                  <input
-                    type="text"
-                    name="email"
-                    placeholder="Enter client email"
-                    class="form-control"
-                    v-model="Client.email"
-                  />
-                  <span class="error" v-if="errors.email">{{
-                    errors.email[0]
-                  }}</span>
+                <div class="col-12">
+                  <div class="from-group">
+                    <input
+                      type="text"
+                      name="email"
+                      class="cus-field"
+                      v-model="Client.email"
+                      autocomplete="off" 
+                      placeholder=" "
+                    />
+                    <label>Email</label>
+                    <span class="error" v-if="errors.email">{{
+                      errors.email[0]
+                    }}</span>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="from-group">
+                    <textarea
+                      type="text"
+                      name="address"
+                      class="cus-field"
+                      v-model="Client.address"
+                      autocomplete="off" 
+                      placeholder=" "
+                    />
+                    <label>Address</label>
+                    <span class="error" v-if="errors.address">{{
+                      errors.address[0]
+                    }}</span>
+                  </div>
+                </div>
+                <div class="col-12">
+                 <div class="text-center btn-groups">
+                    <button type="submit" class="btn custom-btn">
+                    Add Client
+                  </button>
+                  <button class="btn custom-border-btn">Cancel</button>
+                 </div>
                 </div>
               </div>
-              <div class="col-12 mb-2">
-                <div class="form-group">
-                  <label>Address</label>
-                  <textarea
-                    type="text"
-                    name="address"
-                    placeholder="Enter client address"
-                    class="form-control"
-                    v-model="Client.address"
-                  />
-                  <span class="error" v-if="errors.address">{{
-                    errors.address[0]
-                  }}</span>
-                </div>
-              </div>
-              <div class="col-12">
-                <button type="submit" class="btn btn-primary">
-                  Add Client
-                </button>
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

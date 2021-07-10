@@ -102,6 +102,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "clients",
   data: function data() {
@@ -322,31 +328,60 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row" }, [
-    _c(
-      "div",
-      { staticClass: "col-12 mb-2 text-end" },
-      [
+  return _c("section", { staticClass: "dashboard-main" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-12 mb-2" }, [
         _c(
-          "router-link",
-          { staticClass: "btn btn-primary", attrs: { to: "/client/add" } },
-          [_vm._v("Add Client")]
+          "div",
+          { staticClass: "page-header" },
+          [
+            _c("h3", [_vm._v("Clients")]),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { staticClass: "btn custom-btn", attrs: { to: "/client/add" } },
+              [
+                _c(
+                  "svg",
+                  {
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      width: "18",
+                      height: "18",
+                      viewBox: "0 0 18 18"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M11,2a9,9,0,1,0,9,9A9,9,0,0,0,11,2Zm0,16.2A7.2,7.2,0,1,1,18.2,11,7.2,7.2,0,0,1,11,18.2Zm3.6-8.1H11.9V7.4a.9.9,0,1,0-1.8,0v2.7H7.4a.9.9,0,1,0,0,1.8h2.7v2.7a.9.9,0,0,0,1.8,0V11.9h2.7a.9.9,0,0,0,0-1.8Z",
+                        transform: "translate(-2 -2)",
+                        fill: "#fff"
+                      }
+                    })
+                  ]
+                ),
+                _vm._v("\n      Add Client")
+              ]
+            )
+          ],
+          1
         )
-      ],
-      1
-    ),
+      ])
+    ]),
     _vm._v(" "),
-    _c("div", { staticClass: "col-12" }, [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-header" }, [
-          _c("h4", [_vm._v("Clients")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "success" }, [_vm._v(_vm._s(_vm.message))])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c("div", { staticClass: "table-responsive" }, [
-            _c("table", { staticClass: "table table-bordered" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-12" }, [
+        _c("div", { staticClass: "table-sec" }, [
+          _c(
+            "table",
+            {
+              staticClass: "table responsive nowrap cus-table",
+              staticStyle: { width: "100%" },
+              attrs: { id: "example" }
+            },
+            [
               _vm._m(0),
               _vm._v(" "),
               _vm.Clients.length > 0
@@ -355,29 +390,38 @@ var render = function() {
                     _vm._l(_vm.Clients, function(Client, key) {
                       return _c("tr", { key: key }, [
                         _c("td", [
-                          _c("span", { staticClass: "profile" }, [
-                            _vm._v(
-                              _vm._s(
-                                Client.client_name
-                                  .split(" ")[0][0]
-                                  .toUpperCase()
-                              ) +
-                                _vm._s(
-                                  Client.client_name.split(" ")[1]
-                                    ? Client.client_name
-                                        .split(" ")[1][0]
-                                        .toUpperCase()
-                                    : " "
-                                ) +
-                                "\n                  "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("b", [_vm._v(_vm._s(Client.client_name))]),
-                          _vm._v(
-                            "\n                  " +
-                              _vm._s(Client.country) +
-                              "\n                "
+                          _c(
+                            "div",
+                            { staticClass: "d-flex align-items-center mr-3" },
+                            [
+                              _c("span", { staticClass: "avatar" }, [
+                                _vm._v(
+                                  _vm._s(
+                                    Client.client_name
+                                      .split(" ")[0][0]
+                                      .toUpperCase()
+                                  ) +
+                                    _vm._s(
+                                      Client.client_name.split(" ")[1]
+                                        ? Client.client_name
+                                            .split(" ")[1][0]
+                                            .toUpperCase()
+                                        : " "
+                                    ) +
+                                    "\n                    "
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "client-dtl" }, [
+                                _c("h5", [_vm._v(_vm._s(Client.client_name))]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "client-cont" }, [
+                                  _c("span", [_vm._v(_vm._s(Client.country))]),
+                                  _vm._v(" "),
+                                  _c("span", { staticClass: "country-icon" })
+                                ])
+                              ])
+                            ]
                           )
                         ]),
                         _vm._v(" "),
@@ -393,7 +437,7 @@ var render = function() {
                             _c(
                               "router-link",
                               {
-                                staticClass: "btn btn-primary",
+                                staticClass: "btn custom-border-btn",
                                 attrs: {
                                   to: {
                                     name: "clientedit",
@@ -411,8 +455,8 @@ var render = function() {
                     0
                   )
                 : _c("tbody", [_vm._m(1)])
-            ])
-          ])
+            ]
+          )
         ])
       ])
     ])

@@ -1,84 +1,90 @@
 <template>
-  <div class="row">
-    <div class="col-12 mb-2 text-end">
-      <router-link to="/client/add" class="btn btn-primary"
-        >Add Client</router-link
-      >
-    </div>
-    <div class="col-12">
-      <div class="card">
-        <div class="card-header">
-          <h4>Clients</h4>
-          <div class="success">{{ message }}</div>
+  <section class="dashboard-main">
+    <div class="row">
+      <div class="col-12 mb-2">
+        <div class="page-header">
+            <h3>Clients</h3>
+        <router-link to="/client/add" class="btn custom-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path d="M11,2a9,9,0,1,0,9,9A9,9,0,0,0,11,2Zm0,16.2A7.2,7.2,0,1,1,18.2,11,7.2,7.2,0,0,1,11,18.2Zm3.6-8.1H11.9V7.4a.9.9,0,1,0-1.8,0v2.7H7.4a.9.9,0,1,0,0,1.8h2.7v2.7a.9.9,0,0,0,1.8,0V11.9h2.7a.9.9,0,0,0,0-1.8Z" transform="translate(-2 -2)" fill="#fff"/></svg>
+        Add Client</router-link>
         </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <!-- <th>S.no</th> -->
-                  <!-- <th>Invoice Code</th> -->
-                  <th>Client name</th>
-                  <th>Company</th>
-                  <th>Email</th>
-                  <th>Address</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody v-if="Clients.length > 0">
-                <tr v-for="(Client, key) in Clients" :key="key">
-                  <!-- <td>{{key+1}}</td> -->
-                  <!-- <td>{{ Client.invoice_code }}</td> -->
-                  <td>
-                    <span class="profile"
-                      >{{ Client.client_name.split(" ")[0][0].toUpperCase()
-                      }}{{
-                        Client.client_name.split(" ")[1]
-                          ? Client.client_name.split(" ")[1][0].toUpperCase()
-                          : " "
-                      }}
-                    </span>
-                    <b>{{ Client.client_name }}</b>
-                    {{ Client.country }}
-                  </td>
-                  <td>{{ Client.company_name }}</td>
-                  <td>{{ Client.email }}</td>
-                  <td>{{ Client.address }}</td>
-                  <td>
-                    <!-- <router-link
-                      :to="{
-                        name: 'clientview',
-                        params: { id: Client.id, name: Client.client_name },
-                      }"
-                      class="btn btn-primary"
-                      >View</router-link
-                    > -->
-                    <router-link
-                      :to="{ name: 'clientedit', params: { id: Client.id } }"
-                      class="btn btn-primary"
-                      >View</router-link
-                    >
-                    <!-- <button
-                      type="button"
-                      @click="deleteClient(Client.id, Client.client_name)"
-                      class="btn btn-danger"
-                    >
-                      Delete
-                    </button> -->
-                  </td>
-                </tr>
-              </tbody>
-              <tbody v-else>
-                <tr>
-                  <td colspan="4" align="center">No Clients Found.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
       </div>
     </div>
-    </div>
-    </div>
+    <div class="row">
+      <div class="col-12">
+            <div class="table-sec">
+              <table id="example" class="table responsive nowrap cus-table" style="width:100%">
+                <thead>
+                  <tr>
+                    <!-- <th>S.no</th> -->
+                    <!-- <th>Invoice Code</th> -->
+                    <th>Client name</th>
+                    <th>Company</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody v-if="Clients.length > 0">
+                  <tr v-for="(Client, key) in Clients" :key="key">
+                    <!-- <td>{{key+1}}</td> -->
+                    <!-- <td>{{ Client.invoice_code }}</td> -->
+                    <td>
+                        <div class="d-flex align-items-center mr-3">
+                      <span class="avatar"
+                        >{{ Client.client_name.split(" ")[0][0].toUpperCase()
+                        }}{{
+                          Client.client_name.split(" ")[1]
+                            ? Client.client_name.split(" ")[1][0].toUpperCase()
+                            : " "
+                        }}
+                      </span>
+                    <div class="client-dtl">
+                        <h5>{{ Client.client_name }}</h5>
+                      <div class="client-cont">
+                        <span>{{ Client.country }}</span>
+                        <span class="country-icon"></span>
+                      </div>
+                    </div>
+                        </div>
+                    </td>
+                    <td>{{ Client.company_name }}</td>
+                    <td>{{ Client.email }}</td>
+                    <td>{{ Client.address }}</td>
+                    <td>
+                      <!-- <router-link
+                        :to="{
+                          name: 'clientview',
+                          params: { id: Client.id, name: Client.client_name },
+                        }"
+                        class="btn btn-primary"
+                        >View</router-link
+                      > -->
+                      <router-link
+                        :to="{ name: 'clientedit', params: { id: Client.id } }"
+                        class="btn custom-border-btn"
+                        >View</router-link
+                      >
+                      <!-- <button
+                        type="button"
+                        @click="deleteClient(Client.id, Client.client_name)"
+                        class="btn btn-danger"
+                      >
+                        Delete
+                      </button> -->
+                    </td>
+                  </tr>
+                </tbody>
+                <tbody v-else>
+                  <tr>
+                    <td colspan="4" align="center">No Clients Found.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+      </div>
+  </section>
 </template>
 
 <script>
@@ -128,6 +134,9 @@ export default {
   },
 };
 </script>
+
+
+
 <style scoped>
 .success {
   color: green;

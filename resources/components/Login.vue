@@ -1,5 +1,6 @@
 <template>
   <div class="login-box">
+     <pulse-loader :loading="loading" :color="color" :size="size"></pulse-loader>
     <div class="login-wrapper">
       <div class="login-left">
         <div class="login-logo">
@@ -23,7 +24,8 @@
               class="cus-field"
               v-model="form.email"
               name="email"
-              autocomplete="off" required
+              autocomplete="off"
+              placeholder=" "
             />
             <label for="email">Email Address </label>
             <span class="error" v-if="errors.email">{{ errors.email[0] }}</span>
@@ -35,9 +37,13 @@
               v-model="form.password"
               name="password"
               id="inputtype"
-              autocomplete="off" required
+              autocomplete="off" 
+              placeholder=" "
             />
             <label for="password">Password</label>
+            <span class="forgot-link">
+              <a href="">Forgot Password?</a>
+            </span>
             <div class="input-group-addon" id="show_hide_password" @click="show">
               <a>
                 <img src="images/feather-eye.svg" alt="" />
@@ -47,16 +53,18 @@
               errors.password[0]
             }}</span>
           </div>
-           <div class="">
+           <div class="custom-checkbox">
             <input
               type="checkbox"
               v-model="checked"
               name="checkbox"
+              id="me"
             />
-            <label for="checkbox">Remember Me</label>
+            <label for="me">Remember Me</label>
           </div>
           <div class="submit-sec">
             <button type="submit" class="btn custom-btn" @click.prevent="login">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25.863" height="25.863" viewBox="0 0 25.863 25.863"><g transform="translate(1.1 1.556)"><path d="M29.264,3,16.5,15.764" transform="translate(-6.057 -3)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"/><path d="M26.207,3,18.085,26.207,13.443,15.764,3,11.122Z" transform="translate(-3 -3)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"/></g></svg>
               Log In
             </button>
           </div>
@@ -70,6 +78,7 @@
   </div>
 </template>
 <script>
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 export default {
   data() {
     return {
@@ -80,13 +89,19 @@ export default {
       },
       errors: [],
        date:null,
-       checked:''
+       checked:'',
+       name:""
     };
   },
+  components: {
+    PulseLoader
+  },
+
     mounted(){
         this.date_function()
         this.CookieValue()
     },
+
   methods: {
    
     login() {
@@ -134,18 +149,5 @@ export default {
   },
 };
 </script>
-<style scoped>
-/* .invalid {
-  color: #e6133d;
-  background-color: rgb(255 95 95 / 10%);
-  border-color: #f10938;
-  width: 300px;
-  height: 40px;
-  text-align: center;
-}
-.alert {
-  padding: 10px 18px;
-  border-radius: 5px;
-} */
-</style>
+
 

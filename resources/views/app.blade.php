@@ -13,8 +13,15 @@
 <body>
     <div id="app">
     </div>
+    
+    <!-- <script src="{{ asset('js/custom-js/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/custom-js/popper.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/custom-js/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/custom-js/jquery.datatables.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/custom-js/dataTables.bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/custom-js/dataTables.responsive.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/custom-js/custom.js') }}" type="text/javascript"></script>  -->
     <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
-
 </body>
 
 </html>
