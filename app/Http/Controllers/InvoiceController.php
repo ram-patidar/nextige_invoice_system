@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Invoice;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
+// use Illuminate\Validation\ValidationException;
 use DB;
 
 class InvoiceController extends Controller
@@ -20,7 +20,8 @@ class InvoiceController extends Controller
         return response()->json([
             'Invoices' => $Invoices,
             'Sum'=>$Invoices->sum('amount'),
-            'Invoice_count' => $Invoices->count()
+            'Invoice_count' => $Invoices->count(),
+            'JoinData'=> DB::table('invoices')->join('clients', 'clients.id', '=', 'invoices.client_id')->select('invoices.id','invoices.client_id','invoices.description','invoices.amount','invoices.created_at', 'clients.invoice_code', 'clients.client_name')->get()
         ]);
     }
     
@@ -38,6 +39,8 @@ class InvoiceController extends Controller
             Invoice::create([
                 'client_id' => $request->post('id'),
                 'description' => $purchase->description,
+                'qty'=> $purchase->qty,
+                'rate'=>$purchase->rate,
                 'amount' => $purchase->rate*$purchase->qty,
             ]);
         }
@@ -81,7 +84,9 @@ class InvoiceController extends Controller
             'length'=>$Invoice->where('client_id', '=', $client_id)->count(),
             'Sum'=>$Invoice->where('client_id', '=', $client_id)->sum('amount'),
             'showData'=>$Invoice->where('client_id', '=', $client_id),
-            'editData'=>$Invoice->where('id', '=', $client_id)->first()
+            'editData'=>$Invoice->where('id', '=', $client_id)->first(),
+            'JoinData'=> DB::table('invoices')->join('clients', 'clients.id', '=', 'invoices.client_id')->select('invoices.id','invoices.client_id','invoices.description','invoices.amount','invoices.created_at', 'clients.invoice_code', 'clients.client_name')->where('invoices.id', '=', $client_id)->first(),
+
         ]);
     }
    

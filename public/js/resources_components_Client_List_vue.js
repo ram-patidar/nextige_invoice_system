@@ -94,26 +94,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "clients",
   data: function data() {
     return {
       Clients: [],
-      message: null
+      message: null,
+      add: null
     };
   },
   mounted: function mounted() {
@@ -188,7 +175,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.success[data-v-7742c421] {\r\n  color: green;\n}\n.profile[data-v-7742c421] {\r\n  height: 40px;\r\n  width: 40px;\r\n  text-align: center;\r\n  color: white;\r\n  background-color: #0d6efd;\r\n  border-radius: 60%;\r\n  display: inline-block;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.success[data-v-7742c421] {\r\n  color: green;\n}\n.profile[data-v-7742c421] {\r\n  height: 40px;\r\n  width: 40px;\r\n  text-align: center;\r\n  color: white;\r\n  background-color: #0d6efd;\r\n  border-radius: 60%;\r\n  display: inline-block;\n}\n.pre-formatted[data-v-7742c421] {\r\n  white-space: pre;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -330,45 +317,52 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "dashboard-main" }, [
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-12 mb-2" }, [
-        _c(
-          "div",
-          { staticClass: "page-header" },
-          [
-            _c("h3", [_vm._v("Clients")]),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              { staticClass: "btn custom-btn", attrs: { to: "/client/add" } },
-              [
-                _c(
-                  "svg",
-                  {
-                    attrs: {
-                      xmlns: "http://www.w3.org/2000/svg",
-                      width: "18",
-                      height: "18",
-                      viewBox: "0 0 18 18"
-                    }
-                  },
-                  [
-                    _c("path", {
+      _c(
+        "div",
+        { staticClass: "col-12 mb-2" },
+        [
+          _c(
+            "div",
+            { staticClass: "page-header" },
+            [
+              _c("h3", [_vm._v("Clients")]),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                { staticClass: "btn custom-btn", attrs: { to: "/client/add" } },
+                [
+                  _c(
+                    "svg",
+                    {
                       attrs: {
-                        d:
-                          "M11,2a9,9,0,1,0,9,9A9,9,0,0,0,11,2Zm0,16.2A7.2,7.2,0,1,1,18.2,11,7.2,7.2,0,0,1,11,18.2Zm3.6-8.1H11.9V7.4a.9.9,0,1,0-1.8,0v2.7H7.4a.9.9,0,1,0,0,1.8h2.7v2.7a.9.9,0,0,0,1.8,0V11.9h2.7a.9.9,0,0,0,0-1.8Z",
-                        transform: "translate(-2 -2)",
-                        fill: "#fff"
+                        xmlns: "http://www.w3.org/2000/svg",
+                        width: "18",
+                        height: "18",
+                        viewBox: "0 0 18 18"
                       }
-                    })
-                  ]
-                ),
-                _vm._v("\n      Add Client")
-              ]
-            )
-          ],
-          1
-        )
-      ])
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          d:
+                            "M11,2a9,9,0,1,0,9,9A9,9,0,0,0,11,2Zm0,16.2A7.2,7.2,0,1,1,18.2,11,7.2,7.2,0,0,1,11,18.2Zm3.6-8.1H11.9V7.4a.9.9,0,1,0-1.8,0v2.7H7.4a.9.9,0,1,0,0,1.8h2.7v2.7a.9.9,0,0,0,1.8,0V11.9h2.7a.9.9,0,0,0,0-1.8Z",
+                          transform: "translate(-2 -2)",
+                          fill: "#fff"
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v("\n      Add Client")
+                ]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("Breadcrumbs")
+        ],
+        1
+      )
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
@@ -416,7 +410,9 @@ var render = function() {
                                 _c("h5", [_vm._v(_vm._s(Client.client_name))]),
                                 _vm._v(" "),
                                 _c("div", { staticClass: "client-cont" }, [
-                                  _c("span", [_vm._v(_vm._s(Client.country))]),
+                                  _c("span", [
+                                    _vm._v(_vm._s(Client.country.split("+")[0]))
+                                  ]),
                                   _vm._v(" "),
                                   _c("span", { staticClass: "country-icon" })
                                 ])
@@ -429,7 +425,9 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(Client.email))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(Client.address))]),
+                        _c("td", { staticClass: "pre-formatted" }, [
+                          _vm._v(_vm._s(Client.address.replace("\n/g", "\n")))
+                        ]),
                         _vm._v(" "),
                         _c(
                           "td",

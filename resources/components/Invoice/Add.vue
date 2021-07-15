@@ -1,11 +1,15 @@
 <template>
   <div class="row">
+            <Breadcrumbs/>
+
     <div class="col-12">
       <div class="card">
+
         <div class="card-header">
           <div></div>
           <h4>Add Invoice</h4>
         </div>
+
         <div class="card-body">
           <form>
             <div class="row">
@@ -30,10 +34,10 @@
                           {{ Client.client_name }}
                         </option>
                       </select>
-                       <span class="error" v-if="errors.client_id">{{
-              errors.client_id
-            }}</span>
-             </div>
+                      <span class="error" v-if="errors.client_id">{{
+                        errors.client_id
+                      }}</span>
+                    </div>
                   </div>
 
                   <div v-for="(user, key) in users" :key="key">
@@ -51,50 +55,45 @@
                       @change="Hours(key)"
                     />
                     <label for="rate">Hours</label>
-                    {{ key }}
-
                     <input
                       type="hidden"
                       name="client_id"
                       v-model="users.client_id"
                     />
-                    <td>
-                      <input
-                        name="description"
-                        v-model="user.description"
-                        placeholder="Enter item"
-                        class="form-control"
-                        type="text"
-                      />
-                    </td>
 
-                    <td>
+                    <input
+                      name="description"
+                      v-model="user.description"
+                      placeholder="Enter item"
+                      class="form-control"
+                      type="text"
+                    />
+                    <div v-bind:class="{ hide: isActive[key] }">
+                      <label for="">Enter Hours</label>
                       <input
-                        name="qty"
-                        v-model="user.qty"
-                        placeholder="Enter hours"
-                        class="form-control"
-                        :type="type[key]"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        name="amount"
-                        v-model="user.rate"
-                        placeholder="Enter price rate"
-                        class="form-control"
-                        type="number"
-                      />
-                    </td>
+                      name="qty"
+                      v-model="user.qty"
+                      placeholder="Enter hours"
+                      class="form-control"
+                      :type="type[key]"
+                    />
+                    </div>
+                    <input
+                      name="amount"
+                      v-model="user.rate"
+                      placeholder="Enter price rate"
+                      class="form-control"
+                      type="number"
+                      v-on:keyup="SubTotal(user.qty * user.rate)"
+                      @change="Calculate(user.qty * user.rate)"
+                    />
 
-                    <td>
-                      <button
-                        @click.prevent="deleteRow(key)"
-                        class="btn btn-danger"
-                      >
-                        Drop
-                      </button>
-                    </td>
+                    <button
+                      @click.prevent="deleteRow(key)"
+                      class="btn btn-danger"
+                    >
+                      Drop
+                    </button>
                   </div>
                   <div class="col-12">
                     <button
@@ -133,40 +132,22 @@
                     <div class="form-group">
                       <label>Subtotal</label>
                       <div>
-                        <b
-                          >$
-                          {{
-                            users.rate
-                              ? users.qty
-                                ? users.qty * users.rate
-                                : users.rate
-                              : "00"
-                          }}</b
-                        >
+                        <b>$ {{ this.subtotal }}</b>
                       </div>
                     </div>
                     <div class="form-group">
                       <label>Total</label>
                       <div>
-                        <b
-                          >$
-                          {{
-                            users.rate
-                              ? users.qty
-                                ? users.qty * users.rate
-                                : users.rate
-                              : "00"
-                          }}</b
-                        >
+                        <b>$ {{ this.total }}</b>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <span class="error" v-if="errors.rate">{{
-               errors.rate
-               }}</span>
             </div>
+            <p>
+              <span class="error" v-if="errors.rate">{{ errors.rate }}</span>
+            </p>
             <button @click.prevent="create" class="btn btn-success">
               Save invoice
             </button>
@@ -203,14 +184,17 @@ export default {
         date: null,
       },
       errors: {
-        rate:"",
-        client_id:""
+        rate: "",
+        client_id: "",
       },
       Clients: [],
       a_checked: [],
       h_checked: [],
       key: 0,
       type: [],
+      subtotal: 0,
+      total: 0,
+       isActive: []
     };
   },
   mounted() {
@@ -219,28 +203,29 @@ export default {
     this.a_checked = true;
     this.type[0] = "hidden";
     this.type[1] = "hidden";
+    this.isActive[0] = true;
+    
   },
   methods: {
     async create() {
       this.Invoice.client_id = this.users.client_id;
-      if(this.Invoice.client_id==null){
+      if (this.Invoice.client_id == null) {
         this.errors.client_id = "*The client name field is required.";
-      }
-      else{
-      await this.axios
-        .post("/api/Invoice", {
-          invoice: JSON.stringify(this.users),
-          id: this.users.client_id,
-        })
-        .then((response) => {
-          this.$swal("Invoice Added Successfully ", "", "success");
-          // setTimeout(() => this.$router.go(), 1000);
-          // this.$router.push({ name: "clientview", params: { id: this.Invoice.client_id, name: this.Client.client_name } });
-        })
-        .catch((error) => {
-          console.log(error.response.data.message);
-          this.errors.rate = "*Please fill out all empty and required fields";
-        });
+      } else {
+        await this.axios
+          .post("/api/Invoice", {
+            invoice: JSON.stringify(this.users),
+            id: this.users.client_id,
+          })
+          .then((response) => {
+            this.$swal("Invoice Added Successfully ", "", "success");
+            // setTimeout(() => this.$router.go(), 1000);
+            this.$router.push('/invoice');
+          })
+          .catch((error) => {
+            console.log(error.response.data.message);
+            this.errors.rate = "*Please fill out all empty and required fields";
+          });
       }
     },
 
@@ -292,6 +277,8 @@ export default {
       this.type[key] = "hidden";
       this.h_checked = false;
       this.a_checked = true;
+       this.isActive[key]= true;
+
     },
     deleteRow(key) {
       if (this.type[key + 1] == "hidden") {
@@ -303,28 +290,46 @@ export default {
       }
       this.users.splice(key, 1);
     },
+ SubTotal(value) {
+      this.subtotal = value;
+    },
+    Calculate(value) {
+      this.total += value;
+    },
 
     Amount(key) {
       this.type[key] = "hidden";
+       this.isActive[key]= true
       if ((this.type[key] = "hidden")) {
         this.a_checked = true;
         this.h_checked = false;
+       this.isActive[key]= true
+
       } else {
         this.a_checked = false;
         this.h_checked = true;
+       this.isActive[key]= false
       }
     },
     Hours(key) {
       this.type[key] = "number";
+       this.isActive[key]= false
       if ((this.type[key] = "number")) {
         this.h_checked = true;
         this.a_checked = false;
+       this.isActive[key]= false
       } else {
         this.h_checked = false;
         this.a_checked = true;
+       this.isActive[key]= true
       }
     },
   },
 };
-</script>
 
+</script>
+<style scoped>
+.hide {
+    display: none;
+}
+</style>

@@ -1,6 +1,6 @@
 <template>
   <div class="login-box">
-     <pulse-loader :loading="loading" :color="color" :size="size"></pulse-loader>
+     
     <div class="login-wrapper">
       <div class="login-left">
         <div class="login-logo">
@@ -46,7 +46,7 @@
             </span>
             <div class="input-group-addon" id="show_hide_password" @click="show">
               <a>
-                <img src="images/feather-eye.svg" alt="" />
+                <img id="show_hide" :src="src1" alt="" />
               </a>
             </div>
             <span class="error" v-if="errors.password">{{
@@ -66,6 +66,8 @@
             <button type="submit" class="btn custom-btn" @click.prevent="login">
               <svg xmlns="http://www.w3.org/2000/svg" width="25.863" height="25.863" viewBox="0 0 25.863 25.863"><g transform="translate(1.1 1.556)"><path d="M29.264,3,16.5,15.764" transform="translate(-6.057 -3)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"/><path d="M26.207,3,18.085,26.207,13.443,15.764,3,11.122Z" transform="translate(-3 -3)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"/></g></svg>
               Log In
+              <!-- <pulse-loader :loading="loading"></pulse-loader> -->
+              <ring-loader :loading="loading" :color="color" :size="size"></ring-loader>
             </button>
           </div>
           <!-- <div>
@@ -78,7 +80,9 @@
   </div>
 </template>
 <script>
-import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
+import RingLoader from 'vue-spinner/src/RingLoader.vue';
+
 export default {
   data() {
     return {
@@ -90,11 +94,17 @@ export default {
       errors: [],
        date:null,
        checked:'',
-       name:""
+       name:"",
+       loading:false,
+       size:'30px',
+       color: '#007bff',
+      src1: "images/feather-eye.svg",
+      src2: "images/download.png",
     };
   },
   components: {
-    PulseLoader
+    PulseLoader,
+    RingLoader
   },
 
     mounted(){
@@ -105,6 +115,7 @@ export default {
   methods: {
    
     login() {
+      this.loading = true;
       if(this.checked == true){
         this.$cookies.set('email',this.form.email)
         this.$cookies.set('password',this.form.password)
@@ -117,16 +128,17 @@ export default {
         .then(() => {
           localStorage.setItem("token", this.form.email);
           this.$router.go({ name: "dashboard" });
+      this.loading = false;
           this.errors = error.response.data.errors;
         })
         .catch((error) => {
+      this.loading = false;
           this.errors = error.response.data.errors;
         });
     },
     CookieValue(){
            this.form.email = this.$cookies.get('email')
         this.form.password = this.$cookies.get('password')
-        console.log(this.$cookies.get('password'))
       if(this.$cookies.get('password')== null){
         this.checked = false
       }else{
@@ -140,14 +152,21 @@ export default {
         },
         show(){
           var x = document.getElementById('inputtype');
+          var img = document.getElementById('show_hide');
           if (x.type === 'password') {
             x.type = "text";
+            img.src = this.src2;
           }else {
             x.type = "password";
+            img.src = this.src1;
           }
-        }
+        },
   },
 };
 </script>
-
+<style scoped>
+#show_hide{
+  width: 30px;
+}
+</style>
 

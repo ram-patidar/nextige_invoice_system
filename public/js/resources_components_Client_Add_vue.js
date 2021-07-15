@@ -142,6 +142,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "add-Client",
   data: function data() {
@@ -158,948 +159,843 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       message: null,
       increment_id: "",
       country_list: [{
-        "short": "AF",
+        "short": "AF+Afghanistan",
         name: "Afghanistan",
         flag: "1625315777.png"
       }, {
-        "short": "AL",
+        "short": "AL+Albania",
         name: "Albania",
         flag: "url"
       }, {
-        "short": "DZ",
+        "short": "DZ+Algeria",
         name: "Algeria",
         flag: "url"
       }, {
-        "short": "AS",
+        "short": "AS+American Samoa",
         name: "American Samoa",
         flag: "url"
       }, {
-        "short": "AD",
+        "short": "AD+Andorra",
         name: "Andorra",
         flag: "url"
       }, {
-        "short": "AO",
+        "short": "AO+Angola",
         name: "Angola",
         flag: "url"
       }, {
-        "short": "AI",
+        "short": "AI+Anguilla",
         name: "Anguilla",
         flag: "url"
       }, {
-        "short": "AQ",
+        "short": "AQ+Antarctica",
         name: "Antarctica",
         flag: "url"
       }, {
-        "short": "AG",
+        "short": "AG+Antigua and Barbuda",
         name: "Antigua and Barbuda",
         flag: "url"
       }, {
-        "short": "AR",
+        "short": "AR+Argentina",
         name: "Argentina",
         flag: "url"
       }, {
-        "short": "AM",
+        "short": "AM+Armenia",
         name: "Armenia",
         flag: "url"
       }, {
-        "short": "AW",
+        "short": "AW+Aruba",
         name: "Aruba",
         flag: "url"
       }, {
-        "short": "AU",
+        "short": "AU+Australia",
         name: "Australia",
         flag: "url"
       }, {
-        "short": "AT",
+        "short": "AT+Austria",
         name: "Austria",
         flag: "url"
       }, {
-        "short": "AZ",
+        "short": "AZ+Azerbaijan",
         name: "Azerbaijan",
         flag: "url"
       }, {
-        "short": "BS",
-        name: "Bahamas (the)",
+        "short": "BS+Bahamas",
+        name: "Bahamas",
         flag: "url"
       }, {
-        "short": "BH",
+        "short": "BH+Bahrain",
         name: "Bahrain",
         flag: "url"
       }, {
-        "short": "BD",
+        "short": "BD+Bangladesh",
         name: "Bangladesh",
         flag: "url"
       }, {
-        "short": "BB",
+        "short": "BB+Barbados",
         name: "Barbados",
         flag: "url"
       }, {
-        "short": "BY",
+        "short": "BY+Belarus",
         name: "Belarus",
         flag: "url"
       }, {
-        "short": "BE",
+        "short": "BE+Belgium",
         name: "Belgium",
         flag: "url"
       }, {
-        "short": "BZ",
+        "short": "BZ+Belize",
         name: "Belize",
         flag: "url"
       }, {
-        "short": "BJ",
+        "short": "BJ+Benin",
         name: "Benin",
         flag: "url"
       }, {
-        "short": "BM",
+        "short": "BM+Bermuda",
         name: "Bermuda",
         flag: "url"
       }, {
-        "short": "BT",
+        "short": "BT+Bhutan",
         name: "Bhutan",
         flag: "url"
       }, {
-        "short": "BW",
+        "short": "BW+Botswana",
         name: "Botswana",
         flag: "url"
       }, {
-        "short": "BV",
+        "short": "BV+Bouvet Island",
         name: "Bouvet Island",
         flag: "url"
       }, {
-        "short": "BR",
+        "short": "BR+Brazil",
         name: "Brazil",
         flag: "url"
       }, {
-        "short": "BN",
+        "short": "BN+Brunei Darussalam",
         name: "Brunei Darussalam",
         flag: "url"
       }, {
-        "short": "BG",
+        "short": "BG+Bulgaria",
         name: "Bulgaria",
         flag: "url"
       }, {
-        "short": "BF",
+        "short": "BF+Burkina Faso",
         name: "Burkina Faso",
         flag: "url"
       }, {
-        "short": "BI",
+        "short": "BI+Burundi",
         name: "Burundi",
         flag: "url"
       }, {
-        "short": "CV",
+        "short": "CV+Cabo Verde",
         name: "Cabo Verde",
         flag: "url"
       }, {
-        "short": "KH",
+        "short": "KH+Cambodia",
         name: "Cambodia",
         flag: "url"
       }, {
-        "short": "CM",
+        "short": "CM+Cameroon",
         name: "Cameroon",
         flag: "url"
       }, {
-        "short": "CA",
+        "short": "CA+Canada",
         name: "Canada",
         flag: "url"
       }, {
-        "short": "KY",
-        name: "Cayman Islands (the)",
+        "short": "KY+Cayman Islands",
+        name: "Cayman Islands",
         flag: "url"
       }, {
-        "short": "TD",
+        "short": "TD+Chad",
         name: "Chad",
         flag: "url"
       }, {
-        "short": "CL",
+        "short": "CL+Chile",
         name: "Chile",
         flag: "url"
       }, {
-        "short": "CN",
+        "short": "CN+China",
         name: "China",
         flag: "url"
       }, {
-        "short": "CX",
+        "short": "CX+Christmas Island",
         name: "Christmas Island",
         flag: "url"
       }, {
-        "short": "CO",
+        "short": "CO+Colombia",
         name: "Colombia",
         flag: "url"
       }, {
-        "short": "KM",
-        name: "Comoros (the)",
+        "short": "KM+Comoros",
+        name: "Comoros",
         flag: "url"
       }, {
-        "short": "CG",
-        name: "Congo (the)",
+        "short": "CG+Congo",
+        name: "Congo ",
         flag: "url"
       }, {
-        "short": "CK",
-        name: "Cook Islands (the)",
+        "short": "CK+Cook Islands",
+        name: "Cook Islands ",
         flag: "url"
       }, {
-        "short": "CR",
+        "short": "CR+Costa Rica",
         name: "Costa Rica",
         flag: "url"
       }, {
-        "short": "HR",
+        "short": "HR+Croatia",
         name: "Croatia",
         flag: "url"
       }, {
-        "short": "CU",
+        "short": "CU+Cuba",
         name: "Cuba",
         flag: "url"
       }, {
-        "short": "CW",
+        "short": "CW+Curaçao",
         name: "Curaçao",
         flag: "url"
       }, {
-        "short": "CY",
+        "short": "CY+Cyprus",
         name: "Cyprus",
         flag: "url"
       }, {
-        "short": "CZ",
+        "short": "CZ+Czechia",
         name: "Czechia",
         flag: "url"
       }, {
-        "short": "CI",
-        name: "Côte d'Ivoire",
-        flag: "url"
-      }, {
-        "short": "DK",
+        "short": "DK+Denmark",
         name: "Denmark",
         flag: "url"
       }, {
-        "short": "DJ",
+        "short": "DJ+Djibouti",
         name: "Djibouti",
         flag: "url"
       }, {
-        "short": "DM",
+        "short": "DM+Dominica",
         name: "Dominica",
         flag: "url"
       }, {
-        "short": "DO",
-        name: "Dominican Republic (the)",
+        "short": "DO+Dominican Republic",
+        name: "Dominican Republic ",
         flag: "url"
       }, {
-        "short": "EC",
+        "short": "EC+Ecuador",
         name: "Ecuador",
         flag: "url"
       }, {
-        "short": "EG",
+        "short": "EG+Egypt",
         name: "Egypt",
         flag: "url"
       }, {
-        "short": "SV",
-        name: "El Salvador",
-        flag: "url"
-      }, {
-        "short": "GQ",
+        "short": "GQ+Equatorial Guinea",
         name: "Equatorial Guinea",
         flag: "url"
       }, {
-        "short": "ER",
+        "short": "ER+Eritrea",
         name: "Eritrea",
         flag: "url"
       }, {
-        "short": "EE",
+        "short": "EE+Estonia",
         name: "Estonia",
         flag: "url"
       }, {
-        "short": "SZ",
+        "short": "SZ+Eswatini",
         name: "Eswatini",
         flag: "url"
       }, {
-        "short": "ET",
+        "short": "ET+Ethiopia",
         name: "Ethiopia",
         flag: "url"
       }, {
-        "short": "FK",
-        name: "Falkland Islands (the) [Malvinas]",
+        "short": "FO+Faroe Islands",
+        name: "Faroe Islands ",
         flag: "url"
       }, {
-        "short": "FO",
-        name: "Faroe Islands (the)",
-        flag: "url"
-      }, {
-        "short": "FJ",
+        "short": "FJ+Fiji",
         name: "Fiji",
         flag: "url"
       }, {
-        "short": "FI",
+        "short": "FI+Finland",
         name: "Finland",
         flag: "url"
       }, {
-        "short": "FR",
+        "short": "FR+France",
         name: "France",
         flag: "url"
       }, {
-        "short": "GF",
+        "short": "GF+French Guiana",
         name: "French Guiana",
         flag: "url"
       }, {
-        "short": "PF",
+        "short": "PF+French Polynesia",
         name: "French Polynesia",
         flag: "url"
       }, {
-        "short": "TF",
-        name: "French Southern Territories (the)",
+        "short": "TF+French Son Territories",
+        name: "French Son Territories ",
         flag: "url"
       }, {
-        "short": "GA",
+        "short": "GA+Gabon",
         name: "Gabon",
         flag: "url"
       }, {
-        "short": "GM",
-        name: "Gambia (the)",
+        "short": "GM+Gambia",
+        name: "Gambia ",
         flag: "url"
       }, {
-        "short": "GE",
+        "short": "GE+Georgia",
         name: "Georgia",
         flag: "url"
       }, {
-        "short": "DE",
+        "short": "DE+Germany",
         name: "Germany",
         flag: "url"
       }, {
-        "short": "GH",
+        "short": "GH+Ghana",
         name: "Ghana",
         flag: "url"
       }, {
-        "short": "GI",
+        "short": "GI+Gibraltar",
         name: "Gibraltar",
         flag: "url"
       }, {
-        "short": "GR",
+        "short": "GR+Greece",
         name: "Greece",
         flag: "url"
       }, {
-        "short": "GL",
+        "short": "GL+Greenland",
         name: "Greenland",
         flag: "url"
       }, {
-        "short": "GD",
+        "short": "GD+Grenada",
         name: "Grenada",
         flag: "url"
       }, {
-        "short": "GP",
+        "short": "GP+Guadeloupe",
         name: "Guadeloupe",
         flag: "url"
       }, {
-        "short": "GU",
+        "short": "GU+Guam",
         name: "Guam",
         flag: "url"
       }, {
-        "short": "GT",
+        "short": "GT+Guatemala",
         name: "Guatemala",
         flag: "url"
       }, {
-        "short": "GG",
+        "short": "GG+Guernsey",
         name: "Guernsey",
         flag: "url"
       }, {
-        "short": "GN",
-        name: "Guinea",
+        "short": "GN+Guinea",
         flag: "url"
       }, {
-        "short": "GW",
+        "short": "GW+Guinea-Bissau",
         name: "Guinea-Bissau",
         flag: "url"
       }, {
-        "short": "GY",
+        "short": "GY+Guyana",
         name: "Guyana",
         flag: "url"
       }, {
-        "short": "HT",
+        "short": "HT+Haiti",
         name: "Haiti",
         flag: "url"
       }, {
-        "short": "HM",
+        "short": "HM+Heard Island and McDonald Islands",
         name: "Heard Island and McDonald Islands",
         flag: "url"
       }, {
-        "short": "VA",
-        name: "Holy See (the)",
+        "short": "VA+Holy See",
+        name: "Holy See ",
         flag: "url"
       }, {
-        "short": "HN",
+        "short": "HN+Honduras",
         name: "Honduras",
         flag: "url"
       }, {
-        "short": "HK",
+        "short": "HK+Hong Kong",
         name: "Hong Kong",
         flag: "url"
       }, {
-        "short": "HU",
+        "short": "HU+Hungary",
         name: "Hungary",
         flag: "url"
       }, {
-        "short": "IS",
+        "short": "IS+Iceland",
         name: "Iceland",
         flag: "url"
       }, {
-        "short": "IN",
+        "short": "IN+India",
         name: "India",
         flag: "url"
       }, {
-        "short": "ID",
+        "short": "ID+Indonesia",
         name: "Indonesia",
         flag: "url"
       }, {
-        "short": "IR",
-        name: "Iran (Islamic Republic of)",
+        "short": "IR+Iran",
+        name: "Iran",
         flag: "url"
       }, {
-        "short": "IQ",
+        "short": "IQ+Iraq",
         name: "Iraq",
         flag: "url"
       }, {
-        "short": "IE",
+        "short": "IE+Ireland",
         name: "Ireland",
         flag: "url"
       }, {
-        "short": "IM",
+        "short": "IM+Isle of Man",
         name: "Isle of Man",
         flag: "url"
       }, {
-        "short": "IL",
+        "short": "IL+Israel",
         name: "Israel",
         flag: "url"
       }, {
-        "short": "IT",
+        "short": "IT+Italy",
         name: "Italy",
         flag: "url"
       }, {
-        "short": "JM",
+        "short": "JM+Jamaica",
         name: "Jamaica",
         flag: "url"
       }, {
-        "short": "JP",
+        "short": "JP+Japan",
         name: "Japan",
         flag: "url"
       }, {
-        "short": "JE",
+        "short": "JE+Jersey",
         name: "Jersey",
         flag: "url"
       }, {
-        "short": "JO",
+        "short": "JO+Jordan",
         name: "Jordan",
         flag: "url"
       }, {
-        "short": "KZ",
+        "short": "KZ+Kazakhstan",
         name: "Kazakhstan",
         flag: "url"
       }, {
-        "short": "KE",
+        "short": "KE+Kenya",
         name: "Kenya",
         flag: "url"
       }, {
-        "short": "KI",
+        "short": "KI+Kiribati",
         name: "Kiribati",
         flag: "url"
       }, {
-        "short": "KP",
+        "short": "KP+Korea",
         name: "Korea",
         flag: "url"
       }, {
-        "short": "KR",
-        name: "Korea (the Republic of)",
-        flag: "url"
-      }, {
-        "short": "KW",
+        "short": "KW+Kuwait",
         name: "Kuwait",
         flag: "url"
       }, {
-        "short": "KG",
+        "short": "KG+Kyrgyzstan",
         name: "Kyrgyzstan",
         flag: "url"
       }, {
-        "short": "LV",
+        "short": "LV+Latvia",
         name: "Latvia",
         flag: "url"
       }, {
-        "short": "LB",
+        "short": "LB+Lebanon",
         name: "Lebanon",
         flag: "url"
       }, {
-        "short": "LS",
+        "short": "LS+Lesotho",
         name: "Lesotho",
         flag: "url"
       }, {
-        "short": "LR",
+        "short": "LR+Liberia",
         name: "Liberia",
         flag: "url"
       }, {
-        "short": "LY",
+        "short": "LY+Libya",
         name: "Libya",
         flag: "url"
       }, {
-        "short": "LI",
+        "short": "LI+Liechtenstein",
         name: "Liechtenstein",
         flag: "url"
       }, {
-        "short": "LT",
+        "short": "LT+Lithuania",
         name: "Lithuania",
         flag: "url"
       }, {
-        "short": "LU",
+        "short": "LU+Luxembourg",
         name: "Luxembourg",
         flag: "url"
       }, {
-        "short": "MO",
+        "short": "MO+Macao",
         name: "Macao",
         flag: "url"
       }, {
-        "short": "MG",
+        "short": "MG+Madagascar",
         name: "Madagascar",
         flag: "url"
       }, {
-        "short": "MW",
+        "short": "MW+Malawi",
         name: "Malawi",
         flag: "url"
       }, {
-        "short": "MY",
+        "short": "MY+Malaysia",
         name: "Malaysia",
         flag: "url"
       }, {
-        "short": "MV",
+        "short": "MV+Maldives",
         name: "Maldives",
         flag: "url"
       }, {
-        "short": "ML",
+        "short": "ML+Mali",
         name: "Mali",
         flag: "url"
       }, {
-        "short": "MT",
+        "short": "MT+Malta",
         name: "Malta",
         flag: "url"
       }, {
-        "short": "MH",
-        name: "Marshall Islands (the)",
+        "short": "MH+Marshall Islands",
+        name: "Marshall Islands ",
         flag: "url"
       }, {
-        "short": "MQ",
+        "short": "MQ+Martinique",
         name: "Martinique",
         flag: "url"
       }, {
-        "short": "MR",
+        "short": "MR+Mauritania",
         name: "Mauritania",
         flag: "url"
       }, {
-        "short": "MU",
+        "short": "MU+Mauritius",
         name: "Mauritius",
         flag: "url"
       }, {
-        "short": "YT",
+        "short": "YT+Mayotte",
         name: "Mayotte",
         flag: "url"
       }, {
-        "short": "MX",
+        "short": "MX+Mexico",
         name: "Mexico",
         flag: "url"
       }, {
-        "short": "MC",
+        "short": "MC+Monaco",
         name: "Monaco",
         flag: "url"
       }, {
-        "short": "MN",
+        "short": "MN+Mongolia",
         name: "Mongolia",
         flag: "url"
       }, {
-        "short": "ME",
+        "short": "ME+Montenegro",
         name: "Montenegro",
         flag: "url"
       }, {
-        "short": "MS",
+        "short": "MS+Montserrat",
         name: "Montserrat",
         flag: "url"
       }, {
-        "short": "MA",
+        "short": "MA+Morocco",
         name: "Morocco",
         flag: "url"
       }, {
-        "short": "MZ",
+        "short": "MZ+Mozambique",
         name: "Mozambique",
         flag: "url"
       }, {
-        "short": "MM",
+        "short": "MM+Myanmar",
         name: "Myanmar",
         flag: "url"
       }, {
-        "short": "NA",
+        "short": "NA+Namibia",
         name: "Namibia",
         flag: "url"
       }, {
-        "short": "NR",
+        "short": "NR+Nauru",
         name: "Nauru",
         flag: "url"
       }, {
-        "short": "NP",
+        "short": "NP+Nepal",
         name: "Nepal",
         flag: "url"
       }, {
-        "short": "NL",
-        name: "Netherlands (the)",
+        "short": "NL+Ntherlands",
+        name: "Ntherlands ",
         flag: "url"
       }, {
-        "short": "NC",
+        "short": "NC+New Caledonia",
         name: "New Caledonia",
         flag: "url"
       }, {
-        "short": "NZ",
+        "short": "NZ+New Zealand",
         name: "New Zealand",
         flag: "url"
       }, {
-        "short": "NI",
+        "short": "NI+Nicaragua",
         name: "Nicaragua",
         flag: "url"
       }, {
-        "short": "NE",
-        name: "Niger (the)",
+        "short": "NE+Niger",
+        name: "Niger ",
         flag: "url"
       }, {
-        "short": "NG",
+        "short": "NG+Nigeria",
         name: "Nigeria",
         flag: "url"
       }, {
-        "short": "NU",
+        "short": "NU+Niue",
         name: "Niue",
         flag: "url"
       }, {
-        "short": "NF",
+        "short": "NF+Norfolk Island",
         name: "Norfolk Island",
         flag: "url"
       }, {
-        "short": "NO",
+        "short": "NO+Norway",
         name: "Norway",
         flag: "url"
       }, {
-        "short": "OM",
+        "short": "OM+Oman",
         name: "Oman",
         flag: "url"
       }, {
-        "short": "PK",
+        "short": "PK+Pakistan",
         name: "Pakistan",
         flag: "url"
       }, {
-        "short": "PW",
+        "short": "PW+Palau",
         name: "Palau",
         flag: "url"
       }, {
-        "short": "PS",
-        name: "Palestine, State of",
-        flag: "url"
-      }, {
-        "short": "PA",
+        "short": "PA+Panama",
         name: "Panama",
         flag: "url"
       }, {
-        "short": "PG",
-        name: "Papua New Guinea",
-        flag: "url"
-      }, {
-        "short": "PY",
+        "short": "PY+Paraguay",
         name: "Paraguay",
         flag: "url"
       }, {
-        "short": "PE",
+        "short": "PE+Peru",
         name: "Peru",
         flag: "url"
       }, {
-        "short": "PH",
-        name: "Philippines (the)",
+        "short": "PH+Philippines",
+        name: "Philippines",
         flag: "url"
       }, {
-        "short": "PN",
+        "short": "PN+Pitcairn",
         name: "Pitcairn",
         flag: "url"
       }, {
-        "short": "PL",
+        "short": "PL+Poland",
         name: "Poland",
         flag: "url"
       }, {
-        "short": "PT",
+        "short": "PT+Portugal",
         name: "Portugal",
         flag: "url"
       }, {
-        "short": "PR",
+        "short": "PR+Puerto Rico",
         name: "Puerto Rico",
         flag: "url"
       }, {
-        "short": "QA",
+        "short": "QA+Qatar",
         name: "Qatar",
         flag: "url"
       }, {
-        "short": "MK",
-        name: "Republic of North Macedonia",
-        flag: "url"
-      }, {
-        "short": "RO",
+        "short": "RO+Romania",
         name: "Romania",
         flag: "url"
       }, {
-        "short": "RU",
-        name: "Russian Federation (the)",
+        "short": "RU+Russian Federation",
+        name: "Russian Federation",
         flag: "url"
       }, {
-        "short": "RW",
+        "short": "RW+Rwanda",
         name: "Rwanda",
         flag: "url"
       }, {
-        "short": "RE",
+        "short": "RE+Réunion",
         name: "Réunion",
         flag: "url"
       }, {
-        "short": "BL",
-        name: "Saint Barthélemy",
-        flag: "url"
-      }, {
-        "short": "KN",
-        name: "Saint Kitts and Nevis",
-        flag: "url"
-      }, {
-        "short": "LC",
-        name: "Saint Lucia",
-        flag: "url"
-      }, {
-        "short": "MF",
-        name: "Saint Martin (French part)",
-        flag: "url"
-      }, {
-        "short": "PM",
-        name: "Saint Pierre and Miquelon",
-        flag: "url"
-      }, {
-        "short": "VC",
-        name: "Saint Vincent and the Grenadines",
-        flag: "url"
-      }, {
-        "short": "WS",
+        "short": "WS+Samoa",
         name: "Samoa",
         flag: "url"
       }, {
-        "short": "SM",
+        "short": "SM+San Marino",
         name: "San Marino",
         flag: "url"
       }, {
-        "short": "ST",
-        name: "Sao Tome and Principe",
-        flag: "url"
-      }, {
-        "short": "SA",
+        "short": "SA+Saudi Arabia",
         name: "Saudi Arabia",
         flag: "url"
       }, {
-        "short": "SN",
+        "short": "SN+Senegal",
         name: "Senegal",
         flag: "url"
       }, {
-        "short": "RS",
+        "short": "RS+Serbia",
         name: "Serbia",
         flag: "url"
       }, {
-        "short": "SC",
+        "short": "SC+Seychelles",
         name: "Seychelles",
         flag: "url"
       }, {
-        "short": "SL",
+        "short": "SL+Sierra Leone",
         name: "Sierra Leone",
         flag: "url"
       }, {
-        "short": "SG",
+        "short": "SG+Singapore",
         name: "Singapore",
         flag: "url"
       }, {
-        "short": "SX",
-        name: "Sint Maarten (Dutch part)",
+        "short": "SX+Sint Maarten",
+        name: "Sint Maarten",
         flag: "url"
       }, {
-        "short": "SK",
+        "short": "SK+Slovakia",
         name: "Slovakia",
         flag: "url"
       }, {
-        "short": "SI",
+        "short": "SI+Slovenia",
         name: "Slovenia",
         flag: "url"
       }, {
-        "short": "SB",
+        "short": "SB+Solomon Islands",
         name: "Solomon Islands",
         flag: "url"
       }, {
-        "short": "SO",
+        "short": "SO+Somalia",
         name: "Somalia",
         flag: "url"
       }, {
-        "short": "ZA",
+        "short": "ZA+South Africa",
         name: "South Africa",
         flag: "url"
       }, {
-        "short": "SS",
+        "short": "SS+South Sudan",
         name: "South Sudan",
         flag: "url"
       }, {
-        "short": "ES",
+        "short": "ES+Spain",
         name: "Spain",
         flag: "url"
       }, {
-        "short": "LK",
+        "short": "LK+Sri Lanka",
         name: "Sri Lanka",
         flag: "url"
       }, {
-        "short": "SD",
-        name: "Sudan (the)",
+        "short": "SD+Sudan",
+        name: "Sudan",
         flag: "url"
       }, {
-        "short": "SR",
+        "short": "SR+Suriname",
         name: "Suriname",
         flag: "url"
       }, {
-        "short": "SJ",
-        name: "Svalbard and Jan Mayen",
-        flag: "url"
-      }, {
-        "short": "SE",
+        "short": "SE+Sweden",
         name: "Sweden",
         flag: "url"
       }, {
-        "short": "CH",
+        "short": "CH+Switzerland",
         name: "Switzerland",
         flag: "url"
       }, {
-        "short": "SY",
-        name: "Syrian Arab Republic",
-        flag: "url"
-      }, {
-        "short": "TW",
+        "short": "TW+Taiwan",
         name: "Taiwan",
         flag: "url"
       }, {
-        "short": "TJ",
+        "short": "TJ+Tajikistan",
         name: "Tajikistan",
         flag: "url"
       }, {
-        "short": "TZ",
-        name: "Tanzania, United Republic of",
-        flag: "url"
-      }, {
-        "short": "TH",
+        "short": "TH+Thailand",
         name: "Thailand",
         flag: "url"
       }, {
-        "short": "TL",
+        "short": "TL+Timor-Leste",
         name: "Timor-Leste",
         flag: "url"
       }, {
-        "short": "TG",
+        "short": "TG+Togo",
         name: "Togo",
         flag: "url"
       }, {
-        "short": "TK",
+        "short": "TK+Tokelau",
         name: "Tokelau",
         flag: "url"
       }, {
-        "short": "TO",
+        "short": "TO+Tonga",
         name: "Tonga",
         flag: "url"
       }, {
-        "short": "TT",
-        name: "Trinidad and Tobago",
-        flag: "url"
-      }, {
-        "short": "TN",
+        "short": "TN+Tunisia",
         name: "Tunisia",
         flag: "url"
       }, {
-        "short": "TR",
+        "short": "TR+Turkey",
         name: "Turkey",
         flag: "url"
       }, {
-        "short": "TM",
+        "short": "TM+Turkmenistan",
         name: "Turkmenistan",
         flag: "url"
       }, {
-        "short": "TC",
-        name: "Turks and Caicos Islands (the)",
-        flag: "url"
-      }, {
-        "short": "TV",
+        "short": "TV+Tuvalu",
         name: "Tuvalu",
         flag: "url"
       }, {
-        "short": "UG",
+        "short": "UG+Uganda",
         name: "Uganda",
         flag: "url"
       }, {
-        "short": "UA",
+        "short": "UA+Ukraine",
         name: "Ukraine",
         flag: "url"
       }, {
-        "short": "AE",
-        name: "United Arab Emirates (the)",
+        "short": "AE+United Arab Emirates",
+        name: "United Arab Emirates",
         flag: "url"
       }, {
-        "short": "GB",
-        name: "United Kingdom of Great Britain and Northern Ireland (the)",
+        "short": "UK+United Kingdom",
+        name: "United Kingdom",
         flag: "url"
       }, {
-        "short": "UM",
-        name: "United States Minor Outlying Islands (the)",
+        "short": "USA+United States of America",
+        name: "United States of America",
         flag: "url"
       }, {
-        "short": "US",
-        name: "United States of America (the)",
-        flag: "url"
-      }, {
-        "short": "UY",
+        "short": "UY+Uruguay",
         name: "Uruguay",
         flag: "url"
       }, {
-        "short": "UZ",
+        "short": "UZ+Uzbekistan",
         name: "Uzbekistan",
         flag: "url"
       }, {
-        "short": "VU",
+        "short": "VU+Vanuatu",
         name: "Vanuatu",
         flag: "url"
       }, {
-        "short": "VE",
-        name: "Venezuela (Bolivarian Republic of)",
-        flag: "url"
-      }, {
-        "short": "VN",
-        name: "Viet Nam",
-        flag: "url"
-      }, {
-        "short": "VG",
-        name: "Virgin Islands (British)",
-        flag: "url"
-      }, {
-        "short": "VI",
-        name: "Virgin Islands (U.S.)",
-        flag: "url"
-      }, {
-        "short": "WF",
-        name: "Wallis and Futuna",
-        flag: "url"
-      }, {
-        "short": "EH",
+        "short": "EH+Western Sahara",
         name: "Western Sahara",
         flag: "url"
       }, {
-        "short": "YE",
+        "short": "YE+Yemen",
         name: "Yemen",
         flag: "url"
       }, {
-        "short": "ZM",
+        "short": "ZM+Zambia",
         name: "Zambia",
         flag: "url"
       }, {
-        "short": "ZW",
+        "short": "ZW+Zimbabwe",
         name: "Zimbabwe",
-        flag: "url"
-      }, {
-        "short": "AX",
-        name: "Åland Islands",
         flag: "url"
       }]
     };
@@ -1325,45 +1221,52 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "dashboard-main" }, [
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-12" }, [
-        _c(
-          "div",
-          { staticClass: "page-header" },
-          [
-            _c("h4", [_vm._v("Add Client")]),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              { staticClass: "btn custom-btn", attrs: { to: "/client" } },
-              [
-                _c(
-                  "svg",
-                  {
-                    attrs: {
-                      xmlns: "http://www.w3.org/2000/svg",
-                      width: "8.152",
-                      height: "14.258",
-                      viewBox: "0 0 8.152 14.258"
-                    }
-                  },
-                  [
-                    _c("path", {
+      _c(
+        "div",
+        { staticClass: "col-12" },
+        [
+          _c(
+            "div",
+            { staticClass: "page-header" },
+            [
+              _c("h4", [_vm._v("Add Client")]),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                { staticClass: "btn custom-btn", attrs: { to: "/client" } },
+                [
+                  _c(
+                    "svg",
+                    {
                       attrs: {
-                        d:
-                          "M13.319,16.941l5.391-5.4a1.015,1.015,0,0,1,1.439,0,1.028,1.028,0,0,1,0,1.443L14.041,19.1a1.017,1.017,0,0,1-1.405.03L6.485,12.993A1.019,1.019,0,1,1,7.924,11.55Z",
-                        transform: "translate(19.399 -6.188) rotate(90)",
-                        fill: "#fff"
+                        xmlns: "http://www.w3.org/2000/svg",
+                        width: "8.152",
+                        height: "14.258",
+                        viewBox: "0 0 8.152 14.258"
                       }
-                    })
-                  ]
-                ),
-                _vm._v(" Back")
-              ]
-            )
-          ],
-          1
-        )
-      ])
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          d:
+                            "M13.319,16.941l5.391-5.4a1.015,1.015,0,0,1,1.439,0,1.028,1.028,0,0,1,0,1.443L14.041,19.1a1.017,1.017,0,0,1-1.405.03L6.485,12.993A1.019,1.019,0,1,1,7.924,11.55Z",
+                          transform: "translate(19.399 -6.188) rotate(90)",
+                          fill: "#fff"
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(" Back")
+                ]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("Breadcrumbs")
+        ],
+        1
+      )
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [

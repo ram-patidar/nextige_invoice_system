@@ -67,22 +67,154 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Invoices",
   data: function data() {
     return {
+      length: null,
       Invoices: [],
-      Client: {
-        client_name: ""
-      }
+      searchQuery: null,
+      posts: [""],
+      page: 1,
+      perPage: 5,
+      pages: []
     };
   },
   mounted: function mounted() {
     this.getInvoices();
   },
-  methods: {
-    getInvoices: function getInvoices() {
+  watch: {
+    resultInvoice: function resultInvoice() {
+      this.setPages();
+    }
+  },
+  computed: {
+    resultInvoice: function resultInvoice() {
       var _this = this;
+
+      if (this.searchQuery) {
+        return this.Invoices.filter(function (item) {
+          return _this.searchQuery.toLowerCase().split(" ").every(function (v) {
+            return item.client_name.toLowerCase().includes(v) || item.invoice_code.toLowerCase().includes(v) || item.created_at.toLowerCase().includes(v);
+          });
+        });
+      } else {
+        return this.Invoices;
+      }
+    },
+    displayedPosts: function displayedPosts() {
+      return this.paginate(this.resultInvoice);
+    }
+  },
+  methods: {
+    setPages: function setPages() {
+      this.pages = [];
+      var numberOfPages = Math.ceil(this.resultInvoice.length / this.perPage);
+
+      for (var index = 1; index <= numberOfPages; index++) {
+        this.pages.push(index);
+      }
+    },
+    paginate: function paginate(resultInvoice) {
+      var page = this.page;
+      var perPage = this.perPage;
+      var from = page * perPage - perPage;
+      var to = page * perPage;
+      return resultInvoice.slice(from, to);
+    },
+    getInvoices: function getInvoices() {
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -90,17 +222,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.axios.get('/api/Invoice').then(function (response) {
-                  _this.Invoices = response.data.Invoices;
+                return _this2.axios.get("/api/Invoice").then(function (response) {
+                  _this2.Invoices = response.data.JoinData;
+                  _this2.length = _this2.Invoices.length;
 
-                  _this.Invoices.sort(function (a, b) {
+                  _this2.Invoices.sort(function (a, b) {
                     return a.weight < b.weight ? 1 : -1;
                   });
-
-                  console.log(_this.Invoices);
                 })["catch"](function (error) {
                   console.log(error);
-                  _this.Invoices = [];
+                  _this2.Invoices = [];
                 });
 
               case 2:
@@ -112,37 +243,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     deleteInvoice: function deleteInvoice(id, name) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.$swal({
-        title: 'Are you sure?',
+        title: "Are you sure?",
         text: "You won't be able to revert this!",
-        type: 'warning',
+        type: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
       }).then(function (result) {
         if (result.value) {
-          _this2.axios["delete"]("/api/Invoice/".concat(id)).then(function (response) {
-            _this2.$swal('Deleted!', "".concat(name, " has been deleted."), 'success');
+          _this3.axios["delete"]("/api/Invoice/".concat(id)).then(function (response) {
+            _this3.$swal("Deleted!", "".concat(name, " has been deleted."), "success");
           });
         }
 
-        _this2.getInvoices();
-      });
-    },
-    getClient: function getClient(id) {
-      var _this3 = this;
-
-      console.log(id);
-      this.axios.get("/api/Client/".concat(id)).then(function (response) {
-        var client_name = response.data.client_name;
-        _this3.Client.client_name = client_name;
-        console.log(_this3.Client.client_name);
-      })["catch"](function (error) {
-        console.log(error);
-        console.log(error.response.data);
+        _this3.getInvoices();
       });
     }
   }
@@ -238,97 +356,282 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row" }, [
-    _c(
-      "div",
-      { staticClass: "col-12 mb-2 text-end" },
-      [
-        _c(
-          "router-link",
-          { staticClass: "btn btn-primary", attrs: { to: "/invoice/add" } },
-          [_vm._v("Create Invoice")]
-        )
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-12" }, [
-      _c("div", { staticClass: "card" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c("div", { staticClass: "table-responsive" }, [
-            _c("table", { staticClass: "table table-bordered text-center" }, [
-              _vm._m(1),
-              _vm._v(" "),
-              _vm.Invoices.length > 0
+  return _c(
+    "div",
+    { staticClass: "row" },
+    [
+      _c(
+        "div",
+        { staticClass: "col-12 mb-2 text-end" },
+        [
+          _c(
+            "router-link",
+            { staticClass: "btn btn-primary", attrs: { to: "/invoice/add" } },
+            [_vm._v("Create Invoice")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("Breadcrumbs"),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.perPage,
+              expression: "perPage"
+            }
+          ],
+          staticClass: "text-center",
+          on: {
+            click: _vm.setPages,
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.perPage = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
+          }
+        },
+        [
+          _c("option", { domProps: { value: _vm.length } }, [
+            _vm._v("show all")
+          ]),
+          _vm._v(" "),
+          _c("option", { domProps: { value: 2 } }, [_vm._v("2")]),
+          _vm._v(" "),
+          _c("option", { domProps: { value: 5 } }, [_vm._v("5")]),
+          _vm._v(" "),
+          _c("option", { domProps: { value: 10 } }, [_vm._v("10")]),
+          _vm._v(" "),
+          _c("option", { domProps: { value: 15 } }, [_vm._v("15")]),
+          _vm._v(" "),
+          _c("option", { domProps: { value: 20 } }, [_vm._v("20")])
+        ]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.searchQuery,
+            expression: "searchQuery"
+          }
+        ],
+        staticClass: "form-control",
+        attrs: { type: "text", placeholder: "Search..." },
+        domProps: { value: _vm.searchQuery },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.searchQuery = $event.target.value
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-12" }, [
+        _c("div", { staticClass: "card" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c("div", { staticClass: "table-responsive" }, [
+              _vm.displayedPosts.length > 0
                 ? _c(
-                    "tbody",
-                    _vm._l(_vm.Invoices, function(Invoice, key) {
-                      return _c("tr", { key: key }, [
-                        _c("td", [
-                          _vm._v(_vm._s(Invoice.created_at.split("T")[0]))
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
-                            "\n                                    " +
-                              _vm._s(Invoice.client_id) +
-                              "/Client-name"
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(Invoice.description))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("$" + _vm._s(Invoice.amount))]),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          [
-                            _c(
-                              "router-link",
-                              {
-                                staticClass: "btn btn-success",
-                                attrs: {
-                                  to: {
-                                    name: "invoiceedit",
-                                    params: { id: Invoice.id }
-                                  }
-                                }
-                              },
-                              [_vm._v("Edit")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-danger",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.deleteInvoice(
-                                      Invoice.id,
-                                      Invoice.description
+                    "table",
+                    { staticClass: "table table-bordered text-center" },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _vm._l(_vm.displayedPosts, function(Invoice, key) {
+                        return _c("tbody", { key: key }, [
+                          key < _vm.perPage
+                            ? _c("tr", [
+                                _c("td", [_vm._v(_vm._s(key + 1))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(Invoice.invoice_code))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(Invoice.client_name))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v("$" + _vm._s(Invoice.amount))
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(Invoice.description))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(Invoice.created_at.split(" ")[0])
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "td",
+                                  [
+                                    _c(
+                                      "router-link",
+                                      {
+                                        staticClass: "btn btn-success",
+                                        attrs: {
+                                          to: {
+                                            name: "invoiceedit",
+                                            params: { id: Invoice.id }
+                                          }
+                                        }
+                                      },
+                                      [_vm._v("Edit")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-danger",
+                                        attrs: { type: "button" },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.deleteInvoice(
+                                              Invoice.id,
+                                              Invoice.description
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                    Delete\n                  "
+                                        )
+                                      ]
                                     )
-                                  }
-                                }
-                              },
-                              [_vm._v("Delete")]
-                            )
-                          ],
-                          1
-                        )
-                      ])
-                    }),
-                    0
+                                  ],
+                                  1
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      })
+                    ],
+                    2
                   )
-                : _c("tbody", [_vm._m(2)])
+                : _c(
+                    "table",
+                    { staticClass: "table table-bordered text-center" },
+                    [_vm._m(2), _vm._v(" "), _vm._m(3)]
+                  ),
+              _vm._v(" "),
+              _c("div", [
+                _c("span", [
+                  _vm._v(
+                    "Showing 1 to " +
+                      _vm._s(
+                        _vm.perPage > _vm.length ? _vm.length : _vm.perPage
+                      ) +
+                      " of\n              " +
+                      _vm._s(_vm.length) +
+                      " rows"
+                  )
+                ]),
+                _vm._v(" "),
+                _c("nav", { attrs: { "aria-label": "Page navigation" } }, [
+                  _c("ul", { staticClass: "pagination" }, [
+                    _c("li", { staticClass: "page-item" }, [
+                      _vm.page != 1
+                        ? _c(
+                            "button",
+                            {
+                              staticClass: "page-link",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  _vm.page--
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                    Previous\n                  "
+                              )
+                            ]
+                          )
+                        : _vm._e()
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "li",
+                      { staticClass: "page-item" },
+                      _vm._l(
+                        _vm.pages.slice(_vm.page - 1, _vm.page + 5),
+                        function(pageNumber, num) {
+                          return _c(
+                            "button",
+                            {
+                              key: num,
+                              staticClass: "page-link",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  _vm.page = pageNumber
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                    " +
+                                  _vm._s(pageNumber) +
+                                  "\n                  "
+                              )
+                            ]
+                          )
+                        }
+                      ),
+                      0
+                    ),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "page-item" }, [
+                      _vm.page < _vm.pages.length
+                        ? _c(
+                            "button",
+                            {
+                              staticClass: "page-link",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  _vm.page++
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                    Next\n                  "
+                              )
+                            ]
+                          )
+                        : _vm._e()
+                    ])
+                  ])
+                ])
+              ])
             ])
           ])
         ])
       ])
-    ])
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -345,15 +648,19 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("Date")]),
+        _c("th", [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Invoice Number")]),
         _vm._v(" "),
         _c("th", [_vm._v("Client")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Description")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Amount")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Action")])
+        _c("th", [_vm._v("Description")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Date")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Actions")])
       ])
     ])
   },
@@ -361,9 +668,33 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td", { attrs: { colspan: "4", align: "center" } }, [
-        _vm._v("No Invoices Found.")
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Invoice Number")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Client")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Amount")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Description")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Date")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Actions")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tbody", [
+      _c("tr", [
+        _c("td", { attrs: { colspan: "7", align: "center" } }, [
+          _vm._v("No Invoices Found.")
+        ])
       ])
     ])
   }

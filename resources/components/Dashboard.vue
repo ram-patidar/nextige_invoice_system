@@ -6,7 +6,8 @@
           <div class="page-header">
             <h3>Hello, {{ name }}</h3>
           </div>
-        </div>
+            <Breadcrumbs/>
+        </div>        
         <div class="col-md-12">
           <div class="dash-nav">
             <h5>Notifications</h5>
@@ -117,6 +118,7 @@ export default {
           console.log(error);
         });
     },
+    
   },
 };
 </script>

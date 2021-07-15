@@ -22,7 +22,6 @@
                   />
                 </div>
               </div>
-              <!--  -->
               <tr v-for="(Invoice, key) in Invoices" :key="key">
                    <td>
                   <input
@@ -62,7 +61,6 @@
                   </button>
                 </td>
               </tr>
-              <!--  -->
               <tr v-for="(user, key) in users" :key="key">
                 <input
                   name="client_id"

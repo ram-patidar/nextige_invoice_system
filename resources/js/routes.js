@@ -51,7 +51,9 @@ export const routes = [
         name: 'setting',
         path: '/setting',
         meta: {
-            breadcrumb: 'Setting',
+            label: 'Setting',
+            parent: 'Dashboard ❯',
+            path: '/dashboard',
           },
         component: Setting,
         beforeEnter: (to, from, next) =>{
@@ -78,6 +80,13 @@ export const routes = [
         name: 'clientlist',
         path: '/client',
         component: ClientList,
+        meta: {
+            breadcrumb: {
+                label: 'Clients',
+                parent: 'Dashboard ❯',
+                path: '/dashboard',
+              }
+          },
         beforeEnter: (to, from, next) =>{
             if(localStorage.getItem('token')){
                 return next();
@@ -90,6 +99,15 @@ export const routes = [
         name: 'clientedit',
         path: '/client/:id/edit',
         component: ClientEdit,
+        meta: {
+            breadcrumb: {
+                label: 'Client edit',
+                parent: 'Dashboard ❯',
+                path: '/dashboard',
+                child: 'Clients ❯',
+                child_path: '/client',
+              }
+          },
         beforeEnter: (to, from, next) =>{
             if(localStorage.getItem('token')){
                 return next();
@@ -101,6 +119,15 @@ export const routes = [
     {
         name: 'clientadd',
         path: '/client/add',
+        meta: {
+            breadcrumb: {
+                label: 'Add client',
+                parent: 'Dashboard ❯',
+                path: '/dashboard',
+                child: 'Clients ❯',
+                child_path: '/client',
+              }
+          },
         component: ClientCreate,
         beforeEnter: (to, from, next) =>{
             if(localStorage.getItem('token')){
@@ -114,6 +141,13 @@ export const routes = [
         name: 'invoicelist',
         path: '/invoice',
         component: InvoiceList,
+        meta: {
+            breadcrumb: {
+                label: 'Invoice',
+                parent: 'Dashboard ❯',
+                path: '/dashboard',
+              }
+          },
         beforeEnter: (to, from, next) =>{
             if(localStorage.getItem('token')){
                 return next();
@@ -124,8 +158,17 @@ export const routes = [
     },
     {
         name: 'invoiceedit',
-        path: '/Invoice/:id/edit',
+        path: '/invoice/:id/edit',
         component: InvoiceEdit,
+        meta: {
+            breadcrumb: {
+                label: 'Invoice edit',
+                parent: 'Dashboard ❯',
+                path: '/dashboard',
+                child: 'Invoice ❯',
+                child_path: '/invoice',
+              }
+          },
         beforeEnter: (to, from, next) =>{
             if(localStorage.getItem('token')){
                 return next();
@@ -138,6 +181,15 @@ export const routes = [
         name: 'invoiceadd',
         path: '/invoice/add',
         component: InvoiceCreate,
+        meta: {
+            breadcrumb: {
+                label: 'Add Invoice',
+                parent: 'Dashboard ❯',
+                path: '/dashboard',
+                child: 'Invoice ❯',
+                child_path: '/invoice',
+              }
+          },
         beforeEnter: (to, from, next) =>{
             if(localStorage.getItem('token')){
                 return next();

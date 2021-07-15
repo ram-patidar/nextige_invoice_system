@@ -8,6 +8,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path d="M11,2a9,9,0,1,0,9,9A9,9,0,0,0,11,2Zm0,16.2A7.2,7.2,0,1,1,18.2,11,7.2,7.2,0,0,1,11,18.2Zm3.6-8.1H11.9V7.4a.9.9,0,1,0-1.8,0v2.7H7.4a.9.9,0,1,0,0,1.8h2.7v2.7a.9.9,0,0,0,1.8,0V11.9h2.7a.9.9,0,0,0,0-1.8Z" transform="translate(-2 -2)" fill="#fff"/></svg>
         Add Client</router-link>
         </div>
+            <Breadcrumbs/>
       </div>
     </div>
     <div class="row">
@@ -42,7 +43,7 @@
                     <div class="client-dtl">
                         <h5>{{ Client.client_name }}</h5>
                       <div class="client-cont">
-                        <span>{{ Client.country }}</span>
+                        <span>{{ Client.country.split("+")[0] }}</span>
                         <span class="country-icon"></span>
                       </div>
                     </div>
@@ -50,28 +51,13 @@
                     </td>
                     <td>{{ Client.company_name }}</td>
                     <td>{{ Client.email }}</td>
-                    <td>{{ Client.address }}</td>
+                    <td class="pre-formatted">{{ Client.address.replace("\n/g",'\n') }}</td>
                     <td>
-                      <!-- <router-link
-                        :to="{
-                          name: 'clientview',
-                          params: { id: Client.id, name: Client.client_name },
-                        }"
-                        class="btn btn-primary"
-                        >View</router-link
-                      > -->
                       <router-link
                         :to="{ name: 'clientedit', params: { id: Client.id } }"
                         class="btn custom-border-btn"
                         >View</router-link
                       >
-                      <!-- <button
-                        type="button"
-                        @click="deleteClient(Client.id, Client.client_name)"
-                        class="btn btn-danger"
-                      >
-                        Delete
-                      </button> -->
                     </td>
                   </tr>
                 </tbody>
@@ -94,6 +80,7 @@ export default {
     return {
       Clients: [],
       message: null,
+      add:null
     };
   },
   mounted() {
@@ -149,5 +136,8 @@ export default {
   background-color: #0d6efd;
   border-radius: 60%;
   display: inline-block;
+}
+.pre-formatted {
+  white-space: pre;
 }
 </style>

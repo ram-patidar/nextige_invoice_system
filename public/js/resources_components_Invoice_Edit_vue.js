@@ -53,6 +53,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "update-Invoice",
   data: function data() {
@@ -61,7 +72,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         description: "",
         amount: "",
         _method: "patch"
-      }
+      },
+      client_name: ""
     };
   },
   mounted: function mounted() {
@@ -78,12 +90,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.next = 2;
                 return _this.axios.get("/api/Invoice/".concat(_this.$route.params.id)).then(function (response) {
-                  var _response$data$editDa = response.data.editData,
-                      description = _response$data$editDa.description,
-                      amount = _response$data$editDa.amount;
+                  var _response$data$JoinDa = response.data.JoinData,
+                      description = _response$data$JoinDa.description,
+                      amount = _response$data$JoinDa.amount,
+                      client_name = _response$data$JoinDa.client_name;
                   _this.Invoice.amount = amount;
                   _this.Invoice.description = description;
-                  console.log(response.data.editData);
+                  _this.client_name = client_name;
+                  console.log(response.data.JoinData);
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -214,92 +228,156 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row" }, [
-    _c("div", { staticClass: "col-12" }, [
-      _c("div", { staticClass: "card" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
+  return _c(
+    "div",
+    { staticClass: "row" },
+    [
+      _c("Breadcrumbs"),
+      _vm._v(" "),
+      _c(
+        "router-link",
+        { staticClass: "btn custom-btn", attrs: { to: "/invoice" } },
+        [
           _c(
-            "form",
+            "svg",
             {
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  return _vm.update.apply(null, arguments)
-                }
+              attrs: {
+                xmlns: "http://www.w3.org/2000/svg",
+                width: "8.152",
+                height: "14.258",
+                viewBox: "0 0 8.152 14.258"
               }
             },
             [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-12 mb-2" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", [_vm._v("Description")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.Invoice.description,
-                          expression: "Invoice.description"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.Invoice.description },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.Invoice,
-                            "description",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-12 mb-2" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", [_vm._v("Amount")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.Invoice.amount,
-                          expression: "Invoice.amount"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "number" },
-                      domProps: { value: _vm.Invoice.amount },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.Invoice, "amount", $event.target.value)
-                        }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _vm._m(1)
-              ])
+              _c("path", {
+                attrs: {
+                  d:
+                    "M13.319,16.941l5.391-5.4a1.015,1.015,0,0,1,1.439,0,1.028,1.028,0,0,1,0,1.443L14.041,19.1a1.017,1.017,0,0,1-1.405.03L6.485,12.993A1.019,1.019,0,1,1,7.924,11.55Z",
+                  transform: "translate(19.399 -6.188) rotate(90)",
+                  fill: "#fff"
+                }
+              })
             ]
-          )
+          ),
+          _vm._v(" Back")
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-12" }, [
+        _c("div", { staticClass: "card" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.update.apply(null, arguments)
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-12 mb-2" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Client name")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.client_name,
+                            expression: "client_name"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text", disabled: "" },
+                        domProps: { value: _vm.client_name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.client_name = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-12 mb-2" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Description")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.Invoice.description,
+                            expression: "Invoice.description"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.Invoice.description },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.Invoice,
+                              "description",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-12 mb-2" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Amount")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.Invoice.amount,
+                            expression: "Invoice.amount"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "number" },
+                        domProps: { value: _vm.Invoice.amount },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.Invoice, "amount", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(1)
+                ])
+              ]
+            )
+          ])
         ])
       ])
-    ])
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {

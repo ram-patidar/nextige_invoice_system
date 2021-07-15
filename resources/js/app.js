@@ -16,6 +16,21 @@ import VueBodyClass from 'vue-body-class';
 import swal from 'sweetalert2';
 import VueCookies from 'vue-cookies';
 
+import { BPagination } from 'bootstrap-vue'
+Vue.component('b-pagination', BPagination);
+
+import VueBreadcrumbs from 'vue-2-breadcrumbs';
+Vue.use(VueBreadcrumbs, {
+    template:
+      '        <nav v-if="$breadcrumbs.length" aria-label="breadcrumb">\n' +
+      '            <ol class="">\n' +
+      '                <li v-for="(crumb, key) in $breadcrumbs" v-if="crumb.meta.breadcrumb" :key="key" class="breadcrumb-item active" aria-current="page">\n' +
+      '                    <router-link :to="{ path: getBreadcrumb(crumb.meta.breadcrumb.path) }"> {{ getBreadcrumb(crumb.meta.breadcrumb.parent) }} </router-link>  ' +'<router-link :to="{ path: getBreadcrumb(crumb.meta.breadcrumb.child_path) }"> {{ getBreadcrumb(crumb.meta.breadcrumb.child) }} </router-link>  ' +' {{ getBreadcrumb(crumb.meta.breadcrumb) }}'+
+      '                </li>\n' +
+      '            </ol>\n' +
+      '        </nav>'
+  });
+
 Vue.use(VueCookies)
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
