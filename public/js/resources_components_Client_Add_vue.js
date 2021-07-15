@@ -1229,7 +1229,7 @@ var render = function() {
             "div",
             { staticClass: "page-header" },
             [
-              _c("h4", [_vm._v("Add Client")]),
+              _c("h3", [_vm._v("Add Client")]),
               _vm._v(" "),
               _c(
                 "router-link",
@@ -1273,109 +1273,96 @@ var render = function() {
       _c("div", { staticClass: "col-12" }, [
         _c("div", { staticClass: "cus-card" }, [
           _c("div", { staticClass: "cus-card-body" }, [
-            _c(
-              "form",
-              {
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.create.apply(null, arguments)
-                  }
-                }
-              },
-              [
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-12" }, [
-                    _c("div", { staticClass: "from-group" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.Client.client_name,
-                            expression: "Client.client_name"
-                          }
-                        ],
-                        staticClass: "cus-field",
-                        attrs: {
-                          type: "text",
-                          name: "client_name",
-                          autocomplete: "off",
-                          placeholder: " "
-                        },
-                        domProps: { value: _vm.Client.client_name },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.Client,
-                              "client_name",
-                              $event.target.value
-                            )
-                          }
+            _c("form", [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-12" }, [
+                  _c("div", { staticClass: "from-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.Client.client_name,
+                          expression: "Client.client_name"
                         }
-                      }),
-                      _vm._v(" "),
-                      _c("label", [_vm._v("Client Name")]),
-                      _vm._v(" "),
-                      _vm.errors.client_name
-                        ? _c("span", { staticClass: "error" }, [
-                            _vm._v(_vm._s(_vm.errors.client_name[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-12" }, [
-                    _c("div", { staticClass: "from-group" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.Client.company_name,
-                            expression: "Client.company_name"
+                      ],
+                      staticClass: "cus-field",
+                      attrs: {
+                        type: "text",
+                        name: "client_name",
+                        autocomplete: "off",
+                        placeholder: " "
+                      },
+                      domProps: { value: _vm.Client.client_name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
                           }
-                        ],
-                        staticClass: "cus-field",
-                        attrs: {
-                          type: "text",
-                          name: "company_name",
-                          autocomplete: "off",
-                          placeholder: " "
-                        },
-                        domProps: { value: _vm.Client.company_name },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.Client,
-                              "company_name",
-                              $event.target.value
-                            )
-                          }
+                          _vm.$set(
+                            _vm.Client,
+                            "client_name",
+                            $event.target.value
+                          )
                         }
-                      }),
-                      _vm._v(" "),
-                      _c("label", [_vm._v("Company Name")]),
-                      _vm._v(" "),
-                      _vm.errors.company_name
-                        ? _c("span", { staticClass: "error" }, [
-                            _vm._v(_vm._s(_vm.errors.company_name[0]))
-                          ])
-                        : _vm._e()
-                    ])
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("label", [_vm._v("Client Name")]),
+                    _vm._v(" "),
+                    _vm.errors.client_name
+                      ? _c("span", { staticClass: "error" }, [
+                          _vm._v(_vm._s(_vm.errors.client_name[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-12" }, [
+                  _c("div", { staticClass: "from-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.Client.company_name,
+                          expression: "Client.company_name"
+                        }
+                      ],
+                      staticClass: "cus-field",
+                      attrs: {
+                        type: "text",
+                        name: "company_name",
+                        autocomplete: "off",
+                        placeholder: " "
+                      },
+                      domProps: { value: _vm.Client.company_name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.Client,
+                            "company_name",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("label", [_vm._v("Company Name")]),
+                    _vm._v(" "),
+                    _vm.errors.company_name
+                      ? _c("span", { staticClass: "error" }, [
+                          _vm._v(_vm._s(_vm.errors.company_name[0]))
+                        ])
+                      : _vm._e()
                   ])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-12 mb-2" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", [_vm._v("Country ")]),
-                    _vm._v(" "),
+                  _c("div", { staticClass: "from-group" }, [
                     _c(
                       "select",
                       {
@@ -1387,8 +1374,13 @@ var render = function() {
                             expression: "Client.country"
                           }
                         ],
-                        staticClass: "form-control",
-                        attrs: { name: "country", id: "country" },
+                        staticClass: "cus-field",
+                        attrs: {
+                          name: "country",
+                          id: "country",
+                          onclick: "this.setAttribute('value', this.value);",
+                          value: ""
+                        },
                         on: {
                           change: function($event) {
                             var $$selectedVal = Array.prototype.filter
@@ -1409,143 +1401,145 @@ var render = function() {
                           }
                         }
                       },
-                      [
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v(" Select country")
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.country_list, function(country, key) {
-                          return _c(
-                            "option",
-                            { key: key, domProps: { value: country.short } },
-                            [
-                              _vm._v(
-                                "\n                    " +
-                                  _vm._s(country.name) +
-                                  "\n                    \n                  "
-                              )
-                            ]
-                          )
-                        })
-                      ],
-                      2
+                      _vm._l(_vm.country_list, function(country, key) {
+                        return _c(
+                          "option",
+                          { key: key, domProps: { value: country.short } },
+                          [
+                            _vm._v(
+                              "\n                    " +
+                                _vm._s(country.name) +
+                                "\n                    \n                  "
+                            )
+                          ]
+                        )
+                      }),
+                      0
                     ),
+                    _vm._v(" "),
+                    _c("label", [_vm._v("Select Country ")]),
                     _vm._v(" "),
                     _vm.errors.country
                       ? _c("span", { staticClass: "error" }, [
                           _vm._v(_vm._s(_vm.errors.country[0]))
                         ])
                       : _vm._e()
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-12" }, [
-                    _c("div", { staticClass: "from-group" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.Client.email,
-                            expression: "Client.email"
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-12" }, [
+                  _c("div", { staticClass: "from-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.Client.email,
+                          expression: "Client.email"
+                        }
+                      ],
+                      staticClass: "cus-field",
+                      attrs: {
+                        type: "text",
+                        name: "email",
+                        autocomplete: "off",
+                        placeholder: " "
+                      },
+                      domProps: { value: _vm.Client.email },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
                           }
-                        ],
-                        staticClass: "cus-field",
-                        attrs: {
-                          type: "text",
-                          name: "email",
-                          autocomplete: "off",
-                          placeholder: " "
-                        },
-                        domProps: { value: _vm.Client.email },
+                          _vm.$set(_vm.Client, "email", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("label", [_vm._v("Email")]),
+                    _vm._v(" "),
+                    _vm.errors.email
+                      ? _c("span", { staticClass: "error" }, [
+                          _vm._v(_vm._s(_vm.errors.email[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-12" }, [
+                  _c("div", { staticClass: "from-group" }, [
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.Client.address,
+                          expression: "Client.address"
+                        }
+                      ],
+                      staticClass: "cus-field",
+                      attrs: {
+                        type: "text",
+                        name: "address",
+                        autocomplete: "off",
+                        placeholder: " "
+                      },
+                      domProps: { value: _vm.Client.address },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.Client, "address", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("label", [_vm._v("Address")]),
+                    _vm._v(" "),
+                    _vm.errors.address
+                      ? _c("span", { staticClass: "error" }, [
+                          _vm._v(_vm._s(_vm.errors.address[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-12" }, [
+                  _c("div", { staticClass: "btn-groups" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn custom-btn",
+                        attrs: { type: "submit" },
                         on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.Client, "email", $event.target.value)
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.create.apply(null, arguments)
                           }
                         }
-                      }),
-                      _vm._v(" "),
-                      _c("label", [_vm._v("Email")]),
-                      _vm._v(" "),
-                      _vm.errors.email
-                        ? _c("span", { staticClass: "error" }, [
-                            _vm._v(_vm._s(_vm.errors.email[0]))
-                          ])
-                        : _vm._e()
+                      },
+                      [
+                        _vm._v(
+                          "\n                  Add Client\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("button", { staticClass: "btn custom-border-btn" }, [
+                      _vm._v("Cancel")
                     ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-12" }, [
-                    _c("div", { staticClass: "from-group" }, [
-                      _c("textarea", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.Client.address,
-                            expression: "Client.address"
-                          }
-                        ],
-                        staticClass: "cus-field",
-                        attrs: {
-                          type: "text",
-                          name: "address",
-                          autocomplete: "off",
-                          placeholder: " "
-                        },
-                        domProps: { value: _vm.Client.address },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.Client, "address", $event.target.value)
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("label", [_vm._v("Address")]),
-                      _vm._v(" "),
-                      _vm.errors.address
-                        ? _c("span", { staticClass: "error" }, [
-                            _vm._v(_vm._s(_vm.errors.address[0]))
-                          ])
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(0)
+                  ])
                 ])
-              ]
-            )
+              ])
+            ])
           ])
         ])
       ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12" }, [
-      _c("div", { staticClass: "text-center btn-groups" }, [
-        _c(
-          "button",
-          { staticClass: "btn custom-btn", attrs: { type: "submit" } },
-          [_vm._v("\n                  Add Client\n                ")]
-        ),
-        _vm._v(" "),
-        _c("button", { staticClass: "btn custom-border-btn" }, [
-          _vm._v("Cancel")
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

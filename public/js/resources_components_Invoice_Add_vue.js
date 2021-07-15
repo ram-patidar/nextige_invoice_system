@@ -176,9 +176,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "add-Invoice",
   data: function data() {
@@ -253,7 +250,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
                   // setTimeout(() => this.$router.go(), 1000);
-                  _this.$router.push('/invoice');
+                  _this.$router.push("/invoice");
                 })["catch"](function (error) {
                   console.log(error.response.data.message);
                   _this.errors.rate = "*Please fill out all empty and required fields";
@@ -405,7 +402,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.hide[data-v-7c46f084] {\r\n    display: none;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.hide[data-v-7c46f084] {\r\n  display: none;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -559,357 +556,366 @@ var render = function() {
             _c("form", [
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-8" }, [
-                  _c(
-                    "div",
-                    { staticClass: "row" },
-                    [
-                      _c("div", { staticClass: "col-12 mb-2" }, [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("label", [_vm._v("Select Client")]),
-                          _vm._v(" "),
-                          _c(
-                            "select",
-                            {
+                  _c("div", { staticClass: "cus-card-body" }, [
+                    _c(
+                      "div",
+                      { staticClass: "row" },
+                      [
+                        _c("div", { staticClass: "col-12" }, [
+                          _c("div", { staticClass: "from-group" }, [
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.Invoice.client_id,
+                                    expression: "Invoice.client_id"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { name: "client_id", id: "client_id" },
+                                on: {
+                                  change: [
+                                    function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.Invoice,
+                                        "client_id",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    },
+                                    function($event) {
+                                      return _vm.SelectClient($event)
+                                    }
+                                  ]
+                                }
+                              },
+                              [
+                                _c("option", { attrs: { value: "" } }, [
+                                  _vm._v("Select Client Name")
+                                ]),
+                                _vm._v(" "),
+                                _vm._l(_vm.Clients, function(Client, key) {
+                                  return _c(
+                                    "option",
+                                    {
+                                      key: key,
+                                      domProps: { value: Client.id }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                          " +
+                                          _vm._s(Client.client_name) +
+                                          "\n                        "
+                                      )
+                                    ]
+                                  )
+                                })
+                              ],
+                              2
+                            ),
+                            _vm._v(" "),
+                            _vm.errors.client_id
+                              ? _c("span", { staticClass: "error" }, [
+                                  _vm._v(_vm._s(_vm.errors.client_id))
+                                ])
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.users, function(user, key) {
+                          return _c("div", { key: key }, [
+                            _c("input", {
+                              attrs: { type: "radio", name: "rate" },
+                              domProps: { checked: _vm.a_checked },
+                              on: {
+                                change: function($event) {
+                                  return _vm.Amount(key)
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("label", { attrs: { for: "rate" } }, [
+                              _vm._v("Amount")
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              attrs: { type: "radio", name: "rate" },
+                              domProps: { checked: _vm.h_checked },
+                              on: {
+                                change: function($event) {
+                                  return _vm.Hours(key)
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("label", { attrs: { for: "rate" } }, [
+                              _vm._v("Hours")
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
                               directives: [
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.Invoice.client_id,
-                                  expression: "Invoice.client_id"
+                                  value: _vm.users.client_id,
+                                  expression: "users.client_id"
+                                }
+                              ],
+                              attrs: { type: "hidden", name: "client_id" },
+                              domProps: { value: _vm.users.client_id },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.users,
+                                    "client_id",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: user.description,
+                                  expression: "user.description"
                                 }
                               ],
                               staticClass: "form-control",
-                              attrs: { name: "client_id", id: "client_id" },
+                              attrs: {
+                                name: "description",
+                                placeholder: "Enter item",
+                                type: "text"
+                              },
+                              domProps: { value: user.description },
                               on: {
-                                change: [
-                                  function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.$set(
-                                      _vm.Invoice,
-                                      "client_id",
-                                      $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
-                                    )
-                                  },
-                                  function($event) {
-                                    return _vm.SelectClient($event)
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
                                   }
-                                ]
+                                  _vm.$set(
+                                    user,
+                                    "description",
+                                    $event.target.value
+                                  )
+                                }
                               }
-                            },
-                            [
-                              _c("option", { attrs: { value: "" } }, [
-                                _vm._v("Select Client Name")
+                            }),
+                            _vm._v(" "),
+                            _c("div", { class: { hide: _vm.isActive[key] } }, [
+                              _c("label", { attrs: { for: "" } }, [
+                                _vm._v("Enter Hours")
                               ]),
                               _vm._v(" "),
-                              _vm._l(_vm.Clients, function(Client, key) {
-                                return _c(
-                                  "option",
-                                  { key: key, domProps: { value: Client.id } },
-                                  [
-                                    _vm._v(
-                                      "\n                        " +
-                                        _vm._s(Client.client_name) +
-                                        "\n                      "
-                                    )
-                                  ]
-                                )
-                              })
-                            ],
-                            2
-                          ),
-                          _vm._v(" "),
-                          _vm.errors.client_id
-                            ? _c("span", { staticClass: "error" }, [
-                                _vm._v(_vm._s(_vm.errors.client_id))
-                              ])
-                            : _vm._e()
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.users, function(user, key) {
-                        return _c("div", { key: key }, [
-                          _c("input", {
-                            attrs: { type: "radio", name: "rate" },
-                            domProps: { checked: _vm.a_checked },
-                            on: {
-                              change: function($event) {
-                                return _vm.Amount(key)
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("label", { attrs: { for: "rate" } }, [
-                            _vm._v("Amount")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            attrs: { type: "radio", name: "rate" },
-                            domProps: { checked: _vm.h_checked },
-                            on: {
-                              change: function($event) {
-                                return _vm.Hours(key)
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("label", { attrs: { for: "rate" } }, [
-                            _vm._v("Hours")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.users.client_id,
-                                expression: "users.client_id"
-                              }
-                            ],
-                            attrs: { type: "hidden", name: "client_id" },
-                            domProps: { value: _vm.users.client_id },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.users,
-                                  "client_id",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: user.description,
-                                expression: "user.description"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              name: "description",
-                              placeholder: "Enter item",
-                              type: "text"
-                            },
-                            domProps: { value: user.description },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  user,
-                                  "description",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("div", { class: { hide: _vm.isActive[key] } }, [
-                            _c("label", { attrs: { for: "" } }, [
-                              _vm._v("Enter Hours")
+                              _vm.type[key] === "checkbox"
+                                ? _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: user.qty,
+                                        expression: "user.qty"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      name: "qty",
+                                      placeholder: "Enter hours",
+                                      type: "checkbox"
+                                    },
+                                    domProps: {
+                                      checked: Array.isArray(user.qty)
+                                        ? _vm._i(user.qty, null) > -1
+                                        : user.qty
+                                    },
+                                    on: {
+                                      change: function($event) {
+                                        var $$a = user.qty,
+                                          $$el = $event.target,
+                                          $$c = $$el.checked ? true : false
+                                        if (Array.isArray($$a)) {
+                                          var $$v = null,
+                                            $$i = _vm._i($$a, $$v)
+                                          if ($$el.checked) {
+                                            $$i < 0 &&
+                                              _vm.$set(
+                                                user,
+                                                "qty",
+                                                $$a.concat([$$v])
+                                              )
+                                          } else {
+                                            $$i > -1 &&
+                                              _vm.$set(
+                                                user,
+                                                "qty",
+                                                $$a
+                                                  .slice(0, $$i)
+                                                  .concat($$a.slice($$i + 1))
+                                              )
+                                          }
+                                        } else {
+                                          _vm.$set(user, "qty", $$c)
+                                        }
+                                      }
+                                    }
+                                  })
+                                : _vm.type[key] === "radio"
+                                ? _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: user.qty,
+                                        expression: "user.qty"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      name: "qty",
+                                      placeholder: "Enter hours",
+                                      type: "radio"
+                                    },
+                                    domProps: {
+                                      checked: _vm._q(user.qty, null)
+                                    },
+                                    on: {
+                                      change: function($event) {
+                                        return _vm.$set(user, "qty", null)
+                                      }
+                                    }
+                                  })
+                                : _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: user.qty,
+                                        expression: "user.qty"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      name: "qty",
+                                      placeholder: "Enter hours",
+                                      type: _vm.type[key]
+                                    },
+                                    domProps: { value: user.qty },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          user,
+                                          "qty",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
                             ]),
                             _vm._v(" "),
-                            _vm.type[key] === "checkbox"
-                              ? _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: user.qty,
-                                      expression: "user.qty"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: {
-                                    name: "qty",
-                                    placeholder: "Enter hours",
-                                    type: "checkbox"
-                                  },
-                                  domProps: {
-                                    checked: Array.isArray(user.qty)
-                                      ? _vm._i(user.qty, null) > -1
-                                      : user.qty
-                                  },
-                                  on: {
-                                    change: function($event) {
-                                      var $$a = user.qty,
-                                        $$el = $event.target,
-                                        $$c = $$el.checked ? true : false
-                                      if (Array.isArray($$a)) {
-                                        var $$v = null,
-                                          $$i = _vm._i($$a, $$v)
-                                        if ($$el.checked) {
-                                          $$i < 0 &&
-                                            _vm.$set(
-                                              user,
-                                              "qty",
-                                              $$a.concat([$$v])
-                                            )
-                                        } else {
-                                          $$i > -1 &&
-                                            _vm.$set(
-                                              user,
-                                              "qty",
-                                              $$a
-                                                .slice(0, $$i)
-                                                .concat($$a.slice($$i + 1))
-                                            )
-                                        }
-                                      } else {
-                                        _vm.$set(user, "qty", $$c)
-                                      }
-                                    }
-                                  }
-                                })
-                              : _vm.type[key] === "radio"
-                              ? _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: user.qty,
-                                      expression: "user.qty"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: {
-                                    name: "qty",
-                                    placeholder: "Enter hours",
-                                    type: "radio"
-                                  },
-                                  domProps: { checked: _vm._q(user.qty, null) },
-                                  on: {
-                                    change: function($event) {
-                                      return _vm.$set(user, "qty", null)
-                                    }
-                                  }
-                                })
-                              : _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: user.qty,
-                                      expression: "user.qty"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: {
-                                    name: "qty",
-                                    placeholder: "Enter hours",
-                                    type: _vm.type[key]
-                                  },
-                                  domProps: { value: user.qty },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(user, "qty", $event.target.value)
-                                    }
-                                  }
-                                })
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: user.rate,
-                                expression: "user.rate"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              name: "amount",
-                              placeholder: "Enter price rate",
-                              type: "number"
-                            },
-                            domProps: { value: user.rate },
-                            on: {
-                              keyup: function($event) {
-                                return _vm.SubTotal(user.qty * user.rate)
-                              },
-                              change: function($event) {
-                                return _vm.Calculate(user.qty * user.rate)
-                              },
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: user.rate,
+                                  expression: "user.rate"
                                 }
-                                _vm.$set(user, "rate", $event.target.value)
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                name: "amount",
+                                placeholder: "Enter price rate",
+                                type: "number"
+                              },
+                              domProps: { value: user.rate },
+                              on: {
+                                keyup: function($event) {
+                                  return _vm.SubTotal(user.qty * user.rate)
+                                },
+                                change: function($event) {
+                                  return _vm.Calculate(user.qty * user.rate)
+                                },
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(user, "rate", $event.target.value)
+                                }
                               }
-                            }
-                          }),
-                          _vm._v(" "),
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-danger",
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.deleteRow(key)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                      Drop\n                    "
+                                )
+                              ]
+                            )
+                          ])
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-12" }, [
                           _c(
                             "button",
                             {
-                              staticClass: "btn btn-danger",
+                              staticClass: "btn btn-primary",
                               on: {
                                 click: function($event) {
                                   $event.preventDefault()
-                                  return _vm.deleteRow(key)
+                                  return _vm.addRow(_vm.users.length)
                                 }
                               }
                             },
                             [
                               _vm._v(
-                                "\n                    Drop\n                  "
+                                "\n                      Add new item\n                    "
                               )
                             ]
                           )
                         ])
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-12" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-primary",
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.addRow(_vm.users.length)
-                              }
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n                    Add new item\n                  "
-                            )
-                          ]
-                        )
-                      ])
-                    ],
-                    2
-                  )
+                      ],
+                      2
+                    )
+                  ])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-4" }, [
                   _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-12 mb-2" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", [_vm._v("Invoice #")]),
-                        _vm._v(" "),
+                    _c("div", { staticClass: "col-12" }, [
+                      _c("div", { staticClass: "from-group" }, [
                         _c("input", {
                           directives: [
                             {
@@ -919,7 +925,7 @@ var render = function() {
                               expression: "Client.invoice_code"
                             }
                           ],
-                          staticClass: "form-control",
+                          staticClass: "cus-field",
                           attrs: {
                             type: "text",
                             name: "invoice_code",
@@ -938,14 +944,14 @@ var render = function() {
                               )
                             }
                           }
-                        })
+                        }),
+                        _vm._v(" "),
+                        _c("label", [_vm._v("Invoice #")])
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-12 mb-2" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", [_vm._v("date")]),
-                        _vm._v(" "),
+                    _c("div", { staticClass: "col-12" }, [
+                      _c("div", { staticClass: "from-group" }, [
                         _c("input", {
                           directives: [
                             {
@@ -955,7 +961,7 @@ var render = function() {
                               expression: "Client.date"
                             }
                           ],
-                          staticClass: "form-control",
+                          staticClass: "cus-field",
                           attrs: { type: "text", disabled: "" },
                           domProps: { value: _vm.Client.date },
                           on: {
@@ -966,7 +972,9 @@ var render = function() {
                               _vm.$set(_vm.Client, "date", $event.target.value)
                             }
                           }
-                        })
+                        }),
+                        _vm._v(" "),
+                        _c("label", [_vm._v("date")])
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group" }, [

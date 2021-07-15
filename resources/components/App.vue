@@ -65,6 +65,7 @@
           <!-- <router-link to="/" class="navbar-brand" href="#"><img class="logo" src="nextige-logo.png" alt=""></router-link> -->
           <div class="container-fluid">
             <div class="navbar-inr">
+              <div id="nav-icon" class=""> <span></span> <span></span> <span></span> </div>
               <div class="current-user">
                 <div>
                   <h4>

@@ -328,9 +328,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         text: "You won't be able to revert this!",
         type: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!"
+        confirmButtonColor: "#3fa9f4",
+        confirmButtonText: "Delete"
       }).then(function (result) {
         if (result.value) {
           _this3.axios["delete"]("/api/Invoice/".concat(id)).then(function (response) {// this.$swal("Deleted!", `${name} has been deleted.`, "success");

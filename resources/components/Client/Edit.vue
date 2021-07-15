@@ -4,90 +4,99 @@
       <div class="card">
         <div class="card-header">
           <h4>Client details</h4>
-            <Breadcrumbs/>
-
-          <!-- <router-link
-            :to="{
-              name: 'clientview',
-              params: { id: this.$route.params.id, name: this.Client.client_name },
-            }"
-            class="btn btn-primary"
-            >Invoice</router-link
-          > -->
-          <button type="button" @click="deleteClient()" class="btn btn-danger">
-            Delete
-          </button>
-        </div>
-        <div class="card-body">
-          <form @submit.prevent="update">
-            <div class="row">
-              <div class="col-12 mb-2">
-                <div class="form-group">
-                  <label>Client Name</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    v-model="Client.client_name"
-                  />
-                </div>
+          <Breadcrumbs />
+          <div class="col-12">
+            <div class="cus-card">
+              <div class="cus-card-body">
+                <form>
+                  <div class="row">
+                    <div class="col-12 mb-2">
+                      <div class="from-group">
+                        <input
+                          type="text"
+                          class="cus-field"
+                          placeholder=" "
+                          v-model="Client.client_name"
+                        />
+                        <label>Client Name</label>
+                      </div>
+                    </div>
+                    <div class="col-12 mb-2">
+                      <div class="from-group">
+                        <input
+                          type="text"
+                          class="cus-field"
+                          placeholder=" "
+                          v-model="Client.company_name"
+                        />
+                        <label>Company Name</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 mb-2">
+                    <div class="form-group">
+                      <label>Country</label>
+                      <select
+                        name="country"
+                        class="form-control"
+                        id="country"
+                        v-model="Client.country"
+                      >
+                        <option value="">Select Country</option>
+                        <option v-bind:value="Client.country" selected>
+                          {{ Client.country.split("+")[1] }}
+                        </option>
+                        <option
+                          v-for="(country, key) in country_list"
+                          :key="key"
+                          :value="country.short"
+                        >
+                          {{ country.name }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-12 mb-2">
+                      <div class="from-group">
+                        <input
+                          type="text"
+                          class="cus-field"
+                          placeholder=" "
+                          v-model="Client.email"
+                        />
+                        <label>Email</label>
+                      </div>
+                    </div>
+                    <div class="col-12 mb-2">
+                      <div class="from-group">
+                        <textarea
+                          class="cus-field"
+                          placeholder=" "
+                          v-model="Client.address"
+                        >
+                        </textarea>
+                        <label>Address</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="btn-groups">
+                      <button class="btn custom-btn" @click.prevent="update">
+                        Update
+                      </button>
+                      <!-- <button class="btn custom-border-btn">Cancel</button> -->
+                      <button
+                        type="button"
+                        @click="deleteClient()"
+                        class="btn btn-danger-outline"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </form>
               </div>
-              <div class="col-12 mb-2">
-                <div class="form-group">
-                  <label>Company Name</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    v-model="Client.company_name"
-                  />
-                </div>
-              </div>
-              <div class="col-12 mb-2">
-                <div class="form-group">
-                  <label>Country</label>
-                  <select
-                    name="country"
-                    class="form-control"
-                    id="country"
-                    v-model="Client.country"
-                  >
-                    <option value="">Select Country</option>
-                    <option v-bind:value="Client.country" selected>
-                      {{ Client.country.split("+")[1] }}
-                    </option>
-                    <option
-                      v-for="(country, key) in country_list"
-                      :key="key"
-                      :value="country.short"
-                    >
-                      {{ country.name }}
-                    </option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-12 mb-2">
-                <div class="form-group">
-                  <label>Email</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    v-model="Client.email"
-                  />
-                </div>
-              </div>
-              <div class="col-12 mb-2">
-                <div class="form-group">
-                  <label>Address</label>
-                  <textarea
-                    type="text"
-                    class="form-control"
-                    v-model="Client.address"
-                  />
-                  
-                </div>
-              </div>
-              </div>
-              <button class="btn btn-success" @click.prevent="update">update</button>
-          </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -109,8 +118,12 @@ export default {
       },
       errors: [],
       client_id: this.$route.params.id,
-        country_list: [
-        { short: "AF+Afghanistan", name: "Afghanistan", flag: "1625315777.png" },
+      country_list: [
+        {
+          short: "AF+Afghanistan",
+          name: "Afghanistan",
+          flag: "1625315777.png",
+        },
         { short: "AL+Albania", name: "Albania", flag: "url" },
         { short: "DZ+Algeria", name: "Algeria", flag: "url" },
         { short: "AS+American Samoa", name: "American Samoa", flag: "url" },
@@ -118,7 +131,11 @@ export default {
         { short: "AO+Angola", name: "Angola", flag: "url" },
         { short: "AI+Anguilla", name: "Anguilla", flag: "url" },
         { short: "AQ+Antarctica", name: "Antarctica", flag: "url" },
-        { short: "AG+Antigua and Barbuda", name: "Antigua and Barbuda", flag: "url" },
+        {
+          short: "AG+Antigua and Barbuda",
+          name: "Antigua and Barbuda",
+          flag: "url",
+        },
         { short: "AR+Argentina", name: "Argentina", flag: "url" },
         { short: "AM+Armenia", name: "Armenia", flag: "url" },
         { short: "AW+Aruba", name: "Aruba", flag: "url" },
@@ -138,7 +155,11 @@ export default {
         { short: "BW+Botswana", name: "Botswana", flag: "url" },
         { short: "BV+Bouvet Island", name: "Bouvet Island", flag: "url" },
         { short: "BR+Brazil", name: "Brazil", flag: "url" },
-        { short: "BN+Brunei Darussalam", name: "Brunei Darussalam", flag: "url" },
+        {
+          short: "BN+Brunei Darussalam",
+          name: "Brunei Darussalam",
+          flag: "url",
+        },
         { short: "BG+Bulgaria", name: "Bulgaria", flag: "url" },
         { short: "BF+Burkina Faso", name: "Burkina Faso", flag: "url" },
         { short: "BI+Burundi", name: "Burundi", flag: "url" },
@@ -164,10 +185,18 @@ export default {
         { short: "DK+Denmark", name: "Denmark", flag: "url" },
         { short: "DJ+Djibouti", name: "Djibouti", flag: "url" },
         { short: "DM+Dominica", name: "Dominica", flag: "url" },
-        { short: "DO+Dominican Republic", name: "Dominican Republic ", flag: "url" },
+        {
+          short: "DO+Dominican Republic",
+          name: "Dominican Republic ",
+          flag: "url",
+        },
         { short: "EC+Ecuador", name: "Ecuador", flag: "url" },
         { short: "EG+Egypt", name: "Egypt", flag: "url" },
-        { short: "GQ+Equatorial Guinea", name: "Equatorial Guinea", flag: "url" },
+        {
+          short: "GQ+Equatorial Guinea",
+          name: "Equatorial Guinea",
+          flag: "url",
+        },
         { short: "ER+Eritrea", name: "Eritrea", flag: "url" },
         { short: "EE+Estonia", name: "Estonia", flag: "url" },
         { short: "SZ+Eswatini", name: "Eswatini", flag: "url" },
@@ -178,7 +207,11 @@ export default {
         { short: "FR+France", name: "France", flag: "url" },
         { short: "GF+French Guiana", name: "French Guiana", flag: "url" },
         { short: "PF+French Polynesia", name: "French Polynesia", flag: "url" },
-        { short: "TF+French Son Territories", name: "French Son Territories ", flag: "url" },
+        {
+          short: "TF+French Son Territories",
+          name: "French Son Territories ",
+          flag: "url",
+        },
         { short: "GA+Gabon", name: "Gabon", flag: "url" },
         { short: "GM+Gambia", name: "Gambia ", flag: "url" },
         { short: "GE+Georgia", name: "Georgia", flag: "url" },
@@ -196,7 +229,11 @@ export default {
         { short: "GW+Guinea-Bissau", name: "Guinea-Bissau", flag: "url" },
         { short: "GY+Guyana", name: "Guyana", flag: "url" },
         { short: "HT+Haiti", name: "Haiti", flag: "url" },
-        { short: "HM+Heard Island and McDonald Islands", name: "Heard Island and McDonald Islands", flag: "url" },
+        {
+          short: "HM+Heard Island and McDonald Islands",
+          name: "Heard Island and McDonald Islands",
+          flag: "url",
+        },
         { short: "VA+Holy See", name: "Holy See ", flag: "url" },
         { short: "HN+Honduras", name: "Honduras", flag: "url" },
         { short: "HK+Hong Kong", name: "Hong Kong", flag: "url" },
@@ -217,7 +254,7 @@ export default {
         { short: "KZ+Kazakhstan", name: "Kazakhstan", flag: "url" },
         { short: "KE+Kenya", name: "Kenya", flag: "url" },
         { short: "KI+Kiribati", name: "Kiribati", flag: "url" },
-        { short: "KP+Korea",name: "Korea",flag: "url",},
+        { short: "KP+Korea", name: "Korea", flag: "url" },
         { short: "KW+Kuwait", name: "Kuwait", flag: "url" },
         { short: "KG+Kyrgyzstan", name: "Kyrgyzstan", flag: "url" },
         { short: "LV+Latvia", name: "Latvia", flag: "url" },
@@ -235,7 +272,11 @@ export default {
         { short: "MV+Maldives", name: "Maldives", flag: "url" },
         { short: "ML+Mali", name: "Mali", flag: "url" },
         { short: "MT+Malta", name: "Malta", flag: "url" },
-        { short: "MH+Marshall Islands", name: "Marshall Islands ", flag: "url" },
+        {
+          short: "MH+Marshall Islands",
+          name: "Marshall Islands ",
+          flag: "url",
+        },
         { short: "MQ+Martinique", name: "Martinique", flag: "url" },
         { short: "MR+Mauritania", name: "Mauritania", flag: "url" },
         { short: "MU+Mauritius", name: "Mauritius", flag: "url" },
@@ -273,7 +314,11 @@ export default {
         { short: "PR+Puerto Rico", name: "Puerto Rico", flag: "url" },
         { short: "QA+Qatar", name: "Qatar", flag: "url" },
         { short: "RO+Romania", name: "Romania", flag: "url" },
-        { short: "RU+Russian Federation", name: "Russian Federation", flag: "url" },
+        {
+          short: "RU+Russian Federation",
+          name: "Russian Federation",
+          flag: "url",
+        },
         { short: "RW+Rwanda", name: "Rwanda", flag: "url" },
         { short: "RE+Réunion", name: "Réunion", flag: "url" },
         { short: "WS+Samoa", name: "Samoa", flag: "url" },
@@ -310,9 +355,17 @@ export default {
         { short: "TV+Tuvalu", name: "Tuvalu", flag: "url" },
         { short: "UG+Uganda", name: "Uganda", flag: "url" },
         { short: "UA+Ukraine", name: "Ukraine", flag: "url" },
-        { short: "AE+United Arab Emirates", name: "United Arab Emirates", flag: "url" },
-        { short: "UK+United Kingdom",name: "United Kingdom",flag: "url",},
-        { short: "USA+United States of America", name: "United States of America", flag: "url" },
+        {
+          short: "AE+United Arab Emirates",
+          name: "United Arab Emirates",
+          flag: "url",
+        },
+        { short: "UK+United Kingdom", name: "United Kingdom", flag: "url" },
+        {
+          short: "USA+United States of America",
+          name: "United States of America",
+          flag: "url",
+        },
         { short: "UY+Uruguay", name: "Uruguay", flag: "url" },
         { short: "UZ+Uzbekistan", name: "Uzbekistan", flag: "url" },
         { short: "VU+Vanuatu", name: "Vanuatu", flag: "url" },
@@ -361,9 +414,8 @@ export default {
         text: "You won't be able to revert this!",
         type: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
+        confirmButtonColor: "#3fa9f4",
+        confirmButtonText: "Delete",
       }).then((result) => {
         if (result.value) {
           this.axios

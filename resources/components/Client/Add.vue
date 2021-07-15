@@ -3,8 +3,9 @@
     <div class="row">
       <div class="col-12">
         <div class="page-header">
-          <h4>Add Client</h4>
-          <router-link to="/client" class="btn custom-btn"><svg xmlns="http://www.w3.org/2000/svg" width="8.152" height="14.258" viewBox="0 0 8.152 14.258"><path d="M13.319,16.941l5.391-5.4a1.015,1.015,0,0,1,1.439,0,1.028,1.028,0,0,1,0,1.443L14.041,19.1a1.017,1.017,0,0,1-1.405.03L6.485,12.993A1.019,1.019,0,1,1,7.924,11.55Z" transform="translate(19.399 -6.188) rotate(90)" fill="#fff"/></svg> Back</router-link>
+          <h3>Add Client</h3>
+          <router-link to="/client" class="btn custom-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="8.152" height="14.258" viewBox="0 0 8.152 14.258"><path d="M13.319,16.941l5.391-5.4a1.015,1.015,0,0,1,1.439,0,1.028,1.028,0,0,1,0,1.443L14.041,19.1a1.017,1.017,0,0,1-1.405.03L6.485,12.993A1.019,1.019,0,1,1,7.924,11.55Z" transform="translate(19.399 -6.188) rotate(90)" fill="#fff"/></svg> Back</router-link>
         </div>
             <Breadcrumbs/>
 
@@ -14,7 +15,7 @@
       <div class="col-12">
         <div class="cus-card">
           <div class="cus-card-body">
-            <form @submit.prevent="create">
+            <form>
               <div class="row">
                 <div class="col-12">
                   <div class="from-group">
@@ -48,17 +49,15 @@
                     }}</span>
                   </div>
                 </div>
-              </div>
               <div class="col-12 mb-2">
-                <div class="form-group">
-                  <label>Country </label>
+                <div class="from-group">
                   <select
                     name="country"
                     id="country"
-                    class="form-control"
+                    class="cus-field"
                     v-model="Client.country"
+                    onclick="this.setAttribute('value', this.value);" value=""
                   >
-                    <option value=""> Select country</option>
                     <option
                       v-for="(country, key) in country_list"
                       :key="key"
@@ -68,11 +67,12 @@
                       
                     </option>
                   </select>
-
+                  <label>Select Country </label>
                   <span class="error" v-if="errors.country">{{
                     errors.country[0]
                   }}</span>
                 </div>
+              </div>
                 <div class="col-12">
                   <div class="from-group">
                     <input
@@ -106,8 +106,8 @@
                   </div>
                 </div>
                 <div class="col-12">
-                 <div class="text-center btn-groups">
-                    <button type="submit" class="btn custom-btn">
+                 <div class="btn-groups">
+                    <button type="submit" class="btn custom-btn" @click.prevent="create">
                     Add Client
                   </button>
                   <button class="btn custom-border-btn">Cancel</button>

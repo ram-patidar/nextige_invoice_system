@@ -5,8 +5,7 @@
         >Create Invoice</router-link
       >
     </div>
-            <Breadcrumbs/>
-
+    <Breadcrumbs />
     <select v-model="perPage" class="text-center" @click="setPages">
       <option :value="length">show all</option>
       <option :value="2">2</option>

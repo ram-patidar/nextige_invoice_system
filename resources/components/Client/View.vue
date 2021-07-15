@@ -279,9 +279,8 @@ export default {
         text: "You won't be able to revert this!",
         type: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
+        confirmButtonColor: "#3fa9f4",
+        confirmButtonText: "Delete",
       }).then((result) => {
         if (result.value) {
           this.axios.delete(`/api/Invoice/${id}`).then((response) => {

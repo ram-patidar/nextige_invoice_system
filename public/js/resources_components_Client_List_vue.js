@@ -94,6 +94,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "clients",
   data: function data() {
@@ -352,7 +371,7 @@ var render = function() {
                       })
                     ]
                   ),
-                  _vm._v("\n      Add Client")
+                  _vm._v("\n          Add Client")
                 ]
               )
             ],
@@ -367,6 +386,27 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-12" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.search,
+              expression: "search"
+            }
+          ],
+          staticClass: "form-control",
+          domProps: { value: _vm.search },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.search = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
         _c("div", { staticClass: "table-sec" }, [
           _c(
             "table",
@@ -402,7 +442,7 @@ var render = function() {
                                             .toUpperCase()
                                         : " "
                                     ) +
-                                    "\n                    "
+                                    "\n                  "
                                 )
                               ]),
                               _vm._v(" "),
@@ -426,7 +466,11 @@ var render = function() {
                         _c("td", [_vm._v(_vm._s(Client.email))]),
                         _vm._v(" "),
                         _c("td", { staticClass: "pre-formatted" }, [
-                          _vm._v(_vm._s(Client.address.replace("\n/g", "\n")))
+                          _vm._v(
+                            "\n                " +
+                              _vm._s(Client.address.replace("\n/g", "\n")) +
+                              "\n              "
+                          )
                         ]),
                         _vm._v(" "),
                         _c(
@@ -484,7 +528,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", [
-      _c("td", { attrs: { colspan: "4", align: "center" } }, [
+      _c("td", { attrs: { colspan: "5", align: "center" } }, [
         _vm._v("No Clients Found.")
       ])
     ])

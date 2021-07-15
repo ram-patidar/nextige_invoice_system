@@ -1969,6 +1969,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -30308,6 +30309,8 @@ var render = function() {
           ? _c("nav", { staticClass: "navbar navbar-expand-lg" }, [
               _c("div", { staticClass: "container-fluid" }, [
                 _c("div", { staticClass: "navbar-inr" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
                   _c("div", { staticClass: "current-user" }, [
                     _c("div", [
                       _c("h4", [
@@ -30374,6 +30377,18 @@ var staticRenderFns = [
       _c("a", { attrs: { href: "" } }, [
         _c("img", { attrs: { src: "images/logo.svg", alt: "" } })
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "nav-icon" } }, [
+      _c("span"),
+      _vm._v(" "),
+      _c("span"),
+      _vm._v(" "),
+      _c("span")
     ])
   }
 ]

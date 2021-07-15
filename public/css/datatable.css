@@ -1,4 +1,4 @@
-.table {
+.cus-table {
   border-spacing: 0 0.85rem !important;
   border-collapse: unset;
 }
@@ -27,26 +27,27 @@
   font-size: 14px;
   padding: 20px;
 }
-
-.table thead tr, .table thead th {
+.table thead tr th {
   text-transform: uppercase;
   border: 0;
+}
+.cus-table thead tr, .cus-table thead th {
   padding: 10px 20px;
 }
-
+.invoice-table thead {
+  background: #F3F2F5;
+}
 .table tbody tr {
   background: #fff;
   box-shadow: 6px 6px 50px #1a104105;
 }
-
-.table td:first-child {
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+.invoice-table td {
+  border-bottom: 1px solid rgb(0 0 0 / 10%);
 }
 
-.table td:last-child {
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+.cus-table td:first-child, .invoice-table th:first-child, .cus-table td:last-child, .invoice-table td:last-child  {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .avatar {

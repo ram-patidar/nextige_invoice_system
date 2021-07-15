@@ -1,133 +1,130 @@
 <template>
   <div class="row">
-            <Breadcrumbs/>
-
+    <Breadcrumbs />
     <div class="col-12">
       <div class="card">
-
         <div class="card-header">
           <div></div>
           <h4>Add Invoice</h4>
         </div>
-
         <div class="card-body">
           <form>
             <div class="row">
               <div class="col-8">
-                <div class="row">
-                  <div class="col-12 mb-2">
-                    <div class="form-group">
-                      <label>Select Client</label>
-                      <select
-                        name="client_id"
-                        id="client_id"
-                        class="form-control"
-                        v-on:change="SelectClient($event)"
-                        v-model="Invoice.client_id"
-                      >
-                        <option value="">Select Client Name</option>
-                        <option
-                          v-for="(Client, key) in Clients"
-                          :key="key"
-                          v-bind:value="Client.id"
+                <div class="cus-card-body">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="from-group">
+                        <select
+                          name="client_id"
+                          id="client_id"
+                          class="form-control"
+                          v-on:change="SelectClient($event)"
+                          v-model="Invoice.client_id"
                         >
-                          {{ Client.client_name }}
-                        </option>
-                      </select>
-                      <span class="error" v-if="errors.client_id">{{
-                        errors.client_id
-                      }}</span>
+                          <option value="">Select Client Name</option>
+                          <option
+                            v-for="(Client, key) in Clients"
+                            :key="key"
+                            v-bind:value="Client.id"
+                          >
+                            {{ Client.client_name }}
+                          </option>
+                        </select>
+                        <span class="error" v-if="errors.client_id">{{
+                          errors.client_id
+                        }}</span>
+                      </div>
                     </div>
-                  </div>
-
-                  <div v-for="(user, key) in users" :key="key">
-                    <input
-                      type="radio"
-                      name="rate"
-                      :checked="a_checked"
-                      @change="Amount(key)"
-                    />
-                    <label for="rate">Amount</label>
-                    <input
-                      type="radio"
-                      name="rate"
-                      :checked="h_checked"
-                      @change="Hours(key)"
-                    />
-                    <label for="rate">Hours</label>
-                    <input
-                      type="hidden"
-                      name="client_id"
-                      v-model="users.client_id"
-                    />
-
-                    <input
-                      name="description"
-                      v-model="user.description"
-                      placeholder="Enter item"
-                      class="form-control"
-                      type="text"
-                    />
-                    <div v-bind:class="{ hide: isActive[key] }">
-                      <label for="">Enter Hours</label>
+                    <div v-for="(user, key) in users" :key="key">
                       <input
-                      name="qty"
-                      v-model="user.qty"
-                      placeholder="Enter hours"
-                      class="form-control"
-                      :type="type[key]"
-                    />
-                    </div>
-                    <input
-                      name="amount"
-                      v-model="user.rate"
-                      placeholder="Enter price rate"
-                      class="form-control"
-                      type="number"
-                      v-on:keyup="SubTotal(user.qty * user.rate)"
-                      @change="Calculate(user.qty * user.rate)"
-                    />
+                        type="radio"
+                        name="rate"
+                        :checked="a_checked"
+                        @change="Amount(key)"
+                      />
+                      <label for="rate">Amount</label>
+                      <input
+                        type="radio"
+                        name="rate"
+                        :checked="h_checked"
+                        @change="Hours(key)"
+                      />
+                      <label for="rate">Hours</label>
+                      <input
+                        type="hidden"
+                        name="client_id"
+                        v-model="users.client_id"
+                      />
 
-                    <button
-                      @click.prevent="deleteRow(key)"
-                      class="btn btn-danger"
-                    >
-                      Drop
-                    </button>
-                  </div>
-                  <div class="col-12">
-                    <button
-                      class="btn btn-primary"
-                      @click.prevent="addRow(users.length)"
-                    >
-                      Add new item
-                    </button>
+                      <input
+                        name="description"
+                        v-model="user.description"
+                        placeholder="Enter item"
+                        class="form-control"
+                        type="text"
+                      />
+                      <div v-bind:class="{ hide: isActive[key] }">
+                        <label for="">Enter Hours</label>
+                        <input
+                          name="qty"
+                          v-model="user.qty"
+                          placeholder="Enter hours"
+                          class="form-control"
+                          :type="type[key]"
+                        />
+                      </div>
+                      <input
+                        name="amount"
+                        v-model="user.rate"
+                        placeholder="Enter price rate"
+                        class="form-control"
+                        type="number"
+                        v-on:keyup="SubTotal(user.qty * user.rate)"
+                        @change="Calculate(user.qty * user.rate)"
+                      />
+
+                      <button
+                        @click.prevent="deleteRow(key)"
+                        class="btn btn-danger"
+                      >
+                        Drop
+                      </button>
+                    </div>
+                    <div class="col-12">
+                      <button
+                        class="btn btn-primary"
+                        @click.prevent="addRow(users.length)"
+                      >
+                        Add new item
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="col-4">
                 <div class="row">
-                  <div class="col-12 mb-2">
-                    <div class="form-group">
-                      <label>Invoice #</label>
+                  <div class="col-12">
+                    <div class="from-group">
                       <input
                         type="text"
                         name="invoice_code"
-                        class="form-control"
+                        class="cus-field"
                         v-model="Client.invoice_code"
                         disabled
                       />
+                      <label>Invoice #</label>
                     </div>
                   </div>
-                  <div class="col-12 mb-2">
-                    <div class="form-group">
-                      <label>date</label>
+                  <div class="col-12">
+                    <div class="from-group">
                       <input
                         type="text"
-                        class="form-control"
+                        class="cus-field"
                         v-model="Client.date"
                         disabled
                       />
+                      <label>date</label>
                     </div>
                     <div class="form-group">
                       <label>Subtotal</label>
@@ -194,7 +191,7 @@ export default {
       type: [],
       subtotal: 0,
       total: 0,
-       isActive: []
+      isActive: [],
     };
   },
   mounted() {
@@ -204,7 +201,6 @@ export default {
     this.type[0] = "hidden";
     this.type[1] = "hidden";
     this.isActive[0] = true;
-    
   },
   methods: {
     async create() {
@@ -220,7 +216,7 @@ export default {
           .then((response) => {
             this.$swal("Invoice Added Successfully ", "", "success");
             // setTimeout(() => this.$router.go(), 1000);
-            this.$router.push('/invoice');
+            this.$router.push("/invoice");
           })
           .catch((error) => {
             console.log(error.response.data.message);
@@ -277,8 +273,7 @@ export default {
       this.type[key] = "hidden";
       this.h_checked = false;
       this.a_checked = true;
-       this.isActive[key]= true;
-
+      this.isActive[key] = true;
     },
     deleteRow(key) {
       if (this.type[key + 1] == "hidden") {
@@ -290,7 +285,7 @@ export default {
       }
       this.users.splice(key, 1);
     },
- SubTotal(value) {
+    SubTotal(value) {
       this.subtotal = value;
     },
     Calculate(value) {
@@ -299,37 +294,35 @@ export default {
 
     Amount(key) {
       this.type[key] = "hidden";
-       this.isActive[key]= true
+      this.isActive[key] = true;
       if ((this.type[key] = "hidden")) {
         this.a_checked = true;
         this.h_checked = false;
-       this.isActive[key]= true
-
+        this.isActive[key] = true;
       } else {
         this.a_checked = false;
         this.h_checked = true;
-       this.isActive[key]= false
+        this.isActive[key] = false;
       }
     },
     Hours(key) {
       this.type[key] = "number";
-       this.isActive[key]= false
+      this.isActive[key] = false;
       if ((this.type[key] = "number")) {
         this.h_checked = true;
         this.a_checked = false;
-       this.isActive[key]= false
+        this.isActive[key] = false;
       } else {
         this.h_checked = false;
         this.a_checked = true;
-       this.isActive[key]= true
+        this.isActive[key] = true;
       }
     },
   },
 };
-
 </script>
 <style scoped>
 .hide {
-    display: none;
+  display: none;
 }
 </style>
